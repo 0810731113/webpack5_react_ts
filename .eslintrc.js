@@ -1,6 +1,8 @@
 const OFF = 0;
-const WARN = 1;
-const ERROR = 2;
+// const WARN = 1;
+// const ERROR = 2;
+const WARN = 0;
+const ERROR = 0;
 
 module.exports = {
   env: {

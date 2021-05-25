@@ -18,10 +18,7 @@
     "not op_mini all"
   ],
   "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged",
-      "commit-msg": "commitlint --config .commitlintrc.js -E HUSKY_GIT_PARAMS"
-    }
+    "hooks": {}
   },
   "lint-staged": {
     "*.{ts,tsx,js}": [
