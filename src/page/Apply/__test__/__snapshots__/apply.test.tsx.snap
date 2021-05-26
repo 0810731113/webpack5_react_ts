@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`test verify tel 1`] = `
+"<div class=\\"content\\">
+  <form id=\\"basic\\" class=\\"ant-form ant-form-horizontal\\">
+    <div class=\\"exclamation\\"><span role=\\"img\\" aria-label=\\"exclamation-circle\\" style=\\"color: rgb(250, 173, 20); margin-right: 5px;\\" class=\\"anticon anticon-exclamation-circle\\"><svg viewBox=\\"64 64 896 896\\" focusable=\\"false\\" data-icon=\\"exclamation-circle\\" width=\\"1em\\" height=\\"1em\\" fill=\\"currentColor\\" aria-hidden=\\"true\\"><path d=\\"M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm-32 232c0-4.4 3.6-8 8-8h48c4.4 0 8 3.6 8 8v272c0 4.4-3.6 8-8 8h-48c-4.4 0-8-3.6-8-8V296zm32 440a48.01 48.01 0 010-96 48.01 48.01 0 010 96z\\"></path></svg></span>本产品目前处于邀请体验阶段，仅授权部分以住宅施工图设计为主要业务的建筑设计企业用户参与试用体验。感谢理解与支持！</div>
+    <div class=\\"ant-row ant-form-item\\">
+      <div class=\\"ant-col ant-col-5 ant-form-item-label ant-form-item-label-left\\"><label for=\\"basic_mobile\\" class=\\"ant-form-item-required\\" title=\\"手机号码\\">手机号码</label></div>
+      <div class=\\"ant-col ant-col-19 ant-form-item-control\\">
+        <div class=\\"ant-form-item-control-input\\">
+          <div class=\\"ant-form-item-control-input-content\\"><input placeholder=\\"请输入有效的手机号码\\" type=\\"text\\" id=\\"basic_mobile\\" class=\\"ant-input ant-input-lg\\" value=\\"\\"></div>
+        </div>
+      </div>
+    </div>
+    <div class=\\"ant-row ant-form-item\\">
+      <div class=\\"ant-col ant-col-5 ant-form-item-label ant-form-item-label-left\\"><label for=\\"basic_code\\" class=\\"ant-form-item-required\\" title=\\"验证码\\">验证码</label></div>
+      <div class=\\"ant-col ant-col-19 ant-form-item-control\\">
+        <div class=\\"ant-form-item-control-input\\">
+          <div class=\\"ant-form-item-control-input-content\\"><span class=\\"ant-input-affix-wrapper ant-input-affix-wrapper-lg\\"><input placeholder=\\"请输入验证码\\" type=\\"text\\" id=\\"basic_code\\" class=\\"ant-input ant-input-lg\\" value=\\"\\"><span class=\\"ant-input-suffix\\"><a>获取验证码</a></span></span></div>
+        </div>
+      </div>
+    </div>
+    <div class=\\"commit-wrap\\">
+      <div class=\\"ant-row ant-form-item\\">
+        <div class=\\"ant-col ant-col-19 ant-form-item-control\\">
+          <div class=\\"ant-form-item-control-input\\">
+            <div class=\\"ant-form-item-control-input-content\\"><label class=\\"ant-checkbox-wrapper\\"><span class=\\"ant-checkbox\\"><input id=\\"basic_remember\\" type=\\"checkbox\\" class=\\"ant-checkbox-input\\" value=\\"\\"><span class=\\"ant-checkbox-inner\\"></span></span><span><span style=\\"margin-right: 2px;\\">我已阅读并同意</span><a href=\\"https://account.glodon.com/agreement\\" target=\\"_blank\\" rel=\\"noreferrer\\">广联达用户协议</a><span style=\\"margin: 0px 2px;\\">和</span><a href=\\"https://account.glodon.com/privacy\\" target=\\"_blank\\" rel=\\"noreferrer\\">隐私政策</a></span></label></div>
+          </div>
+        </div>
+      </div>
+      <div class=\\"ant-row ant-form-item\\">
+        <div class=\\"ant-col ant-col-24 ant-form-item-control\\">
+          <div class=\\"ant-form-item-control-input\\">
+            <div class=\\"ant-form-item-control-input-content\\"><button type=\\"submit\\" class=\\"ant-btn ant-btn-primary\\"><span>下一步</span></button></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>"
+`;

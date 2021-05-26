@@ -1,0 +1,3313 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "Api Documentation",
+    "version": "1.0",
+    "title": "Api Documentation",
+    "termsOfService": "urn:tos",
+    "contact": {},
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0"
+    }
+  },
+  "host": "gdc-qastg.glodon.com",
+  "basePath": "/system",
+  "tags": [
+    {
+      "name": "Account 相关接口",
+      "description": "Account Controller"
+    },
+    {
+      "name": "Limit 资源限制接口",
+      "description": "Resource Limit Controller"
+    },
+    {
+      "name": "Maintain 系统维护接口",
+      "description": "Maintain Controller"
+    },
+    {
+      "name": "Task 相关接口",
+      "description": "Task Controller"
+    },
+    {
+      "name": "Task 统计相关接口",
+      "description": "Task Stats Controller"
+    },
+    {
+      "name": "WhiteList 白名单接口",
+      "description": "White List Controller"
+    },
+    {
+      "name": "backup-recover-controller",
+      "description": "Backup Recover Controller"
+    },
+    {
+      "name": "internal-test-controller",
+      "description": "Internal Test Controller"
+    }
+  ],
+  "paths": {
+    "/account": {
+      "get": {
+        "tags": [
+          "Account 相关接口"
+        ],
+        "summary": "根据（账号分类/类型/状态/来源）查询账号，分页展示",
+        "operationId": "getAccountPageUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "category",
+            "in": "query",
+            "description": "账号分类",
+            "required": false,
+            "type": "string",
+            "allowEmptyValue": false,
+            "enum": [
+              "Customer",
+              "Internal",
+              "System"
+            ]
+          },
+          {
+            "name": "pageNo",
+            "in": "query",
+            "description": "pageNo",
+            "required": false,
+            "type": "integer",
+            "default": 0,
+            "format": "int32"
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "description": "pageSize",
+            "required": false,
+            "type": "integer",
+            "default": 20,
+            "format": "int32"
+          },
+          {
+            "name": "source",
+            "in": "query",
+            "description": "账号来源",
+            "required": false,
+            "type": "string",
+            "allowEmptyValue": false,
+            "enum": [
+              "Register",
+              "Addition"
+            ]
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "description": "账号状态",
+            "required": false,
+            "type": "string",
+            "allowEmptyValue": false,
+            "enum": [
+              "Pending",
+              "Approved",
+              "Reject"
+            ]
+          },
+          {
+            "name": "type",
+            "in": "query",
+            "description": "账号类型",
+            "required": false,
+            "type": "string",
+            "allowEmptyValue": false,
+            "enum": [
+              "EnterpriseGeneral",
+              "EnterpriseVIP",
+              "EnterprisePersonal",
+              "InternalBusiness",
+              "InternalTest",
+              "System"
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«PageResponse«AccountVO»»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/account/system": {
+      "post": {
+        "tags": [
+          "Account 相关接口"
+        ],
+        "summary": "后台添加账号信息",
+        "operationId": "addAccountUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "request",
+            "description": "request",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UserRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«AccountVO»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/account/validation": {
+      "get": {
+        "tags": [
+          "Account 相关接口"
+        ],
+        "summary": "验证账号信息",
+        "operationId": "validateAccountUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "type",
+            "in": "query",
+            "description": "type",
+            "required": true,
+            "type": "string",
+            "enum": [
+              "EnterpriseGeneral",
+              "EnterpriseVIP",
+              "EnterprisePersonal",
+              "InternalBusiness",
+              "InternalTest",
+              "System"
+            ]
+          },
+          {
+            "name": "userName",
+            "in": "query",
+            "description": "userName",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«AccountValidationVO»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/account/web": {
+      "post": {
+        "tags": [
+          "Account 相关接口"
+        ],
+        "summary": "web申请添加账号信息",
+        "operationId": "registerAccountUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "request",
+            "description": "request",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UserRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«AccountVO»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/account/{accountId}": {
+      "get": {
+        "tags": [
+          "Account 相关接口"
+        ],
+        "summary": "获取单个账号信息",
+        "operationId": "getAccountUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "accountId",
+            "in": "path",
+            "description": "accountId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«AccountVO»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      },
+      "put": {
+        "tags": [
+          "Account 相关接口"
+        ],
+        "summary": "编辑账号信息",
+        "operationId": "editAccountUsingPUT",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "accountId",
+            "in": "path",
+            "description": "accountId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "request",
+            "description": "request",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UserRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«AccountVO»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/account/{accountId}/audit": {
+      "put": {
+        "tags": [
+          "Account 相关接口"
+        ],
+        "summary": "审核账号",
+        "operationId": "reviewAccountUsingPUT",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "accountId",
+            "in": "path",
+            "description": "accountId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "request",
+            "description": "request",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ReviewUserRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«AccountVO»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/account/{accountId}/enable": {
+      "put": {
+        "tags": [
+          "Account 相关接口"
+        ],
+        "summary": "启用/禁用账号",
+        "operationId": "enableAccountUsingPUT",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "accountId",
+            "in": "path",
+            "description": "accountId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "enable",
+            "in": "query",
+            "description": "enable",
+            "required": true,
+            "type": "boolean"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«AccountVO»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/account/{accountId}/switchType": {
+      "put": {
+        "tags": [
+          "Account 相关接口"
+        ],
+        "summary": "切换账号类型",
+        "operationId": "switchAccountTypeUsingPUT",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "accountId",
+            "in": "path",
+            "description": "accountId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "request",
+            "description": "request",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/SwitchUserTypeRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«AccountVO»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/appVersions": {
+      "get": {
+        "tags": [
+          "Maintain 系统维护接口"
+        ],
+        "summary": "查询所有可用版本",
+        "operationId": "getAppVersionsUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«List«string»»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/appVersions/{appVersion}/usable": {
+      "get": {
+        "tags": [
+          "Maintain 系统维护接口"
+        ],
+        "summary": "查询当前版本是否可用",
+        "operationId": "verifyAppVersionUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "appVersion",
+            "in": "path",
+            "description": "appVersion",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«AppVersionStatus»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/appVersions/{version}": {
+      "post": {
+        "tags": [
+          "Maintain 系统维护接口"
+        ],
+        "summary": "添加一个可用版本号",
+        "operationId": "addAppVersionUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "version",
+            "in": "path",
+            "description": "version",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«Void»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/exception": {
+      "get": {
+        "tags": [
+          "internal-test-controller"
+        ],
+        "summary": "exception",
+        "operationId": "exceptionUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "string"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/hbase/backup/all": {
+      "post": {
+        "tags": [
+          "backup-recover-controller"
+        ],
+        "summary": "备份所有hbase表格",
+        "operationId": "backupUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«string»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/hbase/snapshot/{snapshotId}/recover": {
+      "post": {
+        "tags": [
+          "backup-recover-controller"
+        ],
+        "summary": "恢复指定snapshot",
+        "operationId": "recoverSnapshotUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "snapshotId",
+            "in": "path",
+            "description": "snapshotId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "tablenames",
+            "description": "tablenames",
+            "required": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«RecoverResult»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/hbase/snapshot/{snapshotId}/recoverall": {
+      "post": {
+        "tags": [
+          "backup-recover-controller"
+        ],
+        "summary": "恢复指定snapshot",
+        "operationId": "recoverSnapshotAllUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "snapshotId",
+            "in": "path",
+            "description": "snapshotId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«RecoverResult»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/hbase/snapshot/{snapshotName}/cloneto/{tablename}": {
+      "post": {
+        "tags": [
+          "backup-recover-controller"
+        ],
+        "summary": "拷贝指定snapshot到新表",
+        "operationId": "cloneSnapshotUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "snapshotName",
+            "in": "path",
+            "description": "snapshotName",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "tablename",
+            "in": "path",
+            "description": "tablename",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«string»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/health": {
+      "get": {
+        "tags": [
+          "internal-test-controller"
+        ],
+        "summary": "healthy",
+        "operationId": "healthyUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "string"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/maintain": {
+      "post": {
+        "tags": [
+          "Maintain 系统维护接口"
+        ],
+        "summary": "进入后台维护状态",
+        "operationId": "underMaintenanceUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "backupDB",
+            "in": "query",
+            "description": "backupDB",
+            "required": false,
+            "type": "boolean",
+            "default": true
+          },
+          {
+            "in": "body",
+            "name": "maintainInfo",
+            "description": "maintainInfo",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/MaintainInfo"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«string»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/maintain/end": {
+      "post": {
+        "tags": [
+          "Maintain 系统维护接口"
+        ],
+        "summary": "恢复正常运行状态",
+        "operationId": "endMaintenanceUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«string»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/maintain/post": {
+      "post": {
+        "tags": [
+          "Maintain 系统维护接口"
+        ],
+        "summary": "结束后台维护状态",
+        "operationId": "postMaintenanceUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "endTime",
+            "in": "query",
+            "description": "endTime",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«string»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/maintain/pre": {
+      "post": {
+        "tags": [
+          "Maintain 系统维护接口"
+        ],
+        "summary": "即将进入维护状态",
+        "operationId": "preMaintainUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "maintainInfo",
+            "description": "maintainInfo",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/MaintainInfo"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«string»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/maintainConfig": {
+      "get": {
+        "tags": [
+          "Maintain 系统维护接口"
+        ],
+        "summary": "查询maintain相关配置",
+        "operationId": "getMaintainConfigUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«MaintainConfig»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/maintainMessage": {
+      "get": {
+        "tags": [
+          "Maintain 系统维护接口"
+        ],
+        "summary": "查询文案",
+        "operationId": "getMaintainMessageUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "maintainClient",
+            "in": "query",
+            "description": "maintainClient",
+            "required": true,
+            "type": "string",
+            "enum": [
+              "APP",
+              "WEB",
+              "PANEL",
+              "COMMON"
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«string»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      },
+      "post": {
+        "tags": [
+          "Maintain 系统维护接口"
+        ],
+        "summary": "创建维护文案",
+        "operationId": "createMaintainMessageUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "maintainNotice",
+            "description": "maintainNotice",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/MaintainNotice"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«Void»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/maintainMessages": {
+      "get": {
+        "tags": [
+          "Maintain 系统维护接口"
+        ],
+        "summary": "查询所有文案",
+        "operationId": "getMaintainMessagesUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«List«MaintainNotice»»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/mysql/backup": {
+      "post": {
+        "tags": [
+          "backup-recover-controller"
+        ],
+        "summary": "备份MYSQL",
+        "operationId": "backupUsingPOST_1",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "req",
+            "description": "req",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/RdsBackupRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«boolean»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/resource/all": {
+      "get": {
+        "tags": [
+          "Limit 资源限制接口"
+        ],
+        "summary": "获取所有类型资源限制",
+        "operationId": "getResourceLimitListUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«List«ResourceLimitVO»»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/resource/userType": {
+      "get": {
+        "tags": [
+          "Limit 资源限制接口"
+        ],
+        "summary": "获取用户类型资源限制",
+        "operationId": "getResourceLimitByUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "type",
+            "in": "query",
+            "description": "账号类型",
+            "required": false,
+            "type": "string",
+            "allowEmptyValue": false,
+            "enum": [
+              "EnterpriseGeneral",
+              "EnterpriseVIP",
+              "EnterprisePersonal",
+              "InternalBusiness",
+              "InternalTest",
+              "System"
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«ResourceLimitVO»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/resource/userType/edit": {
+      "put": {
+        "tags": [
+          "Limit 资源限制接口"
+        ],
+        "summary": "编辑用户类型资源限制",
+        "operationId": "editResourceLimitByUsingPUT",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "request",
+            "description": "request",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ResourceLimitRequest"
+            }
+          },
+          {
+            "name": "type",
+            "in": "query",
+            "description": "type",
+            "required": true,
+            "type": "string",
+            "enum": [
+              "EnterpriseGeneral",
+              "EnterpriseVIP",
+              "EnterprisePersonal",
+              "InternalBusiness",
+              "InternalTest",
+              "System"
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«ResourceLimitVO»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/system/status": {
+      "get": {
+        "tags": [
+          "Maintain 系统维护接口"
+        ],
+        "summary": "查询后台状态",
+        "operationId": "getSystemStatusUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "x-gdc-userid",
+            "in": "header",
+            "description": "x-gdc-userid",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«string»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/task": {
+      "get": {
+        "tags": [
+          "Task 相关接口"
+        ],
+        "summary": "分页查询任务",
+        "operationId": "getTaskPageUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "pageNo",
+            "in": "query",
+            "description": "pageNo",
+            "required": false,
+            "type": "integer",
+            "default": 0,
+            "format": "int32"
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "description": "pageSize",
+            "required": false,
+            "type": "integer",
+            "default": 20,
+            "format": "int32"
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "description": "任务状态",
+            "required": false,
+            "type": "string",
+            "allowEmptyValue": false,
+            "enum": [
+              "Waiting",
+              "Success",
+              "Error",
+              "Processing",
+              "Timeout"
+            ]
+          },
+          {
+            "name": "type",
+            "in": "query",
+            "description": "任务类型",
+            "required": false,
+            "type": "string",
+            "allowEmptyValue": false,
+            "enum": [
+              "COST",
+              "GFC",
+              "IFC",
+              "BIMQ",
+              "QUANTITY",
+              "BMVPACKAGE",
+              "DATASET_LOAD",
+              "DATASET_WRITE",
+              "UNKNOWN"
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«PageResponse«TaskVO»»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/task/{taskId}/extra": {
+      "get": {
+        "tags": [
+          "Task 相关接口"
+        ],
+        "summary": "获取任务下的详细信息",
+        "operationId": "getTaskExtraInfoUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "taskId",
+            "in": "path",
+            "description": "taskId",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«List«TaskExtraVO»»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/taskStats/metric": {
+      "get": {
+        "tags": [
+          "Task 统计相关接口"
+        ],
+        "summary": "获取任务度量统计信息",
+        "operationId": "getTaskMetricStatsUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "from",
+            "in": "query",
+            "description": "from",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "description": "任务状态",
+            "required": false,
+            "type": "string",
+            "default": "Waiting",
+            "allowEmptyValue": false,
+            "enum": [
+              "Waiting",
+              "Success",
+              "Error",
+              "Processing",
+              "Timeout"
+            ]
+          },
+          {
+            "name": "to",
+            "in": "query",
+            "description": "to",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "type",
+            "in": "query",
+            "description": "任务类型",
+            "required": false,
+            "type": "string",
+            "allowEmptyValue": false,
+            "enum": [
+              "COST",
+              "GFC",
+              "IFC",
+              "BIMQ",
+              "QUANTITY",
+              "BMVPACKAGE",
+              "DATASET_LOAD",
+              "DATASET_WRITE",
+              "UNKNOWN"
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«TaskMetricStatsVO»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/taskStats/overview": {
+      "get": {
+        "tags": [
+          "Task 统计相关接口"
+        ],
+        "summary": "获取任务总览统计信息",
+        "operationId": "getTaskOverviewStatsUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "from",
+            "in": "query",
+            "description": "from",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "to",
+            "in": "query",
+            "description": "to",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "type",
+            "in": "query",
+            "description": "任务类型",
+            "required": false,
+            "type": "string",
+            "allowEmptyValue": false,
+            "enum": [
+              "COST",
+              "GFC",
+              "IFC",
+              "BIMQ",
+              "QUANTITY",
+              "BMVPACKAGE",
+              "DATASET_LOAD",
+              "DATASET_WRITE",
+              "UNKNOWN"
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«TaskStatsVO»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/timeout/{timeoutInMill}": {
+      "get": {
+        "tags": [
+          "internal-test-controller"
+        ],
+        "summary": "timeout",
+        "operationId": "timeoutUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "timeoutInMill",
+            "in": "path",
+            "description": "timeoutInMill",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/usable": {
+      "get": {
+        "tags": [
+          "Maintain 系统维护接口"
+        ],
+        "summary": "检查是否被block",
+        "operationId": "isAppUsableUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "x-gdc-appversion",
+            "in": "header",
+            "description": "x-gdc-appversion",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-gdc-userid",
+            "in": "header",
+            "description": "x-gdc-userid",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«SystemStatus»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/v2/system/status": {
+      "get": {
+        "tags": [
+          "Maintain 系统维护接口"
+        ],
+        "summary": "查询后台状态",
+        "operationId": "getSystemStatusV2UsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "x-gdc-userid",
+            "in": "header",
+            "description": "x-gdc-userid",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«CurrentSystemStatus»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/whitelist": {
+      "get": {
+        "tags": [
+          "WhiteList 白名单接口"
+        ],
+        "summary": "获取所有白名单用户",
+        "operationId": "getWhiteListUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "x-gdc-userid",
+            "in": "header",
+            "description": "x-gdc-userid",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«List«WhiteListUser»»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/whitelist/user": {
+      "post": {
+        "tags": [
+          "WhiteList 白名单接口"
+        ],
+        "summary": "将用户添加到白名单中",
+        "operationId": "addUserIntoWhiteListUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "whiteListUser",
+            "description": "whiteListUser",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/WhiteListUser"
+            }
+          },
+          {
+            "name": "x-gdc-userid",
+            "in": "header",
+            "description": "x-gdc-userid",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«Void»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      },
+      "put": {
+        "tags": [
+          "WhiteList 白名单接口"
+        ],
+        "summary": "修改某个白名单用户",
+        "operationId": "updateWhiteListUserByIdUsingPUT",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "whiteListUser",
+            "description": "whiteListUser",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/WhiteListUser"
+            }
+          },
+          {
+            "name": "x-gdc-userid",
+            "in": "header",
+            "description": "x-gdc-userid",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«Void»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/whitelist/user/{userId}": {
+      "get": {
+        "tags": [
+          "WhiteList 白名单接口"
+        ],
+        "summary": "查询某个用户是否在白名单中",
+        "operationId": "isWhiteListUserUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "userId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«boolean»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      },
+      "delete": {
+        "tags": [
+          "WhiteList 白名单接口"
+        ],
+        "summary": "将用户从白名单删除",
+        "operationId": "deleteUserFromWhiteListUsingDELETE",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "userId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-gdc-userid",
+            "in": "header",
+            "description": "x-gdc-userid",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«Void»"
+            }
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/whitelist/users": {
+      "post": {
+        "tags": [
+          "WhiteList 白名单接口"
+        ],
+        "summary": "批量添加到白名单中",
+        "operationId": "addUsersIntoWhiteListUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "userInfoList",
+            "description": "userInfoList",
+            "required": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/UserInfo"
+              }
+            }
+          },
+          {
+            "name": "x-gdc-userid",
+            "in": "header",
+            "description": "x-gdc-userid",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«Void»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    }
+  },
+  "securityDefinitions": {
+    "JWT": {
+      "type": "apiKey",
+      "name": "Authorization",
+      "in": "header"
+    }
+  },
+  "definitions": {
+    "AccountVO": {
+      "type": "object",
+      "properties": {
+        "accessToken": {
+          "type": "string"
+        },
+        "category": {
+          "type": "string",
+          "enum": [
+            "Customer",
+            "Internal",
+            "System"
+          ]
+        },
+        "certificateUrl": {
+          "type": "string"
+        },
+        "company": {
+          "type": "string"
+        },
+        "creationTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "department": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "enabled": {
+          "type": "boolean"
+        },
+        "id": {
+          "type": "string"
+        },
+        "isProjectParticipant": {
+          "type": "boolean"
+        },
+        "name": {
+          "type": "string"
+        },
+        "position": {
+          "type": "string"
+        },
+        "qq": {
+          "type": "string"
+        },
+        "reason": {
+          "type": "string"
+        },
+        "remark": {
+          "type": "string"
+        },
+        "reviewTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "roles": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "ProjectAdmin",
+              "ProjectUser",
+              "ProjectExternalUser",
+              "GlobalVisitor",
+              "EnterpriseVisitor",
+              "ProjectVisitor",
+              "BetaUser",
+              "BopsAdmin",
+              "BopsMarket",
+              "BopsProduct",
+              "BopsUser",
+              "BopsDeveloper"
+            ]
+          }
+        },
+        "source": {
+          "type": "string",
+          "enum": [
+            "Register",
+            "Addition"
+          ]
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "Pending",
+            "Approved",
+            "Reject"
+          ]
+        },
+        "telephone": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "EnterpriseGeneral",
+            "EnterpriseVIP",
+            "EnterprisePersonal",
+            "InternalBusiness",
+            "InternalTest",
+            "System"
+          ]
+        },
+        "updateTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "userName": {
+          "type": "string"
+        },
+        "weChat": {
+          "type": "string"
+        }
+      },
+      "title": "AccountVO"
+    },
+    "AccountValidationVO": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        },
+        "userInfo": {
+          "$ref": "#/definitions/UserRequest"
+        },
+        "valid": {
+          "type": "boolean"
+        }
+      },
+      "title": "AccountValidationVO"
+    },
+    "AppVersionStatus": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        },
+        "usable": {
+          "type": "boolean"
+        }
+      },
+      "title": "AppVersionStatus"
+    },
+    "CurrentSystemStatus": {
+      "type": "object",
+      "properties": {
+        "currentAppVersion": {
+          "type": "string"
+        },
+        "currentMaintainStatus": {
+          "type": "string",
+          "enum": [
+            "Running",
+            "PreMaintenance",
+            "UnderMaintenance",
+            "PostMaintain"
+          ]
+        }
+      },
+      "title": "CurrentSystemStatus"
+    },
+    "MaintainConfig": {
+      "type": "object",
+      "properties": {
+        "expectedNextAppVersion": {
+          "type": "string"
+        },
+        "needPolling": {
+          "type": "boolean"
+        }
+      },
+      "title": "MaintainConfig"
+    },
+    "MaintainInfo": {
+      "type": "object",
+      "properties": {
+        "duration": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "fromAppVersion": {
+          "type": "string"
+        },
+        "startTime": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "toAppVersion": {
+          "type": "string"
+        }
+      },
+      "title": "MaintainInfo"
+    },
+    "MaintainNotice": {
+      "type": "object",
+      "properties": {
+        "maintainClient": {
+          "type": "string",
+          "enum": [
+            "APP",
+            "WEB",
+            "PANEL",
+            "COMMON"
+          ]
+        },
+        "maintainStatus": {
+          "type": "string",
+          "enum": [
+            "Running",
+            "PreMaintenance",
+            "UnderMaintenance",
+            "PostMaintain"
+          ]
+        },
+        "message": {
+          "type": "string"
+        }
+      },
+      "title": "MaintainNotice"
+    },
+    "PageResponse«AccountVO»": {
+      "type": "object",
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/AccountVO"
+          }
+        },
+        "pageCount": {
+          "type": "integer",
+          "format": "int32",
+          "description": "总页数"
+        },
+        "pageIndex": {
+          "type": "integer",
+          "format": "int32",
+          "description": "当前页"
+        },
+        "pageSize": {
+          "type": "integer",
+          "format": "int32",
+          "description": "每页大小"
+        },
+        "total": {
+          "type": "integer",
+          "format": "int64",
+          "description": "总记录数"
+        }
+      },
+      "title": "PageResponse«AccountVO»"
+    },
+    "PageResponse«TaskVO»": {
+      "type": "object",
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TaskVO"
+          }
+        },
+        "pageCount": {
+          "type": "integer",
+          "format": "int32",
+          "description": "总页数"
+        },
+        "pageIndex": {
+          "type": "integer",
+          "format": "int32",
+          "description": "当前页"
+        },
+        "pageSize": {
+          "type": "integer",
+          "format": "int32",
+          "description": "每页大小"
+        },
+        "total": {
+          "type": "integer",
+          "format": "int64",
+          "description": "总记录数"
+        }
+      },
+      "title": "PageResponse«TaskVO»"
+    },
+    "RdsBackupRequest": {
+      "type": "object",
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "instance_id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "title": "RdsBackupRequest"
+    },
+    "RecoverResult": {
+      "type": "object",
+      "properties": {
+        "failedTables": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "snapshotId": {
+          "type": "string"
+        },
+        "successTables": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "title": "RecoverResult"
+    },
+    "ResourceLimitRequest": {
+      "type": "object",
+      "properties": {
+        "projectNumber": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "spaceSize": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "title": "ResourceLimitRequest"
+    },
+    "ResourceLimitVO": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "projectNumber": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "sort": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "spaceSize": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "userType": {
+          "type": "string",
+          "enum": [
+            "EnterpriseGeneral",
+            "EnterpriseVIP",
+            "EnterprisePersonal",
+            "InternalBusiness",
+            "InternalTest",
+            "System"
+          ]
+        }
+      },
+      "title": "ResourceLimitVO"
+    },
+    "Response«AccountVO»": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32",
+          "description": "请求响应码"
+        },
+        "data": {
+          "description": "请求响应数据",
+          "$ref": "#/definitions/AccountVO"
+        },
+        "msg": {
+          "type": "string",
+          "description": "状态码对应的描述信息"
+        }
+      },
+      "title": "Response«AccountVO»"
+    },
+    "Response«AccountValidationVO»": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32",
+          "description": "请求响应码"
+        },
+        "data": {
+          "description": "请求响应数据",
+          "$ref": "#/definitions/AccountValidationVO"
+        },
+        "msg": {
+          "type": "string",
+          "description": "状态码对应的描述信息"
+        }
+      },
+      "title": "Response«AccountValidationVO»"
+    },
+    "Response«AppVersionStatus»": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32",
+          "description": "请求响应码"
+        },
+        "data": {
+          "description": "请求响应数据",
+          "$ref": "#/definitions/AppVersionStatus"
+        },
+        "msg": {
+          "type": "string",
+          "description": "状态码对应的描述信息"
+        }
+      },
+      "title": "Response«AppVersionStatus»"
+    },
+    "Response«CurrentSystemStatus»": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32",
+          "description": "请求响应码"
+        },
+        "data": {
+          "description": "请求响应数据",
+          "$ref": "#/definitions/CurrentSystemStatus"
+        },
+        "msg": {
+          "type": "string",
+          "description": "状态码对应的描述信息"
+        }
+      },
+      "title": "Response«CurrentSystemStatus»"
+    },
+    "Response«List«MaintainNotice»»": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32",
+          "description": "请求响应码"
+        },
+        "data": {
+          "type": "array",
+          "description": "请求响应数据",
+          "items": {
+            "$ref": "#/definitions/MaintainNotice"
+          }
+        },
+        "msg": {
+          "type": "string",
+          "description": "状态码对应的描述信息"
+        }
+      },
+      "title": "Response«List«MaintainNotice»»"
+    },
+    "Response«List«ResourceLimitVO»»": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32",
+          "description": "请求响应码"
+        },
+        "data": {
+          "type": "array",
+          "description": "请求响应数据",
+          "items": {
+            "$ref": "#/definitions/ResourceLimitVO"
+          }
+        },
+        "msg": {
+          "type": "string",
+          "description": "状态码对应的描述信息"
+        }
+      },
+      "title": "Response«List«ResourceLimitVO»»"
+    },
+    "Response«List«TaskExtraVO»»": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32",
+          "description": "请求响应码"
+        },
+        "data": {
+          "type": "array",
+          "description": "请求响应数据",
+          "items": {
+            "$ref": "#/definitions/TaskExtraVO"
+          }
+        },
+        "msg": {
+          "type": "string",
+          "description": "状态码对应的描述信息"
+        }
+      },
+      "title": "Response«List«TaskExtraVO»»"
+    },
+    "Response«List«WhiteListUser»»": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32",
+          "description": "请求响应码"
+        },
+        "data": {
+          "type": "array",
+          "description": "请求响应数据",
+          "items": {
+            "$ref": "#/definitions/WhiteListUser"
+          }
+        },
+        "msg": {
+          "type": "string",
+          "description": "状态码对应的描述信息"
+        }
+      },
+      "title": "Response«List«WhiteListUser»»"
+    },
+    "Response«List«string»»": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32",
+          "description": "请求响应码"
+        },
+        "data": {
+          "type": "array",
+          "description": "请求响应数据",
+          "items": {
+            "type": "string"
+          }
+        },
+        "msg": {
+          "type": "string",
+          "description": "状态码对应的描述信息"
+        }
+      },
+      "title": "Response«List«string»»"
+    },
+    "Response«MaintainConfig»": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32",
+          "description": "请求响应码"
+        },
+        "data": {
+          "description": "请求响应数据",
+          "$ref": "#/definitions/MaintainConfig"
+        },
+        "msg": {
+          "type": "string",
+          "description": "状态码对应的描述信息"
+        }
+      },
+      "title": "Response«MaintainConfig»"
+    },
+    "Response«PageResponse«AccountVO»»": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32",
+          "description": "请求响应码"
+        },
+        "data": {
+          "description": "请求响应数据",
+          "$ref": "#/definitions/PageResponse«AccountVO»"
+        },
+        "msg": {
+          "type": "string",
+          "description": "状态码对应的描述信息"
+        }
+      },
+      "title": "Response«PageResponse«AccountVO»»"
+    },
+    "Response«PageResponse«TaskVO»»": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32",
+          "description": "请求响应码"
+        },
+        "data": {
+          "description": "请求响应数据",
+          "$ref": "#/definitions/PageResponse«TaskVO»"
+        },
+        "msg": {
+          "type": "string",
+          "description": "状态码对应的描述信息"
+        }
+      },
+      "title": "Response«PageResponse«TaskVO»»"
+    },
+    "Response«RecoverResult»": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32",
+          "description": "请求响应码"
+        },
+        "data": {
+          "description": "请求响应数据",
+          "$ref": "#/definitions/RecoverResult"
+        },
+        "msg": {
+          "type": "string",
+          "description": "状态码对应的描述信息"
+        }
+      },
+      "title": "Response«RecoverResult»"
+    },
+    "Response«ResourceLimitVO»": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32",
+          "description": "请求响应码"
+        },
+        "data": {
+          "description": "请求响应数据",
+          "$ref": "#/definitions/ResourceLimitVO"
+        },
+        "msg": {
+          "type": "string",
+          "description": "状态码对应的描述信息"
+        }
+      },
+      "title": "Response«ResourceLimitVO»"
+    },
+    "Response«SystemStatus»": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32",
+          "description": "请求响应码"
+        },
+        "data": {
+          "description": "请求响应数据",
+          "$ref": "#/definitions/SystemStatus"
+        },
+        "msg": {
+          "type": "string",
+          "description": "状态码对应的描述信息"
+        }
+      },
+      "title": "Response«SystemStatus»"
+    },
+    "Response«TaskMetricStatsVO»": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32",
+          "description": "请求响应码"
+        },
+        "data": {
+          "description": "请求响应数据",
+          "$ref": "#/definitions/TaskMetricStatsVO"
+        },
+        "msg": {
+          "type": "string",
+          "description": "状态码对应的描述信息"
+        }
+      },
+      "title": "Response«TaskMetricStatsVO»"
+    },
+    "Response«TaskStatsVO»": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32",
+          "description": "请求响应码"
+        },
+        "data": {
+          "description": "请求响应数据",
+          "$ref": "#/definitions/TaskStatsVO"
+        },
+        "msg": {
+          "type": "string",
+          "description": "状态码对应的描述信息"
+        }
+      },
+      "title": "Response«TaskStatsVO»"
+    },
+    "Response«Void»": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32",
+          "description": "请求响应码"
+        },
+        "msg": {
+          "type": "string",
+          "description": "状态码对应的描述信息"
+        }
+      },
+      "title": "Response«Void»"
+    },
+    "Response«boolean»": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32",
+          "description": "请求响应码"
+        },
+        "data": {
+          "type": "boolean",
+          "description": "请求响应数据"
+        },
+        "msg": {
+          "type": "string",
+          "description": "状态码对应的描述信息"
+        }
+      },
+      "title": "Response«boolean»"
+    },
+    "Response«string»": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32",
+          "description": "请求响应码"
+        },
+        "data": {
+          "type": "string",
+          "description": "请求响应数据"
+        },
+        "msg": {
+          "type": "string",
+          "description": "状态码对应的描述信息"
+        }
+      },
+      "title": "Response«string»"
+    },
+    "ReviewUserRequest": {
+      "type": "object",
+      "properties": {
+        "remark": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "Pending",
+            "Approved",
+            "Reject"
+          ]
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "EnterpriseGeneral",
+            "EnterpriseVIP",
+            "EnterprisePersonal",
+            "InternalBusiness",
+            "InternalTest",
+            "System"
+          ]
+        }
+      },
+      "title": "ReviewUserRequest"
+    },
+    "SwitchUserTypeRequest": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "EnterpriseGeneral",
+            "EnterpriseVIP",
+            "EnterprisePersonal",
+            "InternalBusiness",
+            "InternalTest",
+            "System"
+          ]
+        }
+      },
+      "title": "SwitchUserTypeRequest"
+    },
+    "SystemStatus": {
+      "type": "object",
+      "properties": {
+        "isAppUsable": {
+          "type": "boolean"
+        },
+        "maintainMessage": {
+          "type": "string"
+        },
+        "maintainStatus": {
+          "type": "string",
+          "enum": [
+            "Running",
+            "PreMaintenance",
+            "UnderMaintenance",
+            "PostMaintain"
+          ]
+        }
+      },
+      "title": "SystemStatus"
+    },
+    "TaskExtraVO": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "taskEstimate": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "taskId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "taskProcessDetail": {
+          "type": "string"
+        }
+      },
+      "title": "TaskExtraVO"
+    },
+    "TaskMetricItemVO": {
+      "type": "object",
+      "properties": {
+        "timestamp": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "value": {
+          "type": "number"
+        }
+      },
+      "title": "TaskMetricItemVO"
+    },
+    "TaskMetricStatsVO": {
+      "type": "object",
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TaskMetricItemVO"
+          }
+        },
+        "metricName": {
+          "type": "string"
+        }
+      },
+      "title": "TaskMetricStatsVO"
+    },
+    "TaskStatsVO": {
+      "type": "object",
+      "properties": {
+        "avgProcessTime": {
+          "type": "number",
+          "description": "平均处理时间,单位s"
+        },
+        "avgTaskTime": {
+          "type": "number",
+          "description": "平均任务时间,单位s"
+        },
+        "avgWaitingTime": {
+          "type": "number",
+          "description": "平均等待时间,单位s"
+        },
+        "error": {
+          "type": "integer",
+          "format": "int32",
+          "description": "失败数量"
+        },
+        "maxProcessTime": {
+          "type": "number",
+          "description": "最大处理时间,单位s"
+        },
+        "maxTaskTime": {
+          "type": "number",
+          "description": "最大任务时间,单位s"
+        },
+        "maxWaitingTime": {
+          "type": "number",
+          "description": "最大等待时间,单位s"
+        },
+        "minProcessTime": {
+          "type": "number",
+          "description": "最小处理时间,单位s"
+        },
+        "minTaskTime": {
+          "type": "number",
+          "description": "最小任务时间,单位s"
+        },
+        "minWaitingTime": {
+          "type": "number",
+          "description": "最小等待时间,单位s"
+        },
+        "processing": {
+          "type": "integer",
+          "format": "int32",
+          "description": "处理数量"
+        },
+        "success": {
+          "type": "integer",
+          "format": "int32",
+          "description": "完成数量"
+        },
+        "timeout": {
+          "type": "integer",
+          "format": "int32",
+          "description": "超时数量"
+        },
+        "total": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "waiting": {
+          "type": "integer",
+          "format": "int32",
+          "description": "排队数量"
+        }
+      },
+      "title": "TaskStatsVO"
+    },
+    "TaskVO": {
+      "type": "object",
+      "properties": {
+        "creationTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "isDeleted": {
+          "type": "boolean"
+        },
+        "processTime": {
+          "type": "number",
+          "description": "处理时长,单位s"
+        },
+        "progress": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "requestData": {
+          "type": "string"
+        },
+        "result": {
+          "type": "string"
+        },
+        "retryCount": {
+          "type": "string"
+        },
+        "taskGuid": {
+          "type": "string"
+        },
+        "taskTime": {
+          "type": "number",
+          "description": "任务时长,单位s"
+        },
+        "type": {
+          "type": "string"
+        },
+        "updateTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "waitingTime": {
+          "type": "number",
+          "description": "等待时长,单位s"
+        }
+      },
+      "title": "TaskVO"
+    },
+    "UserInfo": {
+      "type": "object",
+      "properties": {
+        "avatarPath": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "company": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "enterpriseId": {
+          "type": "string"
+        },
+        "enterpriseUser": {
+          "type": "boolean"
+        },
+        "featureList": {
+          "type": "object"
+        },
+        "fullname": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "mobile": {
+          "type": "string"
+        },
+        "nickname": {
+          "type": "string"
+        },
+        "passwordMobile": {
+          "type": "string"
+        },
+        "qq": {
+          "type": "string"
+        },
+        "username": {
+          "type": "string"
+        }
+      },
+      "title": "UserInfo"
+    },
+    "UserRequest": {
+      "type": "object",
+      "properties": {
+        "category": {
+          "type": "string",
+          "enum": [
+            "Customer",
+            "Internal",
+            "System"
+          ]
+        },
+        "certificateUrl": {
+          "type": "string"
+        },
+        "company": {
+          "type": "string"
+        },
+        "department": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "position": {
+          "type": "string"
+        },
+        "qq": {
+          "type": "string"
+        },
+        "reason": {
+          "type": "string"
+        },
+        "remark": {
+          "type": "string"
+        },
+        "roles": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "ProjectAdmin",
+              "ProjectUser",
+              "ProjectExternalUser",
+              "GlobalVisitor",
+              "EnterpriseVisitor",
+              "ProjectVisitor",
+              "BetaUser",
+              "BopsAdmin",
+              "BopsMarket",
+              "BopsProduct",
+              "BopsUser",
+              "BopsDeveloper"
+            ]
+          }
+        },
+        "telephone": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "EnterpriseGeneral",
+            "EnterpriseVIP",
+            "EnterprisePersonal",
+            "InternalBusiness",
+            "InternalTest",
+            "System"
+          ]
+        },
+        "userName": {
+          "type": "string"
+        },
+        "weChat": {
+          "type": "string"
+        }
+      },
+      "title": "UserRequest"
+    },
+    "WhiteListUser": {
+      "type": "object",
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "userId": {
+          "type": "string"
+        }
+      },
+      "title": "WhiteListUser"
+    }
+  }
+}

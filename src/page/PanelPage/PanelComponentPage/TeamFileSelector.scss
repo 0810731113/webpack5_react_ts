@@ -1,0 +1,28 @@
+.team-file-selector {
+  position: relative;
+  padding-bottom: 30px;
+
+  .filename-editor {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    padding: 2px;
+    background-color: #efefef;
+    border-top: 1px solid #ddd;
+    height: 30px;
+
+    .ant-input {
+      flex-grow: 1;
+    }
+    .ant-space {
+      width: 100%;
+    }
+
+    .ant-select {
+      width: 80px;
+      margin-left: 5px;
+    }
+  }
+}

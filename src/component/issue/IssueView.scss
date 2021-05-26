@@ -1,0 +1,365 @@
+@import "style/colors.scss";
+.issue-item-info {
+  font-size: 12px;
+  color: $text-color-secondary;
+  line-height: 16px;
+  &.item-user-name {
+    overflow: hidden;
+    text-overflow: ellipsis; //超出部分以省略号显示
+    white-space: nowrap;
+    width: 12em;
+  }
+  &.time-info {
+    position: absolute;
+    bottom: 2px;
+    right: 25px;
+    text-align: right;
+  }
+}
+.issue-list {
+  display: flex;
+  flex-direction: column;
+
+  .ant-list-pagination {
+    margin-right: 8px;
+    margin-bottom: 8px;
+  }
+  .ant-list-header {
+    padding: 8px 12px;
+    flex: none;
+    background: #fff;
+    border-bottom: 1px solid rgba(11, 26, 92, 0.14);
+    .list-title {
+      width: 257px;
+      margin: 0 -12px 8px;
+      padding: 0 12px 8px;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+  .ant-spin-nested-loading {
+    overflow-y: auto;
+    overflow-x: hidden;
+    flex: auto;
+  }
+
+  .issue-item {
+    cursor: pointer;
+    padding: 12px 16px;
+    align-items: flex-start;
+    flex-direction: column;
+    position: relative;
+    background: rbg(251, 251, 251);
+    &:hover {
+      background: #f5f5f5;
+    }
+    &.active {
+      background: $primary-color;
+      .issue-item-title {
+        color: #fff;
+      }
+      .issue-item-info {
+        color: rgba(255, 255, 255, 0.6);
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        width: 120px;
+      }
+    }
+    .issue-item-title {
+      font-size: 12px;
+      color: $text-color-important;
+      line-height: 16px;
+      margin: 0 0 10px;
+
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      width: 160px;
+      .anticon {
+        &:hover {
+          color: $primary-color;
+        }
+      }
+    }
+
+    .issue-status-tag {
+      position: absolute;
+      top: 13px;
+      right: 13px;
+      margin: 0;
+    }
+  }
+}
+.issue-drawer {
+  .ant-drawer-header {
+    .ant-drawer-title {
+      font-size: 12px;
+      color: $text-color-important;
+      line-height: 16px;
+    }
+
+    .ant-drawer-close {
+      padding: 8px;
+    }
+
+    padding: 8px 12px;
+    // background: rgba(217, 221, 228, 1);
+  }
+
+  .ant-drawer-body {
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    // overflow: hidden;
+  }
+}
+.bf-drawable-text {
+  opacity: 1 !important;
+}
+.issue-point {
+  min-width: 62px;
+  height: 19px;
+  border-radius: 2px;
+  border: solid 1px #ffffff;
+
+  background: #ff4d4f;
+  cursor: pointer;
+  color: #ffffff;
+  font-size: 12px;
+  text-align: center;
+  line-height: 17px;
+  transform: translate(-50%, calc(-50% - 5px));
+  position: relative;
+  &::before {
+    content: "";
+    position: absolute;
+    top: 18px;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 5px solid transparent;
+    border-top: 6px solid #fff;
+  }
+  &::after {
+    content: "";
+    position: absolute;
+    top: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 5px solid transparent;
+    border-top: 7px solid #ff4d4f;
+  }
+  &.issue-point-green {
+    background: #52c41a;
+    &::after {
+      border-top: 7px solid #52c41a;
+    }
+  }
+  &.issue-point-orange {
+    background: #faad14;
+    &::after {
+      border-top: 7px solid #faad14;
+    }
+  }
+  &.issue-point-gray {
+    background: #838383;
+    &::after {
+      border-top: 7px solid #838383;
+    }
+  }
+
+  // &:hover {
+  //   width: 24px;
+  //   height: 24px;
+  //   line-height: 24px;
+  // }
+}
+.ant-alert.new-issue-alert {
+  position: absolute;
+  top: 56px;
+  left: 50%;
+  transform: translateX(-50%);
+
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 4px;
+  padding: 8px 12px;
+  border: none;
+
+  .ant-alert-message {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 1);
+    line-height: 16px;
+  }
+}
+.gld-bf-issue {
+  button {
+    border: none;
+    cursor: pointer;
+    background: transparent;
+  }
+}
+.issue-detail-mini-drawer {
+  &.isPanel {
+    .ant-drawer-body {
+      .ant-form-item .ant-col.ant-form-item-control {
+        flex: auto;
+        & * {
+          font-size: 12px;
+        }
+      }
+    }
+  }
+  .ant-drawer-header-no-title {
+    flex: none;
+    height: 39px;
+  }
+  .ant-drawer-close {
+    left: 0;
+    right: auto;
+    font-size: 14px;
+    font-weight: normal;
+    .anticon {
+      margin-right: 6px;
+    }
+  }
+  .ant-drawer-body {
+    padding: 16px;
+    .issue-title {
+      color: $text-color-important;
+    }
+    .ant-descriptions-row > td {
+      padding-bottom: 13px;
+    }
+    .ant-descriptions-item-label,
+    .ant-descriptions-item-content,
+    .issue-label {
+      font-size: 12px;
+    }
+    .ant-descriptions-item-label,
+    .issue-label {
+      // color: $disabled-color;
+      width: 61px !important;
+      // line-height: 24px;
+      text-align: right;
+      flex: none;
+      padding-right: 8px;
+      white-space: nowrap;
+    }
+    .ant-form .ant-form-item {
+      flex-wrap: nowrap;
+    }
+    .ant-form-item-label > label {
+      font-size: 12px;
+    }
+    .issue-content {
+      font-size: 12px;
+      margin: 0;
+    }
+    .ant-form.issue-memo-textarea {
+      height: auto;
+    }
+    .status-item,
+    .textarea-item {
+      .ant-col.ant-form-item-control {
+        width: 100%;
+        flex: none;
+      }
+    }
+    .ant-form-item .ant-form-item-label {
+      width: 69px;
+      overflow: visible;
+      flex: none;
+      text-align: right;
+      & > label.ant-form-item-required::before {
+        margin-left: -11px;
+      }
+      & > label::after {
+        display: inline-block;
+      }
+    }
+    // padding: 16px 32px;
+    .ant-row + .ant-row {
+      margin-top: 12px;
+    }
+  }
+}
+.status-item {
+  display: flex;
+  .ant-descriptions-item-content {
+    flex: auto;
+  }
+  .ant-select {
+    width: 203px;
+    &.ant-select-sm {
+      width: 226px;
+      font-size: 12px;
+    }
+  }
+}
+.issue-detail {
+  .ant-table {
+    width: 100%;
+  }
+  .ant-descriptions-item-container {
+    flex: auto;
+    .ant-descriptions-item-content {
+      flex: auto;
+      .ant-table {
+        margin: 8px 0;
+      }
+    }
+  }
+  .ant-drawer-body .ant-descriptions-item .ant-descriptions-item-label {
+    width: auto !important;
+  }
+}
+.issue-status-actions {
+  display: flex;
+  &.block {
+    width: 100%;
+  }
+  .button-wrap {
+    display: flex;
+    flex: auto;
+    position: relative;
+    &.show-tip {
+      &::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        cursor: not-allowed;
+      }
+    }
+  }
+
+  .ant-btn {
+    min-height: 22px;
+    flex: auto;
+  }
+
+  > * {
+    flex: auto;
+    &:not(:last-child) {
+      margin-right: 8px;
+    }
+  }
+}
+.workflow-modal.ant-modal {
+  .ant-modal-body {
+    padding: 0;
+    img {
+      width: 100%;
+    }
+  }
+}
+.work-unit-table-popover {
+  &.ant-popover-placement-bottomLeft {
+    .ant-popover-content .ant-popover-inner {
+      transform: translateX(-24px);
+    }
+  }
+}

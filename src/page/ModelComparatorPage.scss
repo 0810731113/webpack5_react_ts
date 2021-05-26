@@ -1,0 +1,79 @@
+.model-comparator-page {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  .list-loading {
+    width: 300px;
+    height: 100%;
+    position: relative;
+    background-color: #fff;
+  }
+  .list-components {
+    flex-basis: 300px;
+    flex-shrink: 0;
+    padding: 16px;
+    overflow: auto;
+    .ant-collapse-content > .ant-collapse-content-box {
+      padding: 16px 0;
+    }
+    .list-line {
+      .item-title {
+        line-height: 19px;
+        border-bottom: 1px solid #bec8d2;
+      }
+
+      .item-line {
+        padding-left: 16px;
+        line-height: 24px;
+        cursor: pointer;
+
+        // &:nth-last-child(1) {
+        //   border-bottom: 1px solid #bec8d2;
+        // }
+      }
+    }
+  }
+  .gld-bf-maximize {
+    display: none;
+  }
+  header {
+    height: 60px;
+    background-color: white;
+  }
+
+  main {
+    flex: auto;
+    flex-direction: row-reverse;
+    background-color: #000;
+    background-image: linear-gradient(
+      0deg,
+      rgb(246, 250, 255) 10%,
+      rgb(214, 224, 235) 70%
+    );
+    display: flex;
+    position: relative;
+    height: 100%;
+
+    .left,
+    .right {
+      width: 50%;
+      max-width: 50%;
+      min-width: 50%;
+      display: flex;
+      position: relative;
+      .bimface-viewer {
+        flex-grow: 1;
+      }
+      .actions {
+        position: absolute;
+        left: 32px;
+        top: 32px;
+      }
+    }
+    .left + .right {
+      border-left: 1px solid #333;
+    }
+  }
+}

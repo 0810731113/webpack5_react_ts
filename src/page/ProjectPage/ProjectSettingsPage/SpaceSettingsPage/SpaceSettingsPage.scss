@@ -1,0 +1,146 @@
+.space-page {
+  height: 100%;
+  display: flex;
+  overflow: auto;
+
+  flex-direction: column;
+
+  .header {
+    flex: 0;
+    z-index: 5;
+    box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.1);
+    //box-shadow: 1px 1px 3px 1px rgba(0, 0, 0, 0.2);
+    background: #fff;
+    flex-basis: 48px;
+    //box-sizing: border-box;
+
+    padding-left: 16px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
+    font-size: 14px;
+  }
+
+  .footer {
+    flex: 0;
+    //z-index: 10;
+    box-shadow: 1px 1px 3px 1px rgba(0, 0, 0, 0.2);
+    background: #fff;
+    flex-basis: 56px;
+    //box-sizing: border-box;
+
+    padding: 0 16px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
+
+  .body {
+    flex: 1;
+    overflow: auto;
+
+    display: flex;
+
+    .sider {
+      flex-basis: 180px;
+      overflow: auto;
+      border-right: 1px solid rgba(11, 26, 92, 0.14);
+
+      .title {
+        font-size: 12px;
+        line-height: 20px;
+        padding: 16px 16px 8px;
+        color: #373f48;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+      }
+
+      .action-btns {
+        padding: 4px 16px;
+
+        button {
+          margin: 4px 0;
+          width: 100%;
+        }
+
+        border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+      }
+
+      //padding-left: 16px;
+      // .sider-list {
+      //     line-height: 18px;
+      //     font-size: 12px;
+      // }
+    }
+
+    .detail {
+      flex: 1;
+      overflow: auto;
+      padding: 16px 16px 16px 32px;
+      background-color: #f8f8f8;
+
+      .nav {
+        //width: 640px;
+        border-bottom: 1px solid #bdc7d5;
+        border-top: 1px solid #bdc7d5;
+        padding: 6px 8px;
+        background-color: #eceff4;
+
+        a {
+          padding: 0 8px;
+          font-size: 12px;
+
+          &:not(:last-child) {
+            border-right: 1px solid rgba(11, 26, 92, 0.14);
+          }
+
+          &.disabled {
+            color: #c9c9c9;
+          }
+
+          &.danger {
+            color: red;
+          }
+        }
+      }
+
+      .form {
+        margin-top: 16px;
+      }
+
+      .level-detail {
+        margin-top: 16px;
+
+        .title {
+          margin-bottom: 8px;
+        }
+
+        .actions {
+          display: flex;
+          align-items: center;
+          margin-bottom: 8px;
+
+          .action-name {
+            margin-right: 8px;
+          }
+
+          .num-editor {
+            margin-right: 24px;
+          }
+
+          button {
+            margin: 0 2px;
+          }
+        }
+
+        .ant-table-wrapper {
+          height: auto;
+
+          .ant-table-tbody > tr > td {
+            padding: 8px 16px;
+          }
+        }
+      }
+    }
+  }
+}

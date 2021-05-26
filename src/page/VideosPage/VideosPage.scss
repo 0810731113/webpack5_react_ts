@@ -1,0 +1,121 @@
+.videos-page {
+  width: 100vw;
+  height: 100vh;
+  padding: 32px 16px 64px;
+
+  .prism-big-play-btn {
+    left: 50% !important;
+    bottom: 50% !important;
+    transform: translate(-50%, 50%) !important;
+    width: 128px;
+    height: 128px;
+
+    .outter {
+      width: 128px;
+      height: 128px;
+    }
+  }
+
+  .prism-player .prism-controlbar .prism-controlbar-bg {
+    background: rgba(75, 75, 75, 0.5);
+  }
+}
+
+.wideos-page-header {
+  position: absolute;
+  left: 0;
+  top: -76px;
+}
+
+.videos-page-title {
+  font-size: 12px;
+  color: rgba(0, 0, 0, 0.85);
+  margin-bottom: 12px;
+}
+
+.videos-page-name {
+  font-size: 20px;
+  color: rgba(0, 0, 0, 0.85);
+}
+
+.videos-page-wrap {
+  height: auto;
+  display: flex;
+  position: absolute;
+  flex: auto;
+  bottom: 0;
+  top: 108px;
+  align-items: stretch;
+  left: 50%;
+  transform: translateX(-50%);
+  min-height: 450px;
+  margin-bottom: 64px;
+  max-width: calc(100vw - 32px);
+}
+
+.prism-player-wrap {
+  flex: auto;
+  margin-right: 16px;
+}
+
+.prism-player {
+  min-width: 800px;
+  min-height: 450px;
+  height: calc(100vh - 172px) !important;
+  width: calc(177.78vh - 305.78px) !important;
+  border: 1px solid #d9d9d9;
+  border-radius: 2px;
+  background: #fff;
+
+  video {
+    object-fit: cover;
+    width: calc(100% - 1px) !important;
+    margin-left: 1px;
+  }
+}
+
+.videos-list {
+  // position: absolute;
+  // right: 0;
+  // top: 0;
+  // bottom: 0;
+  width: 300px;
+  min-width: 300px;
+
+  // padding: 26px 13px 384px 20px;
+  box-shadow: 0 1px 6px 1px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  //   height: 100%;
+  //   overflow: auto;
+  .ant-list-header {
+    padding: 24px;
+    font-size: 16px;
+    line-height: 16px;
+    border-bottom: none;
+  }
+
+  .ant-list-item {
+    font-size: 14px;
+    padding: 0 24px;
+    border: none;
+    cursor: pointer;
+    line-height: 28px;
+
+    &:hover {
+      opacity: 0.65;
+      color: #13c2c2;
+    }
+
+    &.active {
+      color: #13c2c2;
+    }
+  }
+
+  .ant-spin-nested-loading {
+    overflow: auto;
+    flex: auto;
+    padding: 0;
+  }
+}

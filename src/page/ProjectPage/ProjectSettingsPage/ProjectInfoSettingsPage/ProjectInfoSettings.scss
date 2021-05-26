@@ -1,0 +1,102 @@
+$corbusier-height: 170px;
+
+.info-project {
+  background-color: #f8f8f8;
+  padding: 24px;
+  height: 100%;
+
+  .body {
+    flex: 1;
+    // overflow: auto;
+    padding-bottom: 10em;
+    display: flex;
+    height: 100%;
+
+    background-color: white;
+    box-shadow: 0 1px 6px 1px rgba(0, 0, 0, 0.1);
+
+    // .sider {
+    //   flex-basis: 200px;
+    //   overflow: auto;
+    //   border-right: 1px solid rgba(11, 26, 92, 0.14);
+    // }
+
+    .detail {
+      flex: 1;
+      // overflow: auto;
+      padding: 24px;
+      //background-color: #e8ebf0;
+
+      .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        //height: 34px;
+        padding-bottom: 12px;
+        margin-bottom: 24px;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+
+        .title {
+          font-size: 14px;
+          font-weight: bold;
+        }
+      }
+    }
+  }
+}
+
+.project-form {
+  .ant-input[readonly] {
+    background-color: rgba(0, 0, 0, 0.04);
+    color: rgba(0, 0, 0, 0.85);
+    border: none;
+  }
+
+  .ant-form-item-label > label {
+    font-size: 12px;
+  }
+
+  .basic-info {
+    display: flex;
+    margin-bottom: 16px;
+
+    //gdc-1586
+    textarea.ant-input {
+      padding: 4px 20px 4px 11px;
+    }
+
+    .corbusiser {
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      position: relative;
+      width: $corbusier-height;
+      height: $corbusier-height;
+    }
+
+    .ant-tag {
+      position: absolute;
+      right: 5px;
+      top: 35px;
+    }
+
+    .ant-upload.ant-upload-select-picture-card {
+      width: $corbusier-height + 6px;
+      height: $corbusier-height + 6px;
+      margin-right: 0;
+      margin-bottom: 0;
+    }
+
+    .upload-has-error {
+      .ant-upload.ant-upload-select-picture-card {
+        border-color: #ff4d4f;
+      }
+    }
+
+    .right {
+      flex: 1;
+      margin-left: 16px;
+    }
+  }
+}

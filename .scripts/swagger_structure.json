@@ -1,0 +1,3293 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "Api Documentation",
+    "version": "1.0",
+    "title": "Api Documentation",
+    "termsOfService": "urn:tos",
+    "contact": {},
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0"
+    }
+  },
+  "host": "gdc-de.glodon.com",
+  "basePath": "/structure",
+  "tags": [
+    {
+      "name": "Design 新设计资源签名接口",
+      "description": "Design Signature Controller"
+    },
+    {
+      "name": "Font-公共字体接口",
+      "description": "Common Font Controller"
+    },
+    {
+      "name": "Font-项目字体接口",
+      "description": "Project Font Controller"
+    },
+    {
+      "name": "Structural公共构件坞功能接口",
+      "description": "Common Structural Controller"
+    },
+    {
+      "name": "Structural项目构件坞功能接口",
+      "description": "Project Structural Controller"
+    },
+    {
+      "name": "internal-test-controller",
+      "description": "Internal Test Controller"
+    }
+  ],
+  "paths": {
+    "/design/resource/signature/software/{softwareCode}/download/url": {
+      "get": {
+        "tags": [
+          "Design 新设计资源签名接口"
+        ],
+        "summary": "获得签名后的软件下载地址",
+        "operationId": "getSoftWareDownLoadSignatureUrlUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "softwareCode",
+            "in": "path",
+            "description": "软件编码",
+            "required": true,
+            "type": "string",
+            "enum": [
+              "garch",
+              "gstr",
+              "gmep"
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/design/resource/signature/vcr/{albumsId}/list": {
+      "get": {
+        "tags": [
+          "Design 新设计资源签名接口"
+        ],
+        "summary": "获得专辑里视频列表",
+        "operationId": "getAlbumsVCRListUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "albumsId",
+            "in": "path",
+            "description": "专辑Id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/design/resource/signature/vcr/{videoId}/url": {
+      "get": {
+        "tags": [
+          "Design 新设计资源签名接口"
+        ],
+        "summary": "获得签名后的视频播放地址",
+        "operationId": "getVCRPlaySignatureUrlUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "videoId",
+            "in": "path",
+            "description": "视频Id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/exception": {
+      "get": {
+        "tags": [
+          "internal-test-controller"
+        ],
+        "summary": "exception",
+        "operationId": "exceptionUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "string"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/health": {
+      "get": {
+        "tags": [
+          "internal-test-controller"
+        ],
+        "summary": "healthy",
+        "operationId": "healthyUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "string"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/structural/common/classify": {
+      "get": {
+        "tags": [
+          "Structural公共构件坞功能接口"
+        ],
+        "summary": "获取公共构件坞分类列表",
+        "operationId": "getCommonSuiteUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/structural/common/classify/{category}/suites": {
+      "get": {
+        "tags": [
+          "Structural公共构件坞功能接口"
+        ],
+        "summary": "获取公共构件坞某分类下的构件元素",
+        "operationId": "getSuiteDetailsUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "category",
+            "in": "path",
+            "description": "分类Id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "page",
+            "required": false,
+            "type": "integer",
+            "default": 0,
+            "format": "int32"
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "description": "pageSize",
+            "required": false,
+            "type": "integer",
+            "default": 0,
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/structural/common/suite/{suiteId}/deail": {
+      "get": {
+        "tags": [
+          "Structural公共构件坞功能接口"
+        ],
+        "summary": "获取公共构件组件详细信息",
+        "operationId": "getCommonSuiteInfoDetailUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "suiteId",
+            "in": "path",
+            "description": "构件id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/structural/common/suites/search": {
+      "post": {
+        "tags": [
+          "Structural公共构件坞功能接口"
+        ],
+        "summary": "公共库构件查询",
+        "operationId": "commonSuitesSearchUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "condition",
+            "description": "condition",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/SuiteSearch"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/structural/project/suites": {
+      "post": {
+        "tags": [
+          "Structural项目构件坞功能接口"
+        ],
+        "summary": "向项目中添加公共构件",
+        "operationId": "bindProjectSuitesUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "binder",
+            "description": "binder",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ProjectSuiteBinder"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/structural/project/suites/search": {
+      "post": {
+        "tags": [
+          "Structural项目构件坞功能接口"
+        ],
+        "summary": "项目构件查询",
+        "operationId": "projectSuitesSearchUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "condition",
+            "description": "condition",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ProjectSuiteSearch"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ProjectSuiteResultBean"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/structural/project/{projectId}/components/changed": {
+      "get": {
+        "tags": [
+          "Structural项目构件坞功能接口"
+        ],
+        "summary": "检查项目中是否存在需存在更新的项目构件",
+        "operationId": "checkProjectSuiteNeedUpGradeUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "major",
+            "in": "query",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "projectId",
+            "in": "path",
+            "description": "项目Id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "time",
+            "in": "query",
+            "description": "时间起点，毫秒数",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/structural/project/{projectId}/init/template/suites": {
+      "post": {
+        "tags": [
+          "Structural项目构件坞功能接口"
+        ],
+        "summary": "根据模板数据向项目中预置构件",
+        "operationId": "bindProjectSuitesUsingPOST_1",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "projectId",
+            "in": "path",
+            "description": "projectId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "template",
+            "description": "template",
+            "required": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/ProjectStructureVO"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/structural/project/{projectId}/mapper": {
+      "post": {
+        "tags": [
+          "Structural项目构件坞功能接口"
+        ],
+        "summary": "为项目创建构件坞的映射(该接口成功返回10000，而不是success)",
+        "operationId": "initProject4SuiteUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "projectId",
+            "in": "path",
+            "description": "项目id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«FakeProject»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/structural/project/{projectId}/preset/suites": {
+      "get": {
+        "tags": [
+          "Structural项目构件坞功能接口"
+        ],
+        "summary": "检查项目是否已经预置了默认的构件组",
+        "operationId": "checkProjectPresetSuitesUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "projectId",
+            "in": "path",
+            "description": "项目id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«boolean»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      },
+      "post": {
+        "tags": [
+          "Structural项目构件坞功能接口"
+        ],
+        "summary": "向项目中预置默认的公共构件组",
+        "operationId": "presetProjectSuitesUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "projectId",
+            "in": "path",
+            "description": "项目id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/structural/project/{projectId}/renewable/suites/categories": {
+      "post": {
+        "tags": [
+          "Structural项目构件坞功能接口"
+        ],
+        "summary": "获取可更新的项目构件的分类",
+        "operationId": "suiteCategoriesCheckForUpdateUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "categoryUpgrade",
+            "description": "categoryUpgrade",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CategoryUpgrade"
+            }
+          },
+          {
+            "name": "projectId",
+            "in": "path",
+            "description": "项目Id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/structural/project/{projectId}/subject/suite/{id}/exist": {
+      "get": {
+        "tags": [
+          "Structural项目构件坞功能接口"
+        ],
+        "summary": "根据项目构件id判断项目中是否存在该组件",
+        "operationId": "checkProjectSuiteExistsByIdUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "projectId",
+            "in": "path",
+            "description": "项目Id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/structural/project/{projectId}/suite/category": {
+      "post": {
+        "tags": [
+          "Structural项目构件坞功能接口"
+        ],
+        "summary": "获取项目构件坞分类列表",
+        "operationId": "getProjectSuiteCategoryUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "projectId",
+            "in": "path",
+            "description": "项目id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "search",
+            "description": "search",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ProjectSuiteCategorySearch"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/structural/project/{projectId}/suite/major/categories": {
+      "get": {
+        "tags": [
+          "Structural项目构件坞功能接口"
+        ],
+        "summary": "获取产品分类",
+        "operationId": "getProjectSuiteCategoryUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "major",
+            "in": "query",
+            "description": "专业编码，取值说明：0-gst,1-gap,2-gmep",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "projectId",
+            "in": "path",
+            "description": "项目id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/structural/project/{projectId}/suite/name": {
+      "get": {
+        "tags": [
+          "Structural项目构件坞功能接口"
+        ],
+        "summary": "判断项目中是否存在同名组件",
+        "operationId": "checkSuiteExistsByNameUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "name",
+            "in": "query",
+            "description": "构件名称",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "projectId",
+            "in": "path",
+            "description": "项目Id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/structural/project/{projectId}/suite/upload": {
+      "post": {
+        "tags": [
+          "Structural项目构件坞功能接口"
+        ],
+        "summary": "上传第三方项目构件",
+        "operationId": "uploadThirdPartSuiteUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "params",
+            "description": "params",
+            "required": true,
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "projectId",
+            "in": "path",
+            "description": "项目Id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/UploadResultBean"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/structural/project/{projectId}/suite/upload/uri": {
+      "get": {
+        "tags": [
+          "Structural项目构件坞功能接口"
+        ],
+        "summary": "申请构件上传的url地址",
+        "operationId": "askForSuitesUploadUrlUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "md",
+            "in": "query",
+            "description": "构件摘要",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "md5",
+            "in": "query",
+            "description": "md5",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "name",
+            "in": "query",
+            "description": "构件名称",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "projectId",
+            "in": "path",
+            "description": "项目Id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/structural/project/{projectId}/suite/{id}": {
+      "post": {
+        "tags": [
+          "Structural项目构件坞功能接口"
+        ],
+        "summary": "根据公共构件id判断项目中是否存在该组件",
+        "operationId": "checkSuiteExistsByIdUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "projectId",
+            "in": "path",
+            "description": "项目Id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/structural/project/{projectId}/suite/{suiteId}": {
+      "delete": {
+        "tags": [
+          "Structural项目构件坞功能接口"
+        ],
+        "summary": "删除项目下的单个项目级构件",
+        "operationId": "deleteProjectSuiteUsingDELETE",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "projectId",
+            "in": "path",
+            "description": "项目Id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "suiteId",
+            "in": "path",
+            "description": "构件Id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "version",
+            "in": "query",
+            "description": "构件版本",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/structural/project/{projectId}/suite/{suiteId}/detail/xml": {
+      "get": {
+        "tags": [
+          "Structural项目构件坞功能接口"
+        ],
+        "summary": "获取构件详情的XML文件",
+        "operationId": "getProjectSuiteDetailWithXmlUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "projectId",
+            "in": "path",
+            "description": "projectId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "suiteId",
+            "in": "path",
+            "description": "suiteId",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "version",
+            "in": "query",
+            "description": "version",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/structural/project/{projectId}/suite/{suiteId}/family_types": {
+      "get": {
+        "tags": [
+          "Structural项目构件坞功能接口"
+        ],
+        "summary": "获取构件所有familyTpyes详情",
+        "operationId": "getProjectSuiteFamilyTypesUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "projectId",
+            "in": "path",
+            "description": "projectId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "suiteId",
+            "in": "path",
+            "description": "suiteId",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "version",
+            "in": "query",
+            "description": "version",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/structural/project/{projectId}/suite/{suiteId}/merge": {
+      "put": {
+        "tags": [
+          "Structural项目构件坞功能接口"
+        ],
+        "summary": "合并项目构件信息",
+        "operationId": "mergeProjectSuiteUsingPUT",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "map",
+            "description": "map",
+            "required": true,
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "projectId",
+            "in": "path",
+            "description": "projectId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "suiteId",
+            "in": "path",
+            "description": "suiteId",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/structural/project/{projectId}/suite/{suiteId}/performance/curve/data": {
+      "get": {
+        "tags": [
+          "Structural项目构件坞功能接口"
+        ],
+        "summary": "获取项目构件性能曲线数据",
+        "operationId": "loadSuitePerformanceLineDataUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "curveId",
+            "in": "query",
+            "description": "曲线id",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "familyType",
+            "in": "query",
+            "description": "类别",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "projectId",
+            "in": "path",
+            "description": "项目Id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "suiteId",
+            "in": "path",
+            "description": "构件id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "version",
+            "in": "query",
+            "description": "版本号",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/structural/project/{projectId}/suite/{suiteId}/performance/curve/define": {
+      "get": {
+        "tags": [
+          "Structural项目构件坞功能接口"
+        ],
+        "summary": "获取项目构件的性能曲线定义",
+        "operationId": "loadSuitePerformanceLineDefineUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "projectId",
+            "in": "path",
+            "description": "项目Id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "suiteId",
+            "in": "path",
+            "description": "构件id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "version",
+            "in": "query",
+            "description": "版本号",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/structural/project/{projectId}/suite/{suiteId}/placeholder": {
+      "get": {
+        "tags": [
+          "Structural项目构件坞功能接口"
+        ],
+        "summary": "获取项目构件的图例",
+        "operationId": "loadSuitePlaceholderUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "projectId",
+            "in": "path",
+            "description": "项目Id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "suiteId",
+            "in": "path",
+            "description": "构件id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "version",
+            "in": "query",
+            "description": "版本号",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/structural/project/{projectId}/suite/{suiteId}/placeholder/{placeholder}/url": {
+      "get": {
+        "tags": [
+          "Structural项目构件坞功能接口"
+        ],
+        "summary": "获取项目构件图例下载的url",
+        "operationId": "loadSuitePlaceholderDownloadUrlUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "placeholder",
+            "in": "path",
+            "description": "placeholder",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "projectId",
+            "in": "path",
+            "description": "项目Id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "suiteId",
+            "in": "path",
+            "description": "构件id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "version",
+            "in": "query",
+            "description": "版本号",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/structural/project/{projectId}/suite/{suiteId}/upgrade": {
+      "put": {
+        "tags": [
+          "Structural项目构件坞功能接口"
+        ],
+        "summary": "创建项目构件的新版本",
+        "operationId": "upgradeProjectSuiteUsingPUT",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "map",
+            "description": "map",
+            "required": true,
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "projectId",
+            "in": "path",
+            "description": "projectId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "suiteId",
+            "in": "path",
+            "description": "suiteId",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/structural/project/{projectId}/suite/{suiteId}/{version}": {
+      "get": {
+        "tags": [
+          "Structural项目构件坞功能接口"
+        ],
+        "summary": "获取项目构件的下载地址",
+        "operationId": "downloadSuitesSearchUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "projectId",
+            "in": "path",
+            "description": "项目Id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "suiteId",
+            "in": "path",
+            "description": "构件Id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "version",
+            "in": "path",
+            "description": "构件版本",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/structural/project/{projectId}/suite/{suiteId}/{version}/family/info": {
+      "get": {
+        "tags": [
+          "Structural项目构件坞功能接口"
+        ],
+        "summary": "获取项目构件family详细信息",
+        "operationId": "getProjectSuiteFamilyDetailUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "name",
+            "in": "query",
+            "description": "name",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "projectId",
+            "in": "path",
+            "description": "projectId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "suiteId",
+            "in": "path",
+            "description": "suiteId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "version",
+            "in": "path",
+            "description": "version",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/structural/project/{projectId}/suite/{suiteId}/{version}/info": {
+      "get": {
+        "tags": [
+          "Structural项目构件坞功能接口"
+        ],
+        "summary": "获取项目构件详细信息",
+        "operationId": "getProjectSuiteInfoDetailUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "projectId",
+            "in": "path",
+            "description": "projectId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "suiteId",
+            "in": "path",
+            "description": "suiteId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "version",
+            "in": "path",
+            "description": "version",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/structural/project/{projectId}/suites/check4update": {
+      "post": {
+        "tags": [
+          "Structural项目构件坞功能接口"
+        ],
+        "summary": "批量查询项目构件版本是否更新",
+        "operationId": "suiteCheckForUpdateUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "category_code",
+            "in": "query",
+            "description": "category_code",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "keyword",
+            "in": "query",
+            "description": "keyword",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "major",
+            "in": "query",
+            "description": "专业编码，取值说明：0-gst,1-gap,2-gmep",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "projectId",
+            "in": "path",
+            "description": "项目Id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "suites",
+            "description": "suites",
+            "required": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/SuiteCheck4Update"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/structural/project/{projectId}/suites/list": {
+      "get": {
+        "tags": [
+          "Structural项目构件坞功能接口"
+        ],
+        "summary": "获取项目中所有最新版本的可用构件列表(该接口成功返回10000，而不是success)",
+        "operationId": "listProjectSuitesUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "projectId",
+            "in": "path",
+            "description": "项目id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«List«ProjectStructureVO»»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/structural/v2/common/classify": {
+      "get": {
+        "tags": [
+          "Structural公共构件坞功能接口"
+        ],
+        "summary": "V2获取公共构件坞分类列表",
+        "operationId": "getCommonSuite4V2UsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/structural/v2/common/classify/{category}/suites": {
+      "get": {
+        "tags": [
+          "Structural公共构件坞功能接口"
+        ],
+        "summary": "V2获取公共构件坞某分类下的构件元素",
+        "operationId": "getSuiteDetails4V2UsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "category",
+            "in": "path",
+            "description": "分类Id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "page",
+            "required": false,
+            "type": "integer",
+            "default": 0,
+            "format": "int32"
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "description": "pageSize",
+            "required": false,
+            "type": "integer",
+            "default": 0,
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/structural/v2/common/suite/{suiteId}/deail": {
+      "get": {
+        "tags": [
+          "Structural公共构件坞功能接口"
+        ],
+        "summary": "V2获取公共构件组件详细信息",
+        "operationId": "getCommonSuiteInfoDetail4V2UsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "suiteId",
+            "in": "path",
+            "description": "构件id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/structural/v2/common/suites/search": {
+      "post": {
+        "tags": [
+          "Structural公共构件坞功能接口"
+        ],
+        "summary": "V2公共库构件查询",
+        "operationId": "commonSuitesSearch4V2UsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "condition",
+            "description": "condition",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/SuiteSearch"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/style-family/font/common/commit": {
+      "post": {
+        "tags": [
+          "Font-公共字体接口"
+        ],
+        "summary": "提交上传公共字体的信息",
+        "operationId": "commitCommonFontUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "font",
+            "description": "font",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CommonFontDto"
+            }
+          },
+          {
+            "name": "x-gdc-userid",
+            "in": "header",
+            "description": "x-gdc-userid",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«CommonFontVO»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/style-family/font/common/list": {
+      "get": {
+        "tags": [
+          "Font-公共字体接口"
+        ],
+        "summary": "获取公共字体列表",
+        "operationId": "listAllCommonFontUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "x-gdc-userid",
+            "in": "header",
+            "description": "x-gdc-userid",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«List«CommonFontVO»»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/style-family/font/common/upload/uri": {
+      "get": {
+        "tags": [
+          "Font-公共字体接口"
+        ],
+        "summary": "申请上传公共字体的uri",
+        "operationId": "applyUploadCommonFontUriUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "name",
+            "in": "query",
+            "description": "字体名称(含后缀)",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "override",
+            "in": "query",
+            "description": "重复是否覆盖",
+            "required": true,
+            "type": "boolean"
+          },
+          {
+            "name": "x-gdc-userid",
+            "in": "header",
+            "description": "x-gdc-userid",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«FileTransferBean»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/style-family/font/common/{fontId}": {
+      "delete": {
+        "tags": [
+          "Font-公共字体接口"
+        ],
+        "summary": "删除公共字体",
+        "operationId": "removeCommonFontUsingDELETE",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "fontId",
+            "in": "path",
+            "description": "字体Id",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "x-gdc-userid",
+            "in": "header",
+            "description": "x-gdc-userid",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«CommonFontVO»"
+            }
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/style-family/font/project/commit": {
+      "post": {
+        "tags": [
+          "Font-项目字体接口"
+        ],
+        "summary": "提交上传项目字体的信息",
+        "operationId": "submitProjectFontUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "font",
+            "description": "font",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ProjectFontDto"
+            }
+          },
+          {
+            "name": "x-gdc-userid",
+            "in": "header",
+            "description": "x-gdc-userid",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«ProjectFontVO»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/style-family/font/project/download/uri": {
+      "get": {
+        "tags": [
+          "Font-项目字体接口"
+        ],
+        "summary": "获取项目字体下载的uri",
+        "operationId": "applyDownLoadCommonFontUriUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "fontId",
+            "in": "query",
+            "description": "字体Id",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "projectId",
+            "in": "query",
+            "description": "项目Id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-gdc-userid",
+            "in": "header",
+            "description": "x-gdc-userid",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«FileTransferBean»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/style-family/font/project/list/{projectId}": {
+      "get": {
+        "tags": [
+          "Font-项目字体接口"
+        ],
+        "summary": "获取项目字体列表",
+        "operationId": "listProjectFontUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "projectId",
+            "in": "path",
+            "description": "projectId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-gdc-userid",
+            "in": "header",
+            "description": "x-gdc-userid",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«List«ProjectFontVO»»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/style-family/font/project/rename/{fontId}": {
+      "put": {
+        "tags": [
+          "Font-项目字体接口"
+        ],
+        "summary": "项目字体重命名",
+        "operationId": "renameProjectFontUsingPUT",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "font",
+            "description": "font",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ProjectFontDto"
+            }
+          },
+          {
+            "name": "fontId",
+            "in": "path",
+            "description": "fontId",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "x-gdc-userid",
+            "in": "header",
+            "description": "x-gdc-userid",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«ProjectFontVO»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/style-family/font/project/upload/uri": {
+      "get": {
+        "tags": [
+          "Font-项目字体接口"
+        ],
+        "summary": "申请上传项目字体的uri",
+        "operationId": "applyUploadCommonFontUriUsingGET_1",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "name",
+            "in": "query",
+            "description": "字体名称(含后缀)",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "override",
+            "in": "query",
+            "description": "同名是否覆盖",
+            "required": true,
+            "type": "boolean"
+          },
+          {
+            "name": "projectId",
+            "in": "query",
+            "description": "项目Id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-gdc-userid",
+            "in": "header",
+            "description": "x-gdc-userid",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«FileTransferBean»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/style-family/font/project/{projectId}/{fontId}": {
+      "delete": {
+        "tags": [
+          "Font-项目字体接口"
+        ],
+        "summary": "删除项目字体",
+        "operationId": "removeCommonFontUsingDELETE_1",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "fontId",
+            "in": "path",
+            "description": "字体Id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "projectId",
+            "in": "path",
+            "description": "projectId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-gdc-userid",
+            "in": "header",
+            "description": "x-gdc-userid",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«ProjectFontVO»"
+            }
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/timeout/{timeoutInMill}": {
+      "get": {
+        "tags": [
+          "internal-test-controller"
+        ],
+        "summary": "timeout",
+        "operationId": "timeoutUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "timeoutInMill",
+            "in": "path",
+            "description": "timeoutInMill",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    }
+  },
+  "securityDefinitions": {
+    "JWT": {
+      "type": "apiKey",
+      "name": "Authorization",
+      "in": "header"
+    }
+  },
+  "definitions": {
+    "CategoryUpgrade": {
+      "type": "object",
+      "properties": {
+        "keyword": {
+          "type": "string"
+        },
+        "major": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "projectComponentRequestBeans": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ProjectSuiteBeanRequest"
+          }
+        }
+      },
+      "title": "CategoryUpgrade"
+    },
+    "CommonFontDto": {
+      "type": "object",
+      "properties": {
+        "fileType": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "override": {
+          "type": "boolean"
+        },
+        "resourceBytes": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "uri": {
+          "type": "string"
+        }
+      },
+      "title": "CommonFontDto"
+    },
+    "CommonFontVO": {
+      "type": "object",
+      "properties": {
+        "createTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "fileType": {
+          "type": "string"
+        },
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        },
+        "resourceBytes": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "updateTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "uploader": {
+          "type": "string"
+        },
+        "uri": {
+          "type": "string"
+        }
+      },
+      "title": "CommonFontVO"
+    },
+    "FakeProject": {
+      "type": "object",
+      "properties": {
+        "createTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "exist": {
+          "type": "boolean"
+        },
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "preset": {
+          "type": "boolean"
+        },
+        "projectId": {
+          "type": "string"
+        },
+        "projectMirrorId": {
+          "type": "string"
+        },
+        "viewed": {
+          "type": "boolean"
+        }
+      },
+      "title": "FakeProject"
+    },
+    "FileTransferBean": {
+      "type": "object",
+      "properties": {
+        "fileOSSPath": {
+          "type": "string"
+        },
+        "fileUrlWithSAS": {
+          "type": "string"
+        }
+      },
+      "title": "FileTransferBean"
+    },
+    "ProjectFontDto": {
+      "type": "object",
+      "properties": {
+        "fileType": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "override": {
+          "type": "boolean"
+        },
+        "projectId": {
+          "type": "string"
+        },
+        "resourceBytes": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "uri": {
+          "type": "string"
+        }
+      },
+      "title": "ProjectFontDto"
+    },
+    "ProjectFontVO": {
+      "type": "object",
+      "properties": {
+        "createTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "fileType": {
+          "type": "string"
+        },
+        "fontFrom": {
+          "type": "string",
+          "enum": [
+            "COMMON",
+            "USER"
+          ]
+        },
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        },
+        "projectId": {
+          "type": "string"
+        },
+        "resourceBytes": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "updateTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "uploader": {
+          "type": "string"
+        },
+        "uri": {
+          "type": "string"
+        }
+      },
+      "title": "ProjectFontVO"
+    },
+    "ProjectStructureVO": {
+      "type": "object",
+      "properties": {
+        "commonStructureId": {
+          "type": "string"
+        },
+        "projectId": {
+          "type": "string"
+        },
+        "structrueId": {
+          "type": "string"
+        },
+        "version": {
+          "type": "string"
+        }
+      },
+      "title": "ProjectStructureVO"
+    },
+    "ProjectSuite": {
+      "type": "object",
+      "properties": {
+        "list": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/SuiteMetaBean"
+          }
+        },
+        "totalCount": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "title": "ProjectSuite"
+    },
+    "ProjectSuiteBeanRequest": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "version": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "title": "ProjectSuiteBeanRequest"
+    },
+    "ProjectSuiteBinder": {
+      "type": "object",
+      "properties": {
+        "projectId": {
+          "type": "string"
+        },
+        "suites": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "title": "ProjectSuiteBinder"
+    },
+    "ProjectSuiteCategorySearch": {
+      "type": "object",
+      "properties": {
+        "categoryCodes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "categoryIds": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "keyword": {
+          "type": "string"
+        },
+        "partType": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "softwareVersion": {
+          "type": "string"
+        }
+      },
+      "title": "ProjectSuiteCategorySearch"
+    },
+    "ProjectSuiteResultBean": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/definitions/ProjectSuite"
+        },
+        "message": {
+          "type": "string"
+        },
+        "viewed": {
+          "type": "boolean"
+        }
+      },
+      "title": "ProjectSuiteResultBean"
+    },
+    "ProjectSuiteSearch": {
+      "type": "object",
+      "properties": {
+        "category": {
+          "type": "string"
+        },
+        "categoryCodes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "categoryIds": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "keyword": {
+          "type": "string"
+        },
+        "page": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "pageSize": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "partType": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "projectId": {
+          "type": "string"
+        },
+        "property": {
+          "type": "string"
+        },
+        "sort": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "title": "ProjectSuiteSearch"
+    },
+    "Response«CommonFontVO»": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32",
+          "description": "请求响应码"
+        },
+        "data": {
+          "description": "请求响应数据",
+          "$ref": "#/definitions/CommonFontVO"
+        },
+        "msg": {
+          "type": "string",
+          "description": "状态码对应的描述信息"
+        }
+      },
+      "title": "Response«CommonFontVO»"
+    },
+    "Response«FakeProject»": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32",
+          "description": "请求响应码"
+        },
+        "data": {
+          "description": "请求响应数据",
+          "$ref": "#/definitions/FakeProject"
+        },
+        "msg": {
+          "type": "string",
+          "description": "状态码对应的描述信息"
+        }
+      },
+      "title": "Response«FakeProject»"
+    },
+    "Response«FileTransferBean»": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32",
+          "description": "请求响应码"
+        },
+        "data": {
+          "description": "请求响应数据",
+          "$ref": "#/definitions/FileTransferBean"
+        },
+        "msg": {
+          "type": "string",
+          "description": "状态码对应的描述信息"
+        }
+      },
+      "title": "Response«FileTransferBean»"
+    },
+    "Response«List«CommonFontVO»»": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32",
+          "description": "请求响应码"
+        },
+        "data": {
+          "type": "array",
+          "description": "请求响应数据",
+          "items": {
+            "$ref": "#/definitions/CommonFontVO"
+          }
+        },
+        "msg": {
+          "type": "string",
+          "description": "状态码对应的描述信息"
+        }
+      },
+      "title": "Response«List«CommonFontVO»»"
+    },
+    "Response«List«ProjectFontVO»»": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32",
+          "description": "请求响应码"
+        },
+        "data": {
+          "type": "array",
+          "description": "请求响应数据",
+          "items": {
+            "$ref": "#/definitions/ProjectFontVO"
+          }
+        },
+        "msg": {
+          "type": "string",
+          "description": "状态码对应的描述信息"
+        }
+      },
+      "title": "Response«List«ProjectFontVO»»"
+    },
+    "Response«List«ProjectStructureVO»»": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32",
+          "description": "请求响应码"
+        },
+        "data": {
+          "type": "array",
+          "description": "请求响应数据",
+          "items": {
+            "$ref": "#/definitions/ProjectStructureVO"
+          }
+        },
+        "msg": {
+          "type": "string",
+          "description": "状态码对应的描述信息"
+        }
+      },
+      "title": "Response«List«ProjectStructureVO»»"
+    },
+    "Response«ProjectFontVO»": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32",
+          "description": "请求响应码"
+        },
+        "data": {
+          "description": "请求响应数据",
+          "$ref": "#/definitions/ProjectFontVO"
+        },
+        "msg": {
+          "type": "string",
+          "description": "状态码对应的描述信息"
+        }
+      },
+      "title": "Response«ProjectFontVO»"
+    },
+    "Response«boolean»": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32",
+          "description": "请求响应码"
+        },
+        "data": {
+          "type": "boolean",
+          "description": "请求响应数据"
+        },
+        "msg": {
+          "type": "string",
+          "description": "状态码对应的描述信息"
+        }
+      },
+      "title": "Response«boolean»"
+    },
+    "SuiteCheck4Update": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "softwareVersion": {
+          "type": "string"
+        },
+        "version": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "title": "SuiteCheck4Update"
+    },
+    "SuiteMetaBean": {
+      "type": "object",
+      "properties": {
+        "categoryCode": {
+          "type": "string"
+        },
+        "categoryId": {
+          "type": "string"
+        },
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        },
+        "publicComponentId": {
+          "type": "string"
+        },
+        "source": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "status": {
+          "type": "string"
+        },
+        "thumbnail": {
+          "type": "string"
+        },
+        "version": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "title": "SuiteMetaBean"
+    },
+    "SuiteSearch": {
+      "type": "object",
+      "properties": {
+        "category": {
+          "type": "string"
+        },
+        "categoryCode": {
+          "type": "string"
+        },
+        "keyword": {
+          "type": "string"
+        },
+        "page": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "pageSize": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "sort": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "type": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "title": "SuiteSearch"
+    },
+    "UploadResultBean": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/definitions/SuiteMetaBean"
+        },
+        "message": {
+          "type": "string"
+        }
+      },
+      "title": "UploadResultBean"
+    }
+  }
+}

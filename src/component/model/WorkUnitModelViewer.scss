@@ -1,0 +1,112 @@
+@import "style/colors.scss";
+.work-unit-model-viewer {
+  flex: auto;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  position: relative;
+  .bimface-viewer {
+    flex: auto;
+    display: flex;
+  }
+  .bf-toolbar-bottom,
+  .bf-toolbar-button .bf-sub-toolbar {
+    height: 50px;
+    border-radius: 3px;
+    box-shadow: 0 6px 16px 0 rgba(0, 0, 0, 0.08);
+    background-color: #ffffff;
+    border: none;
+    .bf-button {
+      color: $text-color-important;
+      opacity: 1;
+    }
+  }
+}
+.preview-tree-collapse.ant-collapse-borderless {
+  // width: 296px;
+  position: absolute;
+  top: 16px;
+  left: 8px;
+
+  overflow-x: hidden;
+  overflow-y: auto;
+  z-index: 100;
+  background: transparent;
+
+  &.ant-collapse > .ant-collapse-item {
+    border-bottom: none;
+    width: 40px;
+    transition: all 0.3s;
+
+    &.ant-collapse-item-active {
+      width: 296px;
+
+      .ant-collapse-header {
+        cursor: auto;
+        padding: 8px 8px 8px 28px;
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+
+        .preview-tree-title {
+          display: flex;
+        }
+      }
+    }
+
+    & > .ant-collapse-header {
+      height: 40px;
+      transition: none;
+      // width: 100%;
+      box-sizing: border-box;
+      border-radius: 2px;
+      background: #fff;
+      line-height: 24px;
+      overflow: hidden;
+
+      span {
+        flex: none;
+      }
+
+      .anticon.anticon-unordered-list.ant-collapse-arrow {
+        left: 12px;
+        font-size: 16px;
+        transform: translateY(-50%);
+      }
+
+      .preview-tree-title {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        display: none;
+        overflow: hidden;
+
+        .hide-button {
+          font-size: 12px;
+          cursor: pointer;
+        }
+      }
+    }
+
+    .ant-collapse-content {
+      background: #fff;
+      border-top: 1px solid rgba(0, 0, 0, 0.06);
+
+      .ant-collapse-content-box {
+        padding: 16px 4px;
+        min-height: 532px;
+
+        .ant-tree {
+          background: transparent;
+
+          font-size: 12px;
+
+          // line-height:16px;
+          .ant-tree-node-content-wrapper:hover,
+          .ant-tree-node-content-wrapper.ant-tree-node-selected {
+            background-color: rgba(255, 255, 255, 0.1);
+          }
+        }
+      }
+    }
+  }
+}

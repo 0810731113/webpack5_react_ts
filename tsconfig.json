@@ -13,9 +13,10 @@
     "resolveJsonModule": true,
     "baseUrl": "./",
     "paths": {
-      "Src/*": ["src/*"],
-      "Components/*": ["src/components/*"],
-      "Utils/*": ["src/utils/*"]
+      "src/*": ["src/*"],
+      "component/*": ["src/components/*"],
+      "utils/*": ["src/utils/*"],
+      "util/*": ["src/util/*"]
     },
 
     "experimentalDecorators": true,

@@ -1,3 +1,72 @@
-.App {
-  background: lightcoral;
+@import "./style/colors.scss";
+@import "./style/standard.antd.scss";
+// @import "./style/table.scss";
+@import "./style/base.scss";
+// @import "./style/table.scss";
+@import "./style/page.scss";
+@import "./style/layout.scss";
+
+h1,
+h2,
+h3,
+h4 {
+  font-weight: 300;
+  padding: 0;
+  margin: 0;
+}
+
+.switch-wrapper {
+  position: relative;
+  flex-grow: 1;
+  height: 100%;
+  width: 100%;
+  display: flex;
+}
+
+.switch-wrapper > div {
+  top: 0;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+@-webkit-keyframes rotating /* Safari and Chrome */ {
+  from {
+    -webkit-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+
+  to {
+    -webkit-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes rotating {
+  from {
+    -ms-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+
+  to {
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+.rotating {
+  -webkit-animation: rotating 20s linear infinite;
+  -moz-animation: rotating 20s linear infinite;
+  -ms-animation: rotating 20s linear infinite;
+  -o-animation: rotating 20s linear infinite;
+  animation: rotating 20s linear infinite;
 }

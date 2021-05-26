@@ -1,0 +1,22 @@
+.construction-page {
+  height: 100%;
+  display: flex;
+  overflow: auto;
+
+  flex-direction: column;
+
+  .body {
+    flex: 1;
+    overflow: auto;
+
+    display: flex;
+
+    .detail {
+      flex: 1;
+      overflow: auto;
+      padding: 16px 16px 16px 32px;
+      //background-color: #f8f8f8;
+      background-color: white;
+    }
+  }
+}

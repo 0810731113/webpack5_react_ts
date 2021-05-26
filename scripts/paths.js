@@ -37,10 +37,11 @@ module.exports = {
   appHtml: resolveApp('public/index.html'),
   appNodeModules: resolveApp('node_modules'), // node_modules path
   appSrc: resolveApp('src'),
-  appSrcComponents: resolveApp('src/components'),
-  appSrcUtils: resolveApp('src/utils'),
+  appSrcComponent: resolveApp('src/component'),
+  appSrcUtil: resolveApp('src/util'),
   appProxySetup: resolveModule(resolveApp, 'src/setProxy'),
   appPackageJson: resolveApp('package.json'),
   appTsConfig: resolveApp('tsconfig.json'),
   moduleFileExtensions,
+  resolveApp,
 };

@@ -1,0 +1,1865 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "Api Documentation",
+    "version": "1.0",
+    "title": "Api Documentation",
+    "termsOfService": "urn:tos",
+    "contact": {},
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0"
+    }
+  },
+  "host": "gdc-de.glodon.com",
+  "basePath": "/auth",
+  "tags": [
+    {
+      "name": "AdminAuth 后台管理验证接口",
+      "description": "Admin Auth Controller"
+    },
+    {
+      "name": "Enterprise 企业账号接口",
+      "description": "Enterprise Controller"
+    },
+    {
+      "name": "Login 登录接口",
+      "description": "Login Controller"
+    },
+    {
+      "name": "PersonalAccount 个人账号接口",
+      "description": "Personal Account Controller"
+    },
+    {
+      "name": "internal-test-controller",
+      "description": "Internal Test Controller"
+    }
+  ],
+  "paths": {
+    "/admin/login": {
+      "post": {
+        "tags": [
+          "AdminAuth 后台管理验证接口"
+        ],
+        "summary": "后台管理自定义登陆API",
+        "operationId": "adminLoginUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "loginInfo",
+            "description": "loginInfo",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UserLogin"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«AccountVO»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/admin/me": {
+      "get": {
+        "tags": [
+          "AdminAuth 后台管理验证接口"
+        ],
+        "summary": "后台管理获取当前用户信息",
+        "operationId": "getMeUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "x-gdc-userid",
+            "in": "header",
+            "description": "x-gdc-userid",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«AccountVO»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/check-ticket": {
+      "get": {
+        "tags": [
+          "Login 登录接口"
+        ],
+        "summary": "校验ticket",
+        "operationId": "checkCASTicketUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "returnUrl",
+            "in": "query",
+            "description": "returnUrl",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "ticket",
+            "in": "query",
+            "description": "ticket",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/code": {
+      "get": {
+        "tags": [
+          "Enterprise 企业账号接口"
+        ],
+        "summary": "发送短信验证码",
+        "operationId": "getCodeUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "mobile",
+            "in": "query",
+            "description": "mobile",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "type",
+            "in": "query",
+            "description": "type",
+            "required": true,
+            "type": "string",
+            "enum": [
+              "query"
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«Void»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/enterprise": {
+      "get": {
+        "tags": [
+          "Enterprise 企业账号接口"
+        ],
+        "summary": "根据登陆用户查询自己的企业主账号信息",
+        "operationId": "getEnterpriseInfoUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Authorization",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«EnterpriseInfo»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      },
+      "post": {
+        "tags": [
+          "Enterprise 企业账号接口"
+        ],
+        "summary": "注册企业账号",
+        "operationId": "createEnterpriseAccountUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "enterpriseAccountCreation",
+            "description": "enterpriseAccountCreation",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/EnterpriseAccountCreation"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«EnterpriseAccount»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/enterprise/checkAccount": {
+      "post": {
+        "tags": [
+          "Enterprise 企业账号接口"
+        ],
+        "summary": "查询账号是否重复",
+        "operationId": "isUserNameConflictUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "userName",
+            "in": "query",
+            "description": "userName",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«boolean»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/enterprise/departments": {
+      "post": {
+        "tags": [
+          "Enterprise 企业账号接口"
+        ],
+        "summary": "查询企业账号下的所有部门",
+        "operationId": "getEnterpriseDepartmentUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Authorization",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«List«Department»»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/enterprise/member": {
+      "post": {
+        "tags": [
+          "Enterprise 企业账号接口"
+        ],
+        "summary": "查询企业账号下的子账号",
+        "operationId": "getEnterpriseMemberUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Authorization",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "enterpriseAccountQuery",
+            "description": "enterpriseAccountQuery",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/EnterpriseAccountQuery"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«Pagination«EnterpriseMember»»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/enterprise/member/withEnterprise": {
+      "post": {
+        "tags": [
+          "Enterprise 企业账号接口"
+        ],
+        "summary": "查询企业账号下的子账号(带主账号)",
+        "operationId": "getEnterpriseMemberAndEnterpriseUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Authorization",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "enterpriseAccountQuery",
+            "description": "enterpriseAccountQuery",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/EnterpriseAccountQuery"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«Pagination«EnterpriseMember»»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/enterprise/members/withmobile": {
+      "post": {
+        "tags": [
+          "Enterprise 企业账号接口"
+        ],
+        "summary": "查询企业账号下的子账号(带密保手机)",
+        "operationId": "getEnterpriseMemberWithMobileUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Authorization",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "enterpriseAccountQuery",
+            "description": "enterpriseAccountQuery",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/EnterpriseAccountQuery"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«Pagination«EnterpriseMember»»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/enterprise/query": {
+      "post": {
+        "tags": [
+          "Enterprise 企业账号接口"
+        ],
+        "summary": "根据账号密码查询账号信息",
+        "operationId": "getUserInfoUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "userLogin",
+            "description": "userLogin",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UserLogin"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«UserInfo»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/enterprise/review": {
+      "post": {
+        "tags": [
+          "Enterprise 企业账号接口"
+        ],
+        "summary": "企业账号申请试用",
+        "operationId": "reviewEnterpriseAccountUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "enterpriseAccountCreation",
+            "description": "enterpriseAccountCreation",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/EnterpriseAccountCreation"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«AccountVO»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/exception": {
+      "get": {
+        "tags": [
+          "internal-test-controller"
+        ],
+        "summary": "exception",
+        "operationId": "exceptionUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "string"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/health": {
+      "get": {
+        "tags": [
+          "internal-test-controller"
+        ],
+        "summary": "healthy",
+        "operationId": "healthyUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "string"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/login": {
+      "get": {
+        "tags": [
+          "Login 登录接口"
+        ],
+        "summary": "登录API",
+        "operationId": "loginUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "returnUrl",
+            "in": "query",
+            "description": "returnUrl",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      },
+      "post": {
+        "tags": [
+          "Login 登录接口"
+        ],
+        "summary": "用户名密码登陆API",
+        "operationId": "loginUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Authorization",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "userInfo",
+            "description": "userInfo",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UserLogin"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«UserInfoWithToken»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/logout": {
+      "get": {
+        "tags": [
+          "Login 登录接口"
+        ],
+        "summary": "退出登录API",
+        "operationId": "logoutUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "returnTo",
+            "in": "query",
+            "description": "returnTo",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/mobile/userinfo/list": {
+      "get": {
+        "tags": [
+          "Enterprise 企业账号接口"
+        ],
+        "summary": "根据验证码查询手机号绑定的企业主账号列表",
+        "operationId": "getAccountListUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "mobile",
+            "in": "query",
+            "description": "mobile",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "verifyCode",
+            "in": "query",
+            "description": "verifyCode",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«List«MobileBindAccount»»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/personal/code": {
+      "get": {
+        "tags": [
+          "PersonalAccount 个人账号接口"
+        ],
+        "summary": "发送短信验证码",
+        "operationId": "getCodeUsingGET_1",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "mobile",
+            "in": "query",
+            "description": "mobile",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "type",
+            "in": "query",
+            "description": "type",
+            "required": true,
+            "type": "string",
+            "enum": [
+              "query"
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«Void»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/personal/review": {
+      "post": {
+        "tags": [
+          "PersonalAccount 个人账号接口"
+        ],
+        "summary": "个人账号申请试用",
+        "operationId": "reviewPersonalAccountUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "personalAccountCreation",
+            "description": "personalAccountCreation",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/PersonalAccountCreation"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«AccountVO»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/timeout/{timeoutInMill}": {
+      "get": {
+        "tags": [
+          "internal-test-controller"
+        ],
+        "summary": "timeout",
+        "operationId": "timeoutUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "timeoutInMill",
+            "in": "path",
+            "description": "timeoutInMill",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/v2/enterprise": {
+      "post": {
+        "tags": [
+          "Enterprise 企业账号接口"
+        ],
+        "summary": "注册企业账号",
+        "operationId": "createEnterpriseAccountV2UsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "enterpriseAccountCreationV2",
+            "description": "enterpriseAccountCreationV2",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/EnterpriseAccountCreationV2"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«EnterpriseAccount»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/web/enterprise": {
+      "get": {
+        "tags": [
+          "Login 登录接口"
+        ],
+        "summary": "跳转企业用户信息页",
+        "operationId": "accountInfoPageUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Authorization",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/web/login": {
+      "post": {
+        "tags": [
+          "Login 登录接口"
+        ],
+        "summary": "网页端自定义登陆API",
+        "operationId": "webLoginUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "loginInfo",
+            "description": "loginInfo",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UserLogin"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«UserInfoWithToken»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/web/userinfo": {
+      "get": {
+        "tags": [
+          "Login 登录接口"
+        ],
+        "summary": "跳转用户信息页",
+        "operationId": "accountUserInfoUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    }
+  },
+  "securityDefinitions": {
+    "JWT": {
+      "type": "apiKey",
+      "name": "Authorization",
+      "in": "header"
+    }
+  },
+  "definitions": {
+    "AccountVO": {
+      "type": "object",
+      "properties": {
+        "accessToken": {
+          "type": "string"
+        },
+        "category": {
+          "type": "string",
+          "enum": [
+            "Customer",
+            "Internal",
+            "System",
+            "PersonalCustomer"
+          ]
+        },
+        "certificateUrl": {
+          "type": "string"
+        },
+        "company": {
+          "type": "string"
+        },
+        "creationTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "department": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "enabled": {
+          "type": "boolean"
+        },
+        "id": {
+          "type": "string"
+        },
+        "isProjectParticipant": {
+          "type": "boolean"
+        },
+        "name": {
+          "type": "string"
+        },
+        "position": {
+          "type": "string"
+        },
+        "qq": {
+          "type": "string"
+        },
+        "reason": {
+          "type": "string"
+        },
+        "remark": {
+          "type": "string"
+        },
+        "reviewTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "roles": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "ProjectAdmin",
+              "ProjectUser",
+              "ProjectExternalUser",
+              "GlobalVisitor",
+              "EnterpriseVisitor",
+              "ProjectVisitor",
+              "BetaUser",
+              "BopsAdmin",
+              "BopsMarket",
+              "BopsProduct",
+              "BopsUser",
+              "BopsDeveloper"
+            ]
+          }
+        },
+        "source": {
+          "type": "string",
+          "enum": [
+            "Register",
+            "Addition"
+          ]
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "Pending",
+            "Approved",
+            "Reject"
+          ]
+        },
+        "telephone": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "EnterpriseGeneral",
+            "EnterpriseVIP",
+            "EnterprisePersonal",
+            "InternalBusiness",
+            "InternalTest",
+            "System",
+            "PersonalGeneral",
+            "PersonalVIP"
+          ]
+        },
+        "updateTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "userName": {
+          "type": "string"
+        },
+        "weChat": {
+          "type": "string"
+        }
+      },
+      "title": "AccountVO"
+    },
+    "Department": {
+      "type": "object",
+      "properties": {
+        "enterpriseId": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "parentId": {
+          "type": "string"
+        }
+      },
+      "title": "Department"
+    },
+    "EnterpriseAccount": {
+      "type": "object",
+      "properties": {
+        "accountName": {
+          "type": "string"
+        },
+        "displayName": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "orgCode": {
+          "type": "string"
+        },
+        "status": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "title": "EnterpriseAccount"
+    },
+    "EnterpriseAccountCreation": {
+      "type": "object",
+      "properties": {
+        "certificate": {
+          "type": "string"
+        },
+        "company": {
+          "type": "string"
+        },
+        "department": {
+          "type": "string"
+        },
+        "identity": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        },
+        "passwordEmail": {
+          "type": "string"
+        },
+        "passwordMobile": {
+          "type": "string"
+        },
+        "position": {
+          "type": "string"
+        },
+        "qq": {
+          "type": "string"
+        },
+        "reason": {
+          "type": "string"
+        },
+        "userName": {
+          "type": "string"
+        },
+        "weChat": {
+          "type": "string"
+        }
+      },
+      "title": "EnterpriseAccountCreation"
+    },
+    "EnterpriseAccountCreationV2": {
+      "type": "object",
+      "properties": {
+        "identity": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        },
+        "passwordMobile": {
+          "type": "string"
+        }
+      },
+      "title": "EnterpriseAccountCreationV2"
+    },
+    "EnterpriseAccountQuery": {
+      "type": "object",
+      "properties": {
+        "departmentId": {
+          "type": "integer",
+          "format": "int64",
+          "description": "部门ID，如传值不为空，则部门ID必须合法有效"
+        },
+        "identity": {
+          "type": "string",
+          "description": "用户名或id"
+        },
+        "pageNum": {
+          "type": "integer",
+          "format": "int32",
+          "description": "查询页数（默认1）"
+        },
+        "pageSize": {
+          "type": "integer",
+          "format": "int32",
+          "description": "每页数据数（默认10，最大200）"
+        }
+      },
+      "title": "EnterpriseAccountQuery"
+    },
+    "EnterpriseInfo": {
+      "type": "object",
+      "properties": {
+        "enterprise": {
+          "$ref": "#/definitions/EnterpriseAccount"
+        },
+        "isMainAccount": {
+          "type": "boolean"
+        }
+      },
+      "title": "EnterpriseInfo"
+    },
+    "EnterpriseMember": {
+      "type": "object",
+      "properties": {
+        "departmentId": {
+          "type": "string",
+          "description": "部门id"
+        },
+        "departmentName": {
+          "type": "string",
+          "description": "部门名称"
+        },
+        "enterpriseId": {
+          "type": "string",
+          "description": "企业主账号id"
+        },
+        "name": {
+          "type": "string",
+          "description": "用户姓名"
+        },
+        "passwordMobile": {
+          "type": "string",
+          "description": "密保手机"
+        },
+        "userId": {
+          "type": "string",
+          "description": "用户中心用户id"
+        },
+        "userName": {
+          "type": "string",
+          "description": "成员账号"
+        }
+      },
+      "title": "EnterpriseMember"
+    },
+    "MobileBindAccount": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string"
+        },
+        "enterpriseUser": {
+          "type": "boolean"
+        },
+        "fullname": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "passwordMobile": {
+          "type": "string"
+        },
+        "status": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "username": {
+          "type": "string"
+        }
+      },
+      "title": "MobileBindAccount"
+    },
+    "OAuth2AccessToken": {
+      "type": "object",
+      "properties": {
+        "access_token": {
+          "type": "string"
+        },
+        "expires_in": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "refresh_token": {
+          "type": "string"
+        },
+        "token_type": {
+          "type": "string"
+        }
+      },
+      "title": "OAuth2AccessToken"
+    },
+    "Pagination«EnterpriseMember»": {
+      "type": "object",
+      "properties": {
+        "list": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/EnterpriseMember"
+          }
+        },
+        "pageNum": {
+          "type": "integer",
+          "format": "int32",
+          "description": "当前页"
+        },
+        "pageSize": {
+          "type": "integer",
+          "format": "int32",
+          "description": "每页的数量"
+        },
+        "pages": {
+          "type": "integer",
+          "format": "int32",
+          "description": "总页数"
+        },
+        "size": {
+          "type": "integer",
+          "format": "int32",
+          "description": "当前页的数量"
+        },
+        "total": {
+          "type": "integer",
+          "format": "int32",
+          "description": "总记录数"
+        }
+      },
+      "title": "Pagination«EnterpriseMember»"
+    },
+    "PersonalAccountCreation": {
+      "type": "object",
+      "properties": {
+        "certificateUrl": {
+          "type": "string"
+        },
+        "company": {
+          "type": "string"
+        },
+        "department": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "position": {
+          "type": "string"
+        },
+        "qq": {
+          "type": "string"
+        },
+        "reason": {
+          "type": "string"
+        },
+        "telephone": {
+          "type": "string"
+        },
+        "verifyCode": {
+          "type": "string"
+        }
+      },
+      "title": "PersonalAccountCreation"
+    },
+    "Response«AccountVO»": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32",
+          "description": "请求响应码"
+        },
+        "data": {
+          "description": "请求响应数据",
+          "$ref": "#/definitions/AccountVO"
+        },
+        "msg": {
+          "type": "string",
+          "description": "状态码对应的描述信息"
+        }
+      },
+      "title": "Response«AccountVO»"
+    },
+    "Response«EnterpriseAccount»": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32",
+          "description": "请求响应码"
+        },
+        "data": {
+          "description": "请求响应数据",
+          "$ref": "#/definitions/EnterpriseAccount"
+        },
+        "msg": {
+          "type": "string",
+          "description": "状态码对应的描述信息"
+        }
+      },
+      "title": "Response«EnterpriseAccount»"
+    },
+    "Response«EnterpriseInfo»": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32",
+          "description": "请求响应码"
+        },
+        "data": {
+          "description": "请求响应数据",
+          "$ref": "#/definitions/EnterpriseInfo"
+        },
+        "msg": {
+          "type": "string",
+          "description": "状态码对应的描述信息"
+        }
+      },
+      "title": "Response«EnterpriseInfo»"
+    },
+    "Response«List«Department»»": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32",
+          "description": "请求响应码"
+        },
+        "data": {
+          "type": "array",
+          "description": "请求响应数据",
+          "items": {
+            "$ref": "#/definitions/Department"
+          }
+        },
+        "msg": {
+          "type": "string",
+          "description": "状态码对应的描述信息"
+        }
+      },
+      "title": "Response«List«Department»»"
+    },
+    "Response«List«MobileBindAccount»»": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32",
+          "description": "请求响应码"
+        },
+        "data": {
+          "type": "array",
+          "description": "请求响应数据",
+          "items": {
+            "$ref": "#/definitions/MobileBindAccount"
+          }
+        },
+        "msg": {
+          "type": "string",
+          "description": "状态码对应的描述信息"
+        }
+      },
+      "title": "Response«List«MobileBindAccount»»"
+    },
+    "Response«Pagination«EnterpriseMember»»": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32",
+          "description": "请求响应码"
+        },
+        "data": {
+          "description": "请求响应数据",
+          "$ref": "#/definitions/Pagination«EnterpriseMember»"
+        },
+        "msg": {
+          "type": "string",
+          "description": "状态码对应的描述信息"
+        }
+      },
+      "title": "Response«Pagination«EnterpriseMember»»"
+    },
+    "Response«UserInfoWithToken»": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32",
+          "description": "请求响应码"
+        },
+        "data": {
+          "description": "请求响应数据",
+          "$ref": "#/definitions/UserInfoWithToken"
+        },
+        "msg": {
+          "type": "string",
+          "description": "状态码对应的描述信息"
+        }
+      },
+      "title": "Response«UserInfoWithToken»"
+    },
+    "Response«UserInfo»": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32",
+          "description": "请求响应码"
+        },
+        "data": {
+          "description": "请求响应数据",
+          "$ref": "#/definitions/UserInfo"
+        },
+        "msg": {
+          "type": "string",
+          "description": "状态码对应的描述信息"
+        }
+      },
+      "title": "Response«UserInfo»"
+    },
+    "Response«Void»": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32",
+          "description": "请求响应码"
+        },
+        "msg": {
+          "type": "string",
+          "description": "状态码对应的描述信息"
+        }
+      },
+      "title": "Response«Void»"
+    },
+    "Response«boolean»": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32",
+          "description": "请求响应码"
+        },
+        "data": {
+          "type": "boolean",
+          "description": "请求响应数据"
+        },
+        "msg": {
+          "type": "string",
+          "description": "状态码对应的描述信息"
+        }
+      },
+      "title": "Response«boolean»"
+    },
+    "UserInfo": {
+      "type": "object",
+      "properties": {
+        "avatarPath": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "company": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "enterpriseId": {
+          "type": "string"
+        },
+        "enterpriseUser": {
+          "type": "boolean"
+        },
+        "featureList": {
+          "type": "object"
+        },
+        "fullname": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "mobile": {
+          "type": "string"
+        },
+        "nickname": {
+          "type": "string"
+        },
+        "passwordMobile": {
+          "type": "string"
+        },
+        "qq": {
+          "type": "string"
+        },
+        "username": {
+          "type": "string"
+        }
+      },
+      "title": "UserInfo"
+    },
+    "UserInfoWithToken": {
+      "type": "object",
+      "properties": {
+        "oAuth2AccessToken": {
+          "$ref": "#/definitions/OAuth2AccessToken"
+        },
+        "userInfo": {
+          "$ref": "#/definitions/UserInfo"
+        }
+      },
+      "title": "UserInfoWithToken"
+    },
+    "UserLogin": {
+      "type": "object",
+      "properties": {
+        "appKey": {
+          "type": "string"
+        },
+        "appSecret": {
+          "type": "string"
+        },
+        "userName": {
+          "type": "string"
+        },
+        "userPassword": {
+          "type": "string"
+        }
+      },
+      "title": "UserLogin"
+    }
+  }
+}

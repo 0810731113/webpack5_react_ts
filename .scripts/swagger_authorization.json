@@ -1,0 +1,2000 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "Api Documentation",
+    "version": "1.0",
+    "title": "Api Documentation",
+    "termsOfService": "urn:tos",
+    "contact": {},
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0"
+    }
+  },
+  "host": "gdc-de.glodon.com",
+  "basePath": "/authorization",
+  "tags": [
+    {
+      "name": "Authorization权限接口",
+      "description": "Authorization Controller"
+    },
+    {
+      "name": "RoleType 权限接口",
+      "description": "Role Type Controller"
+    },
+    {
+      "name": "internal-test-controller",
+      "description": "Internal Test Controller"
+    }
+  ],
+  "paths": {
+    "/exception": {
+      "get": {
+        "tags": [
+          "internal-test-controller"
+        ],
+        "summary": "exception",
+        "operationId": "exceptionUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "string"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/grant": {
+      "get": {
+        "tags": [
+          "Authorization权限接口"
+        ],
+        "summary": "通过用户和项目信息查询权限",
+        "operationId": "getPermissionTypeUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "projectId",
+            "in": "query",
+            "description": "projectId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "resourceSubType",
+            "in": "query",
+            "description": "resourceSubType",
+            "required": true,
+            "type": "string",
+            "enum": [
+              "PersonalDataset",
+              "SharePackage",
+              "AcceptPackage",
+              "Issue",
+              "TeamDataset",
+              "OtherFile",
+              "PermissionTeam",
+              "ArchivePackage",
+              "ResourcePool",
+              "CollisionDetection",
+              "ProjectSummary",
+              "CollaborationSetting",
+              "ProjectSetting",
+              "GJK",
+              "MEPSetting",
+              "GeneralConfiguration",
+              "GeneralConfigurationStyleLib",
+              "GeneralConfigurationSoftSetting",
+              "PendingCustomer",
+              "GeneralCustomer",
+              "VipCustomer",
+              "RejectedCustomer",
+              "PendingPersonalCustomer",
+              "GeneralPersonalCustomer",
+              "VipPersonalCustomer",
+              "RejectedPersonalCustomer",
+              "InternalBusiness",
+              "InternalTest",
+              "SystemAccount",
+              "ResourceLimit",
+              "Maintain",
+              "EmailTemplate",
+              "JobManager",
+              "AutoSave"
+            ]
+          },
+          {
+            "name": "resourceType",
+            "in": "query",
+            "description": "resourceType",
+            "required": true,
+            "type": "string",
+            "enum": [
+              "DataResource",
+              "FunctionResource",
+              "GDCBops",
+              "GDCSDK"
+            ]
+          },
+          {
+            "name": "userId",
+            "in": "query",
+            "description": "userId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«List«string»»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/grant/byrole": {
+      "post": {
+        "tags": [
+          "Authorization权限接口"
+        ],
+        "summary": "通过角色类型查询权限",
+        "operationId": "getPermissionTypeByRoleUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "resourceSubType",
+            "in": "query",
+            "description": "resourceSubType",
+            "required": true,
+            "type": "string",
+            "enum": [
+              "PersonalDataset",
+              "SharePackage",
+              "AcceptPackage",
+              "Issue",
+              "TeamDataset",
+              "OtherFile",
+              "PermissionTeam",
+              "ArchivePackage",
+              "ResourcePool",
+              "CollisionDetection",
+              "ProjectSummary",
+              "CollaborationSetting",
+              "ProjectSetting",
+              "GJK",
+              "MEPSetting",
+              "GeneralConfiguration",
+              "GeneralConfigurationStyleLib",
+              "GeneralConfigurationSoftSetting",
+              "PendingCustomer",
+              "GeneralCustomer",
+              "VipCustomer",
+              "RejectedCustomer",
+              "PendingPersonalCustomer",
+              "GeneralPersonalCustomer",
+              "VipPersonalCustomer",
+              "RejectedPersonalCustomer",
+              "InternalBusiness",
+              "InternalTest",
+              "SystemAccount",
+              "ResourceLimit",
+              "Maintain",
+              "EmailTemplate",
+              "JobManager",
+              "AutoSave"
+            ]
+          },
+          {
+            "name": "resourceType",
+            "in": "query",
+            "description": "resourceType",
+            "required": true,
+            "type": "string",
+            "enum": [
+              "DataResource",
+              "FunctionResource",
+              "GDCBops",
+              "GDCSDK"
+            ]
+          },
+          {
+            "in": "body",
+            "name": "roleTypes",
+            "description": "roleTypes",
+            "required": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "ProjectAdmin",
+                  "ProjectUser",
+                  "ProjectExternalUser",
+                  "GlobalVisitor",
+                  "EnterpriseVisitor",
+                  "ProjectVisitor",
+                  "BetaUser",
+                  "BopsAdmin",
+                  "BopsMarket",
+                  "BopsProduct",
+                  "BopsUser",
+                  "BopsDeveloper",
+                  "BimmakeArchvie"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«List«string»»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/health": {
+      "get": {
+        "tags": [
+          "internal-test-controller"
+        ],
+        "summary": "healthy",
+        "operationId": "healthyUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "string"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/project/{projectId}/user/{userId}/role": {
+      "post": {
+        "tags": [
+          "Authorization权限接口"
+        ],
+        "summary": "赋予角色",
+        "operationId": "assignUserRoleUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "projectId",
+            "in": "path",
+            "description": "projectId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "roleType",
+            "in": "query",
+            "description": "roleType",
+            "required": true,
+            "type": "string",
+            "enum": [
+              "ProjectAdmin",
+              "ProjectUser",
+              "ProjectExternalUser",
+              "GlobalVisitor",
+              "EnterpriseVisitor",
+              "ProjectVisitor",
+              "BetaUser",
+              "BopsAdmin",
+              "BopsMarket",
+              "BopsProduct",
+              "BopsUser",
+              "BopsDeveloper",
+              "BimmakeArchvie"
+            ]
+          },
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "userId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«Void»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      },
+      "delete": {
+        "tags": [
+          "Authorization权限接口"
+        ],
+        "summary": "移除角色",
+        "operationId": "deleteUserRoleUsingDELETE",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "projectId",
+            "in": "path",
+            "description": "projectId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "roleType",
+            "in": "query",
+            "description": "roleType",
+            "required": true,
+            "type": "string",
+            "enum": [
+              "ProjectAdmin",
+              "ProjectUser",
+              "ProjectExternalUser",
+              "GlobalVisitor",
+              "EnterpriseVisitor",
+              "ProjectVisitor",
+              "BetaUser",
+              "BopsAdmin",
+              "BopsMarket",
+              "BopsProduct",
+              "BopsUser",
+              "BopsDeveloper",
+              "BimmakeArchvie"
+            ]
+          },
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "userId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«Void»"
+            }
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/project/{projectId}/user/{userId}/roles": {
+      "post": {
+        "tags": [
+          "Authorization权限接口"
+        ],
+        "summary": "批量赋予角色",
+        "operationId": "assignUserRolesUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "projectId",
+            "in": "path",
+            "description": "projectId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "roleTypes",
+            "description": "roleTypes",
+            "required": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "ProjectAdmin",
+                  "ProjectUser",
+                  "ProjectExternalUser",
+                  "GlobalVisitor",
+                  "EnterpriseVisitor",
+                  "ProjectVisitor",
+                  "BetaUser",
+                  "BopsAdmin",
+                  "BopsMarket",
+                  "BopsProduct",
+                  "BopsUser",
+                  "BopsDeveloper",
+                  "BimmakeArchvie"
+                ]
+              }
+            }
+          },
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "userId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«Void»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/projects/{projectId}/role/{roleType}/users": {
+      "get": {
+        "tags": [
+          "Authorization权限接口"
+        ],
+        "summary": "查项目下指定角色的所有成员",
+        "operationId": "getAllUserIdsByRoleInProjectUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "projectId",
+            "in": "path",
+            "description": "projectId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "roleType",
+            "in": "path",
+            "description": "roleType",
+            "required": true,
+            "type": "string",
+            "enum": [
+              "ProjectAdmin",
+              "ProjectUser",
+              "ProjectExternalUser",
+              "GlobalVisitor",
+              "EnterpriseVisitor",
+              "ProjectVisitor",
+              "BetaUser",
+              "BopsAdmin",
+              "BopsMarket",
+              "BopsProduct",
+              "BopsUser",
+              "BopsDeveloper",
+              "BimmakeArchvie"
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«List«string»»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/projects/{projectId}/users/role": {
+      "post": {
+        "tags": [
+          "Authorization权限接口"
+        ],
+        "summary": "批量赋予项目下成员某一角色",
+        "operationId": "assignUserRolesInProjectUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "projectId",
+            "in": "path",
+            "description": "projectId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "userRoleCreation",
+            "description": "userRoleCreation",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UserRoleCreation"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«List«UserRoles»»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/projects/{projectId}/users/roles": {
+      "get": {
+        "tags": [
+          "Authorization权限接口"
+        ],
+        "summary": "查项目下所有的角色的成员",
+        "operationId": "getAllRoleUsersInProjectUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "projectId",
+            "in": "path",
+            "description": "projectId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«List«UserRoles»»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/projects/{projectId}/users/{userId}/permission": {
+      "get": {
+        "tags": [
+          "Authorization权限接口"
+        ],
+        "summary": "查询用户在某个项目下与资源的权限关系",
+        "operationId": "getResourcePermissionInProjectUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "projectId",
+            "in": "path",
+            "description": "projectId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "userId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«List«ResourcePermission»»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/projects/{projectId}/users/{userId}/roles": {
+      "get": {
+        "tags": [
+          "Authorization权限接口"
+        ],
+        "summary": "查询用户在项目中的角色",
+        "operationId": "getUserRolesInProjectUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "projectId",
+            "in": "path",
+            "description": "projectId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "userId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«List«string»»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      },
+      "delete": {
+        "tags": [
+          "Authorization权限接口"
+        ],
+        "summary": "移除用户在某个项目下的所有角色",
+        "operationId": "deleteUserRolesInProjectUsingDELETE",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "projectId",
+            "in": "path",
+            "description": "projectId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "userId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«Void»"
+            }
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/projects/{projectId}/users/{userId}/roles/all": {
+      "get": {
+        "tags": [
+          "Authorization权限接口"
+        ],
+        "summary": "查询用户在项目中的所有角色(包括隐藏角色)",
+        "operationId": "getUserAllRolesInProjectUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "projectId",
+            "in": "path",
+            "description": "projectId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "userId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«List«string»»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/resource": {
+      "post": {
+        "tags": [
+          "Authorization权限接口"
+        ],
+        "summary": "创建资源类型",
+        "operationId": "createResourceUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "resourceSubType",
+            "in": "query",
+            "description": "resourceSubType",
+            "required": true,
+            "type": "string",
+            "enum": [
+              "PersonalDataset",
+              "SharePackage",
+              "AcceptPackage",
+              "Issue",
+              "TeamDataset",
+              "OtherFile",
+              "PermissionTeam",
+              "ArchivePackage",
+              "ResourcePool",
+              "CollisionDetection",
+              "ProjectSummary",
+              "CollaborationSetting",
+              "ProjectSetting",
+              "GJK",
+              "MEPSetting",
+              "GeneralConfiguration",
+              "GeneralConfigurationStyleLib",
+              "GeneralConfigurationSoftSetting",
+              "PendingCustomer",
+              "GeneralCustomer",
+              "VipCustomer",
+              "RejectedCustomer",
+              "PendingPersonalCustomer",
+              "GeneralPersonalCustomer",
+              "VipPersonalCustomer",
+              "RejectedPersonalCustomer",
+              "InternalBusiness",
+              "InternalTest",
+              "SystemAccount",
+              "ResourceLimit",
+              "Maintain",
+              "EmailTemplate",
+              "JobManager",
+              "AutoSave"
+            ]
+          },
+          {
+            "name": "resourceType",
+            "in": "query",
+            "description": "resourceType",
+            "required": true,
+            "type": "string",
+            "enum": [
+              "DataResource",
+              "FunctionResource",
+              "GDCBops",
+              "GDCSDK"
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«Void»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/resource/{resourceType}/permission/{permissionType}": {
+      "post": {
+        "tags": [
+          "Authorization权限接口"
+        ],
+        "summary": "创建资源与权限的关系表",
+        "operationId": "createPermissionResourceUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "permissionType",
+            "in": "path",
+            "description": "permissionType",
+            "required": true,
+            "type": "string",
+            "enum": [
+              "Read",
+              "Write",
+              "SoftWrite"
+            ]
+          },
+          {
+            "name": "resourceType",
+            "in": "path",
+            "description": "resourceType",
+            "required": true,
+            "type": "string",
+            "enum": [
+              "PersonalDataset",
+              "SharePackage",
+              "AcceptPackage",
+              "Issue",
+              "TeamDataset",
+              "OtherFile",
+              "PermissionTeam",
+              "ArchivePackage",
+              "ResourcePool",
+              "CollisionDetection",
+              "ProjectSummary",
+              "CollaborationSetting",
+              "ProjectSetting",
+              "GJK",
+              "MEPSetting",
+              "GeneralConfiguration",
+              "GeneralConfigurationStyleLib",
+              "GeneralConfigurationSoftSetting",
+              "PendingCustomer",
+              "GeneralCustomer",
+              "VipCustomer",
+              "RejectedCustomer",
+              "PendingPersonalCustomer",
+              "GeneralPersonalCustomer",
+              "VipPersonalCustomer",
+              "RejectedPersonalCustomer",
+              "InternalBusiness",
+              "InternalTest",
+              "SystemAccount",
+              "ResourceLimit",
+              "Maintain",
+              "EmailTemplate",
+              "JobManager",
+              "AutoSave"
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«Void»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/role": {
+      "get": {
+        "tags": [
+          "RoleType 权限接口"
+        ],
+        "summary": "获取所有角色类型",
+        "operationId": "getAllRoleTypeUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«List«string»»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      },
+      "post": {
+        "tags": [
+          "Authorization权限接口"
+        ],
+        "summary": "创建角色",
+        "operationId": "createRoleUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "roleType",
+            "in": "query",
+            "description": "roleType",
+            "required": true,
+            "type": "string",
+            "enum": [
+              "ProjectAdmin",
+              "ProjectUser",
+              "ProjectExternalUser",
+              "GlobalVisitor",
+              "EnterpriseVisitor",
+              "ProjectVisitor",
+              "BetaUser",
+              "BopsAdmin",
+              "BopsMarket",
+              "BopsProduct",
+              "BopsUser",
+              "BopsDeveloper",
+              "BimmakeArchvie"
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«Void»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/role/project": {
+      "get": {
+        "tags": [
+          "RoleType 权限接口"
+        ],
+        "summary": "获取前台项目角色类型",
+        "operationId": "getProjectRoleTypeUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«List«string»»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/role/system": {
+      "get": {
+        "tags": [
+          "RoleType 权限接口"
+        ],
+        "summary": "获取后台管理角色类型",
+        "operationId": "getSystemRoleTypeUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«List«string»»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/role/{roleType}/permission/{permissionType}/resource/{resourceType}": {
+      "post": {
+        "tags": [
+          "Authorization权限接口"
+        ],
+        "summary": "创建角色与资源权限的关系表",
+        "operationId": "createRolePermissionResourceUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "permissionType",
+            "in": "path",
+            "description": "permissionType",
+            "required": true,
+            "type": "string",
+            "enum": [
+              "Read",
+              "Write",
+              "SoftWrite"
+            ]
+          },
+          {
+            "name": "resourceType",
+            "in": "path",
+            "description": "resourceType",
+            "required": true,
+            "type": "string",
+            "enum": [
+              "PersonalDataset",
+              "SharePackage",
+              "AcceptPackage",
+              "Issue",
+              "TeamDataset",
+              "OtherFile",
+              "PermissionTeam",
+              "ArchivePackage",
+              "ResourcePool",
+              "CollisionDetection",
+              "ProjectSummary",
+              "CollaborationSetting",
+              "ProjectSetting",
+              "GJK",
+              "MEPSetting",
+              "GeneralConfiguration",
+              "GeneralConfigurationStyleLib",
+              "GeneralConfigurationSoftSetting",
+              "PendingCustomer",
+              "GeneralCustomer",
+              "VipCustomer",
+              "RejectedCustomer",
+              "PendingPersonalCustomer",
+              "GeneralPersonalCustomer",
+              "VipPersonalCustomer",
+              "RejectedPersonalCustomer",
+              "InternalBusiness",
+              "InternalTest",
+              "SystemAccount",
+              "ResourceLimit",
+              "Maintain",
+              "EmailTemplate",
+              "JobManager",
+              "AutoSave"
+            ]
+          },
+          {
+            "name": "roleType",
+            "in": "path",
+            "description": "roleType",
+            "required": true,
+            "type": "string",
+            "enum": [
+              "ProjectAdmin",
+              "ProjectUser",
+              "ProjectExternalUser",
+              "GlobalVisitor",
+              "EnterpriseVisitor",
+              "ProjectVisitor",
+              "BetaUser",
+              "BopsAdmin",
+              "BopsMarket",
+              "BopsProduct",
+              "BopsUser",
+              "BopsDeveloper",
+              "BimmakeArchvie"
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«Void»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      },
+      "delete": {
+        "tags": [
+          "Authorization权限接口"
+        ],
+        "summary": "删除角色与资源权限的关系表",
+        "operationId": "deleteRolePermissionResourceUsingDELETE",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "permissionType",
+            "in": "path",
+            "description": "permissionType",
+            "required": true,
+            "type": "string",
+            "enum": [
+              "Read",
+              "Write",
+              "SoftWrite"
+            ]
+          },
+          {
+            "name": "resourceType",
+            "in": "path",
+            "description": "resourceType",
+            "required": true,
+            "type": "string",
+            "enum": [
+              "PersonalDataset",
+              "SharePackage",
+              "AcceptPackage",
+              "Issue",
+              "TeamDataset",
+              "OtherFile",
+              "PermissionTeam",
+              "ArchivePackage",
+              "ResourcePool",
+              "CollisionDetection",
+              "ProjectSummary",
+              "CollaborationSetting",
+              "ProjectSetting",
+              "GJK",
+              "MEPSetting",
+              "GeneralConfiguration",
+              "GeneralConfigurationStyleLib",
+              "GeneralConfigurationSoftSetting",
+              "PendingCustomer",
+              "GeneralCustomer",
+              "VipCustomer",
+              "RejectedCustomer",
+              "PendingPersonalCustomer",
+              "GeneralPersonalCustomer",
+              "VipPersonalCustomer",
+              "RejectedPersonalCustomer",
+              "InternalBusiness",
+              "InternalTest",
+              "SystemAccount",
+              "ResourceLimit",
+              "Maintain",
+              "EmailTemplate",
+              "JobManager",
+              "AutoSave"
+            ]
+          },
+          {
+            "name": "roleType",
+            "in": "path",
+            "description": "roleType",
+            "required": true,
+            "type": "string",
+            "enum": [
+              "ProjectAdmin",
+              "ProjectUser",
+              "ProjectExternalUser",
+              "GlobalVisitor",
+              "EnterpriseVisitor",
+              "ProjectVisitor",
+              "BetaUser",
+              "BopsAdmin",
+              "BopsMarket",
+              "BopsProduct",
+              "BopsUser",
+              "BopsDeveloper",
+              "BimmakeArchvie"
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«Void»"
+            }
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/role/{roleType}/resources/permission": {
+      "get": {
+        "tags": [
+          "Authorization权限接口"
+        ],
+        "summary": "查询角色与资源的权限关系",
+        "operationId": "getResourcePermissionByRoleUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "roleType",
+            "in": "path",
+            "description": "roleType",
+            "required": true,
+            "type": "string",
+            "enum": [
+              "ProjectAdmin",
+              "ProjectUser",
+              "ProjectExternalUser",
+              "GlobalVisitor",
+              "EnterpriseVisitor",
+              "ProjectVisitor",
+              "BetaUser",
+              "BopsAdmin",
+              "BopsMarket",
+              "BopsProduct",
+              "BopsUser",
+              "BopsDeveloper",
+              "BimmakeArchvie"
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«List«ResourcePermission»»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/timeout/{timeoutInMill}": {
+      "get": {
+        "tags": [
+          "internal-test-controller"
+        ],
+        "summary": "timeout",
+        "operationId": "timeoutUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "timeoutInMill",
+            "in": "path",
+            "description": "timeoutInMill",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/user/{userId}/systemRole": {
+      "post": {
+        "tags": [
+          "Authorization权限接口"
+        ],
+        "summary": "赋予系统角色",
+        "operationId": "assignUserSystemRoleUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "roleType",
+            "in": "query",
+            "description": "roleType",
+            "required": true,
+            "type": "string",
+            "enum": [
+              "ProjectAdmin",
+              "ProjectUser",
+              "ProjectExternalUser",
+              "GlobalVisitor",
+              "EnterpriseVisitor",
+              "ProjectVisitor",
+              "BetaUser",
+              "BopsAdmin",
+              "BopsMarket",
+              "BopsProduct",
+              "BopsUser",
+              "BopsDeveloper",
+              "BimmakeArchvie"
+            ]
+          },
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "userId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«Void»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/user/{userId}/systemRoles": {
+      "get": {
+        "tags": [
+          "Authorization权限接口"
+        ],
+        "summary": "查询系统角色",
+        "operationId": "getUserSystemRolesUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "userId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«List«string»»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      },
+      "post": {
+        "tags": [
+          "Authorization权限接口"
+        ],
+        "summary": "批量赋予系统角色",
+        "operationId": "assignUserSystemRolesUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "roleTypes",
+            "description": "roleTypes",
+            "required": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "ProjectAdmin",
+                  "ProjectUser",
+                  "ProjectExternalUser",
+                  "GlobalVisitor",
+                  "EnterpriseVisitor",
+                  "ProjectVisitor",
+                  "BetaUser",
+                  "BopsAdmin",
+                  "BopsMarket",
+                  "BopsProduct",
+                  "BopsUser",
+                  "BopsDeveloper",
+                  "BimmakeArchvie"
+                ]
+              }
+            }
+          },
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "userId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«Void»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/users/roles": {
+      "get": {
+        "tags": [
+          "Authorization权限接口"
+        ],
+        "summary": "查询指定用户的所有角色",
+        "operationId": "getUserRolesUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "x-gdc-userId",
+            "in": "header",
+            "description": "x-gdc-userId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«List«UserRoles»»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/users/{userId}/systemPermission": {
+      "get": {
+        "tags": [
+          "Authorization权限接口"
+        ],
+        "summary": "查询用户的系统资源权限",
+        "operationId": "getSystemResourcePermissionUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "userId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«List«ResourcePermission»»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    }
+  },
+  "securityDefinitions": {
+    "JWT": {
+      "type": "apiKey",
+      "name": "Authorization",
+      "in": "header"
+    }
+  },
+  "definitions": {
+    "ResourcePermission": {
+      "type": "object",
+      "properties": {
+        "permissionTypes": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "Read",
+              "Write",
+              "SoftWrite"
+            ]
+          }
+        },
+        "resource": {
+          "type": "string",
+          "enum": [
+            "PersonalDataset",
+            "SharePackage",
+            "AcceptPackage",
+            "Issue",
+            "TeamDataset",
+            "OtherFile",
+            "PermissionTeam",
+            "ArchivePackage",
+            "ResourcePool",
+            "CollisionDetection",
+            "ProjectSummary",
+            "CollaborationSetting",
+            "ProjectSetting",
+            "GJK",
+            "MEPSetting",
+            "GeneralConfiguration",
+            "GeneralConfigurationStyleLib",
+            "GeneralConfigurationSoftSetting",
+            "PendingCustomer",
+            "GeneralCustomer",
+            "VipCustomer",
+            "RejectedCustomer",
+            "PendingPersonalCustomer",
+            "GeneralPersonalCustomer",
+            "VipPersonalCustomer",
+            "RejectedPersonalCustomer",
+            "InternalBusiness",
+            "InternalTest",
+            "SystemAccount",
+            "ResourceLimit",
+            "Maintain",
+            "EmailTemplate",
+            "JobManager",
+            "AutoSave"
+          ]
+        }
+      },
+      "title": "ResourcePermission"
+    },
+    "Response«List«ResourcePermission»»": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32",
+          "description": "请求响应码"
+        },
+        "data": {
+          "type": "array",
+          "description": "请求响应数据",
+          "items": {
+            "$ref": "#/definitions/ResourcePermission"
+          }
+        },
+        "msg": {
+          "type": "string",
+          "description": "状态码对应的描述信息"
+        }
+      },
+      "title": "Response«List«ResourcePermission»»"
+    },
+    "Response«List«UserRoles»»": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32",
+          "description": "请求响应码"
+        },
+        "data": {
+          "type": "array",
+          "description": "请求响应数据",
+          "items": {
+            "$ref": "#/definitions/UserRoles"
+          }
+        },
+        "msg": {
+          "type": "string",
+          "description": "状态码对应的描述信息"
+        }
+      },
+      "title": "Response«List«UserRoles»»"
+    },
+    "Response«List«string»»": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32",
+          "description": "请求响应码"
+        },
+        "data": {
+          "type": "array",
+          "description": "请求响应数据",
+          "items": {
+            "type": "string",
+            "enum": [
+              "ProjectAdmin",
+              "ProjectUser",
+              "ProjectExternalUser",
+              "GlobalVisitor",
+              "EnterpriseVisitor",
+              "ProjectVisitor",
+              "BetaUser",
+              "BopsAdmin",
+              "BopsMarket",
+              "BopsProduct",
+              "BopsUser",
+              "BopsDeveloper",
+              "BimmakeArchvie"
+            ]
+          }
+        },
+        "msg": {
+          "type": "string",
+          "description": "状态码对应的描述信息"
+        }
+      },
+      "title": "Response«List«string»»"
+    },
+    "Response«Void»": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32",
+          "description": "请求响应码"
+        },
+        "msg": {
+          "type": "string",
+          "description": "状态码对应的描述信息"
+        }
+      },
+      "title": "Response«Void»"
+    },
+    "UserRoleCreation": {
+      "type": "object",
+      "properties": {
+        "roleType": {
+          "type": "string",
+          "enum": [
+            "ProjectAdmin",
+            "ProjectUser",
+            "ProjectExternalUser",
+            "GlobalVisitor",
+            "EnterpriseVisitor",
+            "ProjectVisitor",
+            "BetaUser",
+            "BopsAdmin",
+            "BopsMarket",
+            "BopsProduct",
+            "BopsUser",
+            "BopsDeveloper",
+            "BimmakeArchvie"
+          ]
+        },
+        "userIds": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "title": "UserRoleCreation"
+    },
+    "UserRoles": {
+      "type": "object",
+      "properties": {
+        "projectId": {
+          "type": "string"
+        },
+        "roleTypes": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "ProjectAdmin",
+              "ProjectUser",
+              "ProjectExternalUser",
+              "GlobalVisitor",
+              "EnterpriseVisitor",
+              "ProjectVisitor",
+              "BetaUser",
+              "BopsAdmin",
+              "BopsMarket",
+              "BopsProduct",
+              "BopsUser",
+              "BopsDeveloper",
+              "BimmakeArchvie"
+            ]
+          }
+        },
+        "userId": {
+          "type": "string"
+        }
+      },
+      "title": "UserRoles"
+    }
+  }
+}

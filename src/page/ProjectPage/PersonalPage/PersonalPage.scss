@@ -1,0 +1,74 @@
+.personal-page {
+  background-color: #f8f8f8;
+  padding: 24px;
+  height: 100%;
+
+  main {
+    height: 100%;
+    background-color: white;
+    box-shadow: 0 1px 6px 1px rgba(0, 0, 0, 0.1);
+
+    display: flex;
+    flex-grow: 1;
+    $width: 180px;
+    .sidebar {
+      width: $width;
+      min-width: $width;
+      max-width: $width;
+      padding-top: 0.5em;
+      box-shadow: 0.5px 0.5px 3px 1px rgba(0, 0, 0, 0.1);
+      z-index: 10;
+      section {
+        border-bottom: 2px solid rgba(0, 0, 0, 0.06);
+        .title {
+          padding: 8px 16px;
+          border-bottom: 2px solid rgba(0, 0, 0, 0.06);
+          svg {
+            margin-right: 0.5em;
+          }
+        }
+        ul,
+        li {
+          list-style: none;
+          padding: 0;
+          margin: 0;
+        }
+        ul {
+          padding: 5px 0;
+        }
+        li {
+          height: 32px;
+          display: flex;
+          a {
+            padding-left: 38px;
+            flex-grow: 1;
+            height: 100%;
+            display: flex;
+            align-items: center;
+          }
+          &.active,
+          &:hover {
+            background-color: #13c2c2;
+            a {
+              color: #fff;
+            }
+          }
+        }
+      }
+    }
+    .body {
+      flex-grow: 1;
+      padding: 24px;
+      overflow: scroll;
+      height: 100%;
+
+      .no-team {
+        height: 100%;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    }
+  }
+}

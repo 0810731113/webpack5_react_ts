@@ -1,0 +1,45 @@
+$header-bg-color: #eceff4;
+$header-top-line-color: rgba(11, 26, 92, 0.1);
+$body-bg-color: #fff;
+$body-splitter-color: rgba(11, 26, 92, 0.14);
+
+table {
+  background-color: $body-bg-color;
+
+  thead {
+    border-top: 1px solid $header-top-line-color;
+    background-color: $header-bg-color;
+  }
+
+  tbody {
+    tr {
+      border-bottom: 1px solid $body-splitter-color;
+    }
+  }
+
+  th,
+  td {
+    font-weight: normal;
+    font-size: 12px;
+  }
+
+  th {
+    padding: 7px 16px;
+  }
+
+  td {
+    height: 40px;
+    padding-left: 16px;
+    padding-right: 16px;
+
+    .ant-select {
+      width: 60px !important;
+      .ant-select-selector {
+        border: none !important;
+      }
+      .ant-select-selection-item {
+        font-size: 12px;
+      }
+    }
+  }
+}

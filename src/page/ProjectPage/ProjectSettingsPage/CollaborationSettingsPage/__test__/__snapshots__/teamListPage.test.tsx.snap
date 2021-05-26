@@ -1,0 +1,61 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`test team list page 1`] = `
+"<div>
+  <div class=\\"split-toolbar\\"></div>
+  <div class=\\"ant-table-wrapper\\">
+    <div class=\\"ant-spin-nested-loading\\">
+      <div class=\\"ant-spin-container\\">
+        <div class=\\"ant-table\\">
+          <div class=\\"ant-table-container\\">
+            <div class=\\"ant-table-content\\">
+              <table style=\\"table-layout: auto;\\">
+                <colgroup></colgroup>
+                <thead class=\\"ant-table-thead\\">
+                  <tr>
+                    <th class=\\"ant-table-cell\\">团队名称</th>
+                    <th class=\\"ant-table-cell\\">成员</th>
+                    <th class=\\"ant-table-cell\\">操作</th>
+                  </tr>
+                </thead>
+                <tbody class=\\"ant-table-tbody\\">
+                  <tr data-row-key=\\"f058f8e7-b946-4e3f-8a8a-956146f881b8\\" class=\\"ant-table-row ant-table-row-level-0\\">
+                    <td class=\\"ant-table-cell\\"><a href=\\"//f058f8e7-b946-4e3f-8a8a-956146f881b8\\">机电团队</a></td>
+                    <td class=\\"ant-table-cell\\"><span class=\\"ant-tag\\">诸大大的工作室</span><span class=\\"ant-tag\\">老赵</span><span class=\\"ant-tag\\">大梦</span><span class=\\"ant-tag\\">豆豆</span></td>
+                    <td class=\\"ant-table-cell\\">
+                      <div class=\\"ant-space ant-space-horizontal ant-space-align-center\\">
+                        <div class=\\"ant-space-item\\" style=\\"margin-right: 8px;\\"></div>
+                        <div class=\\"ant-space-item\\"></div>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr data-row-key=\\"6d52f9de-2c67-476c-94f3-c143b83d6ccf\\" class=\\"ant-table-row ant-table-row-level-0\\">
+                    <td class=\\"ant-table-cell\\"><a href=\\"//6d52f9de-2c67-476c-94f3-c143b83d6ccf\\">结构团队</a></td>
+                    <td class=\\"ant-table-cell\\"><span class=\\"ant-tag\\">诸大大的工作室</span><span class=\\"ant-tag\\">老赵</span><span class=\\"ant-tag\\">大梦</span><span class=\\"ant-tag\\">豆豆</span></td>
+                    <td class=\\"ant-table-cell\\">
+                      <div class=\\"ant-space ant-space-horizontal ant-space-align-center\\">
+                        <div class=\\"ant-space-item\\" style=\\"margin-right: 8px;\\"></div>
+                        <div class=\\"ant-space-item\\"></div>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr data-row-key=\\"c98c4230-f2c9-4af6-9e5e-7abcd2c39141\\" class=\\"ant-table-row ant-table-row-level-0\\">
+                    <td class=\\"ant-table-cell\\"><a href=\\"//c98c4230-f2c9-4af6-9e5e-7abcd2c39141\\">建筑团队</a></td>
+                    <td class=\\"ant-table-cell\\"><span class=\\"ant-tag\\">诸大大的工作室</span><span class=\\"ant-tag\\">老赵</span><span class=\\"ant-tag\\">大梦</span><span class=\\"ant-tag\\">豆豆</span></td>
+                    <td class=\\"ant-table-cell\\">
+                      <div class=\\"ant-space ant-space-horizontal ant-space-align-center\\">
+                        <div class=\\"ant-space-item\\" style=\\"margin-right: 8px;\\"></div>
+                        <div class=\\"ant-space-item\\"></div>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>"
+`;

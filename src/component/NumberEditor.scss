@@ -1,0 +1,24 @@
+.num-editor {
+  display: flex;
+  align-items: center;
+
+  .attr-name {
+    margin-right: 4px;
+  }
+  // .attr-value {
+  //   width: 60px;
+  // }
+}
+
+.input-number-wrapper {
+  width: 100%;
+  display: table;
+
+  .ant-input-number {
+    width: 100%;
+  }
+
+  .ant-input-group-addon{
+    padding: 0 8px
+  }
+}

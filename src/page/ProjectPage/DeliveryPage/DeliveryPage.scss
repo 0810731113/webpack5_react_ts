@@ -1,0 +1,157 @@
+.delivery-page {
+  height: 100%;
+  padding: 16px 32px 32px;
+
+  background-color: #f8f8f8;
+
+  display: flex;
+  overflow: auto;
+  flex-direction: column;
+
+  .ant-tabs {
+    .ant-tabs-nav {
+      margin: 0;
+      .ant-tabs-nav-list {
+        .ant-tabs-tab {
+          width: 80px;
+          margin: 0 16px 0 0;
+          display: flex;
+          justify-content: center;
+        }
+      }
+    }
+  }
+
+  .content {
+    flex: 1;
+    margin-top: 16px;
+    background-color: white;
+    box-shadow: 0 1px 6px 1px rgba(0, 0, 0, 0.1);
+  }
+
+  .results-page,
+  .archive-page {
+    height: 100%;
+    display: flex;
+    overflow: auto;
+    flex-direction: column;
+    padding-top: 12px;
+
+    .header {
+      flex: 0;
+      padding: 12px 24px;
+
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .body {
+      flex: 1;
+      overflow: auto;
+
+      padding: 12px 24px;
+
+      display: flex;
+      flex-direction: column;
+
+      .info-action {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+
+        .count-text {
+          margin: 0 6px;
+        }
+
+        .count {
+          line-height: 0.92;
+          font-size: 18px;
+        }
+
+        button {
+          font-size: 14px;
+          width: 120px;
+        }
+      }
+
+      .table-content {
+        //margin-top: 8px;
+
+        .title {
+          margin-bottom: 8px;
+        }
+
+        .ant-table-wrapper {
+          height: auto;
+        }
+      }
+    }
+
+    .footer {
+      .error {
+        margin-right: 24px;
+        color: red;
+      }
+
+      flex: 0;
+      //z-index: 10;
+      box-shadow: 1px 1px 3px 1px rgba(0, 0, 0, 0.2);
+      background: #fff;
+      flex-basis: 56px;
+      //box-sizing: border-box;
+
+      padding-right: 16px;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+    }
+  }
+
+  .archive-page {
+    .main {
+      flex: 1;
+
+      display: flex;
+      .sider {
+        flex: 0 0 120px;
+        border-right: 1px solid rgba(0, 0, 0, 0.1);
+
+        padding: 20px 0 0 32px;
+
+        .label {
+          cursor: pointer;
+
+          &.selected {
+            color: #13c2c2;
+          }
+        }
+      }
+    }
+
+    .drawer-info {
+      display: table;
+
+      .line {
+        display: table-row;
+
+        dt,
+        dd {
+          display: table-cell;
+          padding: 8px 4px;
+
+          .ant-form-horizontal {
+            display: inline-block;
+          }
+        }
+
+        .ex-link {
+          padding-top: 0;
+          font-size: 12px;
+          color: rgba(0, 0, 0, 0.25);
+        }
+      }
+    }
+  }
+}

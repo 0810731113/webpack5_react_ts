@@ -1,0 +1,255 @@
+@import "style/colors.scss";
+
+.grid-page {
+  height: 100%;
+  display: flex;
+  overflow: auto;
+
+  flex-direction: column;
+
+  .header {
+    flex: 0;
+    z-index: 5;
+    box-shadow: 1px 1px 3px 1px rgba(0, 0, 0, 0.2);
+    background: #fff;
+    flex-basis: 48px;
+    //box-sizing: border-box;
+
+    padding-left: 16px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
+    font-size: 14px;
+  }
+
+  .body {
+    flex: 1;
+    overflow: auto;
+    display: flex;
+
+    .canvas-container {
+      //width: 100%;
+      flex: 1;
+      height: 100%;
+      position: relative;
+
+      .canvas-fit-btn {
+        position: absolute;
+        bottom: 18px;
+        right: 18px;
+        font-size: 24px;
+
+        &:hover {
+          cursor: pointer;
+          color: #13c2c2;
+        }
+      }
+
+      .canvas-tool-bar {
+        position: absolute;
+        bottom: 16px;
+        left: 50%;
+        transform: translate(-50%);
+
+        border-radius: 3px;
+        box-shadow: 0 6px 16px 0 rgba(0, 0, 0, 0.08);
+        background-color: #ffffff;
+
+        padding: 0 10px;
+
+        //height: 50px;
+        display: flex;
+        align-items: center;
+
+        button {
+          border: none;
+          width: 50px;
+          height: 50px;
+          padding: 10px 8px 7px;
+
+          .anticon {
+            font-size: 24px;
+          }
+        }
+      }
+
+      .canvas-compass {
+        top: 8px;
+        left: 8px;
+        position: absolute;
+
+        img {
+          width: 50px;
+          height: 50px;
+        }
+      }
+      // .compass-area {
+      //   top: 24px;
+      //   left: 24px;
+      //   position: absolute;
+
+      //   display: flex;
+
+      //   .canvas-compass {
+      //     img {
+      //       width: 64px;
+      //       height: 64px;
+      //     }
+      //   }
+
+      //   .compass-angle {
+      //     width: 88px;
+
+      //     .ant-input-group-addon {
+      //       padding: 0 0 0 4px;
+      //     }
+
+      //     .ant-select {
+      //       width: 100%;
+      //       margin-bottom: 4px;
+      //     }
+      //   }
+      // }
+    }
+  }
+
+  .footer {
+    flex: 0;
+    z-index: 2;
+    box-shadow: 1px -1px 3px 1px rgba(0, 0, 0, 0.2);
+    background: #fff;
+    flex-basis: 56px;
+    //box-sizing: border-box;
+
+    padding: 0 16px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
+    .editing-text {
+      color: rgba(0, 0, 0, 0.25);
+    }
+  }
+}
+
+.anno-input {
+  position: absolute;
+  display: none;
+  height: 20px;
+  width: 50px;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  text-align: center;
+}
+
+.rapid-grid-modal {
+  .ant-modal {
+    width: 92vw !important;
+    max-width: 1280px;
+    top: 50px;
+
+    .ant-modal-body {
+      display: flex;
+      height: 600px;
+
+      .canvas-container {
+        //width: 100%;
+        flex: 1;
+        height: 100%;
+        position: relative;
+        //border: 1px solid red;
+
+        .compass-area {
+          top: 0;
+          left: 0;
+          position: absolute;
+
+          img {
+            width: 50px;
+            height: 50px;
+          }
+        }
+      }
+
+      .sider {
+        flex: 0;
+        flex-basis: 580px;
+        height: 100%;
+        overflow: auto;
+        margin-right: 32px;
+
+        .grid-info {
+          display: flex;
+          font-size: 14px;
+
+          .axis-info {
+            &:nth-child(1) {
+              margin-right: 22px;
+            }
+
+            flex: 1;
+
+            .axis-title {
+              line-height: 1.57;
+              margin-bottom: 8px;
+            }
+
+            .axis-depth {
+              font-size: 12px;
+              line-height: 1.83;
+              opacity: 0.65;
+              margin-bottom: 8px;
+            }
+
+            .axis-action {
+              display: flex;
+              align-items: center;
+              margin-bottom: 8px;
+
+              .num-editor {
+                font-size: 12px;
+                margin-right: 4px;
+                .input-number-wrapper {
+                  .ant-input-group-addon {
+                    padding: 0 4px;
+                  }
+                }
+              }
+
+              button {
+                min-width: 50px;
+                margin: 0;
+              }
+            }
+
+            .ant-table-wrapper {
+              height: auto;
+
+              .ant-table-thead > tr > th {
+                padding: 8px;
+              }
+
+              .ant-table-tbody > tr > td {
+                padding: 8px;
+              }
+
+              .action-icons {
+                display: flex;
+                font-size: 16px;
+
+                div {
+                  &:hover {
+                    cursor: pointer;
+                  }
+                  &:not(:last-child) {
+                    margin-right: 12px;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

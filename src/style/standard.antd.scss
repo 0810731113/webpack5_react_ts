@@ -1,0 +1,310 @@
+@import "style/colors.scss";
+// $import "~antd/dist/antd.css";
+
+$primaryColor: #5291dd;
+$lightTextColor: #fff;
+
+.glodon-gdc {
+  .ant-btn {
+    font-size: 12px;
+
+    &.ant-btn-link {
+      padding: 0;
+      height: auto;
+    }
+
+    &:not(.ant-btn-link) {
+      &[disabled],
+      &[disabled]:hover {
+        background: rgba(255, 255, 255, 1);
+        border: 1px solid $disabled-color;
+        color: $disabled-color;
+
+        &.ant-btn-primary {
+          // background: $disabled-color;
+          // border: none;
+          // color: $color-main;
+        }
+      }
+    }
+
+    &:not(.ant-btn-circle):not(.ant-btn-link):not(.ant-btn-round) {
+      padding: 7px 8px 9px;
+
+      line-height: 16px;
+      min-width: 60px;
+      box-sizing: border-box;
+      border-radius: 2px;
+
+      &.ant-btn-sm {
+        padding: 0 7px;
+      }
+
+      &.glodon-btn {
+        border-color: $primaryColor;
+        color: $primaryColor;
+
+        &.ant-btn-primary {
+          color: $lightTextColor;
+          background-color: $primaryColor;
+        }
+      }
+    }
+  }
+
+  .ant-select-single:not(.ant-select-customize-input) {
+    .ant-select-selector {
+      background: rgba(255, 255, 255, 1);
+      border: 1px solid $border-color;
+    }
+
+    .ant-select-arrow {
+      top: 50%;
+    }
+  }
+  //antd-modal
+  .ant-modal-title {
+    color: $text-color-important;
+  }
+
+  .ant-modal-close-x {
+    font-size: 12px;
+    margin-right: 5px;
+  }
+
+  .ant-modal-body {
+    padding: 16px 28px;
+  }
+
+  .ant-modal-footer {
+    padding: 16px 28px;
+  }
+
+  //antd-input
+  input::-webkit-input-placeholder,
+  textarea::-webkit-input-placeholder {
+    color: $disabled-color;
+    font-size: 14px;
+  }
+
+  .ant-input {
+    background: rgba(255, 255, 255, 1);
+    border-radius: 2px;
+    resize: none;
+
+    font-size: 14px;
+    color: $text-color;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+
+    &:focus {
+      color: $text-color-important;
+    }
+  }
+
+  .ant-form-item.ant-form-item-has-error .ant-input {
+    border-color: #ff4d4f;
+  }
+
+  .ant-input-textarea-clear-icon {
+    top: auto;
+    bottom: 0;
+    margin: 0 12px 12px 0;
+  }
+
+  //antd-form
+  .ant-form-item {
+    margin-bottom: 0;
+
+    .ant-form-item-label {
+      width: 95px;
+
+      > label {
+        color: $text-color;
+      }
+    }
+  }
+
+  .ant-form-item + .ant-form-item {
+    margin-top: 16px;
+  }
+
+  //antd-table
+  .ant-table-wrapper {
+    position: relative;
+    height: calc(100% - 68px);
+    flex: auto;
+
+    > .ant-spin-nested-loading {
+      height: 100%;
+
+      > .ant-spin-container {
+        height: calc(100% - 64px);
+
+        .ant-table {
+          height: 100%;
+
+          table {
+            border: none;
+          }
+
+          .ant-table-container {
+            height: 100%;
+          }
+
+          .ant-table-cell {
+            font-size: 12px;
+            color: $text-color;
+            line-height: 16px;
+            padding: 8.5px 8px 10px;
+            background: #fff;
+
+            .ant-btn-icon-only {
+              padding: 0;
+              height: 16px;
+            }
+          }
+
+          .ant-table-thead {
+            .ant-table-cell {
+              padding: 10px 8px 11px;
+              background: rgba(0, 0, 0, 0.08);
+              border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+              color: $text-color-important;
+              white-space: nowrap;
+            }
+          }
+
+          .ant-table-body {
+            max-height: none !important;
+            height: calc(100% - 48px);
+
+            .ant-table-cell {
+              padding: 12px 16px;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  //antd-breadcrumb
+  .ant-breadcrumb {
+    color: $text-color-secondary;
+
+    > span:last-child {
+      color: $text-color-important;
+    }
+  }
+
+  //antd-descriptions
+  .ant-descriptions {
+    .ant-descriptions-item {
+      .ant-descriptions-item-label {
+        width: 95px;
+      }
+    }
+  }
+
+  .ant-descriptions + .ant-descriptions {
+    margin-top: 32px;
+  }
+
+  //antd-tree
+  $color-bg: #fff;
+
+  .ant-tree:not(.dark-tree) {
+    // background: $color-bg;
+
+    .ant-tree-indent-unit {
+      width: 10px;
+    }
+
+    .ant-tree-treenode {
+      padding: 0 0.5em 0 0.75em;
+      margin: 0 0 4px 0;
+      background: transparent;
+      font-size: 12px;
+      color: $text-color-important;
+
+      a {
+        color: $text-color-important;
+      }
+
+      &.ant-tree-treenode-disabled {
+        a {
+          color: rgba(0, 0, 0, 0.25);
+          cursor: not-allowed;
+        }
+      }
+
+      .ant-tree-switcher {
+        background: $color-bg;
+        width: 14px;
+        height: 14px;
+        line-height: 14px;
+        margin: 4px 8px 0 0;
+
+        .ant-tree-switcher-icon {
+          color: #595959;
+          font-size: 16px;
+        }
+
+        &.ant-tree-switcher-noop {
+          visibility: hidden;
+        }
+      }
+
+      &:not(.ant-tree-treenode-selected):not(.ant-tree-treenode-disabled) {
+        .ant-tree-node-content-wrapper {
+          &:hover {
+            background-color: transparent;
+            // color: $primary-5;
+          }
+        }
+      }
+
+      .ant-tree-node-content-wrapper {
+        min-height: 28px;
+        // line-height: 28px;
+        transition: none;
+        overflow: hidden;
+        text-overflow: ellipsis;
+
+        .ant-tree-title,
+        .ant-tree-title > a {
+          display: block;
+        }
+
+        .tip-title {
+          color: $text-color-secondary;
+        }
+      }
+
+      &.ant-tree-treenode-selected {
+        background: $primary-5;
+
+        .ant-tree-node-content-wrapper.ant-tree-node-selected {
+          background: transparent;
+        }
+
+        .ant-tree-switcher {
+          background: $primary-5;
+        }
+
+        &:hover {
+          background: $primary-5;
+        }
+      }
+    }
+  }
+
+  .ant-empty {
+    padding-top: 123.5px;
+
+    .ant-empty-description {
+      & > div {
+        margin: 4px 0 12px;
+      }
+    }
+  }
+}

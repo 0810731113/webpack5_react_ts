@@ -1,0 +1,52 @@
+.apps-page {
+  padding: 32px;
+  background-color: #fbfbfb;
+  height: 100%;
+
+  .title {
+    font-size: 16px;
+    width: 100%;
+    padding-bottom: 12px;
+    margin-bottom: 16px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  }
+
+  .ant-col {
+    width: 100%;
+  }
+
+  .ant-ribbon-wrapper {
+    width: 100%;
+    min-width: 380px;
+  }
+
+  .apps-card {
+    margin: 8px 0;
+    border-radius: 4px;
+    box-shadow: 0.5px 0.5px 3px 1px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
+    color: black;
+
+    display: flex;
+    padding: 12px 18px 12px 12px;
+
+    img {
+      width: 76px;
+      margin-right: 12px;
+    }
+
+    .card-info {
+      .info-title {
+        font-size: 14px;
+        opacity: 0.8;
+        margin-bottom: 8px;
+      }
+
+      .info-menta {
+        font-size: 12px;
+        opacity: 0.3;
+        line-height: normal;
+      }
+    }
+  }
+}

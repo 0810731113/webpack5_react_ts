@@ -1,0 +1,52 @@
+@import "style/colors.scss";
+.issue-detail {
+  // width: 100%;
+  overflow: auto;
+  .ant-select {
+    > span:not(.ant-select-arrow) {
+      display: none !important;
+    }
+  }
+  .status-item {
+    .ant-descriptions-item-content {
+      width: calc(100% - 95px);
+      justify-content: space-between;
+    }
+  }
+  .issue-detail-title {
+    padding: 34px 32px 14.5px;
+    width: 100%;
+    font-size: 20px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.1;
+    letter-spacing: normal;
+    color: $text-color-important;
+    border-bottom: 1px solid rgba(11, 26, 92, 0.14);
+    .ant-btn:not(.ant-btn-circle) {
+      font-size: 14px;
+      min-width: 112px;
+    }
+    display: flex;
+    justify-content: space-between;
+  }
+  .issue-detail-content {
+    display: flex;
+    width: 100%;
+    .ant-descriptions .ant-descriptions-item .ant-descriptions-item-label {
+      white-space: nowrap;
+    }
+    & > * {
+      padding: 27px 32px;
+      &:first-child {
+        width: 419.3px;
+        flex: none;
+        border-right: 1px solid rgba(11, 26, 92, 0.14);
+      }
+      &:last-child {
+        flex: auto;
+      }
+    }
+  }
+}

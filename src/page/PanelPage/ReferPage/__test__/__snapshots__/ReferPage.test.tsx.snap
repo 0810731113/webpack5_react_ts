@@ -1,0 +1,71 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`test refer page 1`] = `
+"<div>
+  <div class=\\"panel-body\\">
+    <div class=\\"title\\"><span class=\\"panel-tab-title\\"><span>可选参照：</span><span class=\\"tab-icon-wrap\\"><span role=\\"img\\" aria-label=\\"info-circle\\" class=\\"anticon anticon-info-circle\\"><svg viewBox=\\"64 64 896 896\\" focusable=\\"false\\" data-icon=\\"info-circle\\" width=\\"1em\\" height=\\"1em\\" fill=\\"currentColor\\" aria-hidden=\\"true\\"><path d=\\"M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm0 820c-205.4 0-372-166.6-372-372s166.6-372 372-372 372 166.6 372 372-166.6 372-372 372z\\"></path><path d=\\"M464 336a48 48 0 1096 0 48 48 0 10-96 0zm72 112h-48c-4.4 0-8 3.6-8 8v272c0 4.4 3.6 8 8 8h48c4.4 0 8-3.6 8-8V456c0-4.4-3.6-8-8-8z\\"></path></svg></span></span></span></div>
+    <div class=\\"work-unit-tree  \\">
+      <div class=\\"team-block \\">
+        <div class=\\"team-name\\"><span role=\\"img\\" aria-label=\\"caret-down\\" tabindex=\\"-1\\" class=\\"anticon anticon-caret-down\\"><svg viewBox=\\"0 0 1024 1024\\" focusable=\\"false\\" data-icon=\\"caret-down\\" width=\\"1em\\" height=\\"1em\\" fill=\\"currentColor\\" aria-hidden=\\"true\\"><path d=\\"M840.4 300H183.6c-19.7 0-30.7 20.8-18.5 35l328.4 380.8c9.4 10.9 27.5 10.9 37 0L858.9 335c12.2-14.2 1.2-35-18.5-35z\\"></path></svg></span><span>GAP</span></div>
+        <div class=\\"team-content\\">
+          <div class=\\"node \\"><span class=\\"pre-icon\\"></span><span class=\\"ant-typography ant-typography-ellipsis\\" style=\\"width: 120px; margin: 0px 0px -4px 0px; overflow: scroll;\\">GMEP</span>
+            <div class=\\"node-version\\">
+              <div class=\\"ant-select ant-select-sm ant-select-single ant-select-show-arrow\\" style=\\"width: 70px;\\">
+                <div class=\\"ant-select-selector\\"><span class=\\"ant-select-selection-search\\"><input autocomplete=\\"off\\" type=\\"search\\" class=\\"ant-select-selection-search-input\\" style=\\"opacity: 0;\\" role=\\"combobox\\" aria-haspopup=\\"listbox\\" aria-owns=\\"rc_select_TEST_OR_SSR_list\\" aria-autocomplete=\\"list\\" aria-controls=\\"rc_select_TEST_OR_SSR_list\\" aria-activedescendant=\\"rc_select_TEST_OR_SSR_list_0\\" readonly=\\"\\" unselectable=\\"on\\" value=\\"\\" id=\\"rc_select_TEST_OR_SSR\\"></span><span class=\\"ant-select-selection-item\\">V1</span></div><span class=\\"ant-select-arrow\\" style=\\"user-select: none;\\" unselectable=\\"on\\" aria-hidden=\\"true\\"><span role=\\"img\\" aria-label=\\"down\\" class=\\"anticon anticon-down ant-select-suffix\\"><svg viewBox=\\"64 64 896 896\\" focusable=\\"false\\" data-icon=\\"down\\" width=\\"1em\\" height=\\"1em\\" fill=\\"currentColor\\" aria-hidden=\\"true\\"><path d=\\"M884 256h-75c-5.1 0-9.9 2.5-12.9 6.6L512 654.2 227.9 262.6c-3-4.1-7.8-6.6-12.9-6.6h-75c-6.5 0-10.3 7.4-6.5 12.7l352.6 486.1c12.8 17.6 39 17.6 51.7 0l352.6-486.1c3.9-5.3.1-12.7-6.4-12.7z\\"></path></svg></span></span>
+              </div>
+            </div>
+            <div class=\\"node-action\\"><button style=\\"font-size: 12px; padding: 0px 4px; min-width: auto;\\" type=\\"button\\" class=\\"ant-btn ant-btn-sm\\"><span>参 照</span></button></div>
+          </div>
+          <div class=\\"node \\"><span class=\\"pre-icon\\"></span><span class=\\"ant-typography ant-typography-ellipsis\\" style=\\"width: 120px; margin: 0px 0px -4px 0px; overflow: scroll;\\">A</span>
+            <div class=\\"node-version\\">
+              <div class=\\"ant-select ant-select-sm ant-select-single ant-select-show-arrow\\" style=\\"width: 70px;\\">
+                <div class=\\"ant-select-selector\\"><span class=\\"ant-select-selection-search\\"><input autocomplete=\\"off\\" type=\\"search\\" class=\\"ant-select-selection-search-input\\" style=\\"opacity: 0;\\" role=\\"combobox\\" aria-haspopup=\\"listbox\\" aria-owns=\\"rc_select_TEST_OR_SSR_list\\" aria-autocomplete=\\"list\\" aria-controls=\\"rc_select_TEST_OR_SSR_list\\" aria-activedescendant=\\"rc_select_TEST_OR_SSR_list_0\\" readonly=\\"\\" unselectable=\\"on\\" value=\\"\\" id=\\"rc_select_TEST_OR_SSR\\"></span><span class=\\"ant-select-selection-item\\">V1</span></div><span class=\\"ant-select-arrow\\" style=\\"user-select: none;\\" unselectable=\\"on\\" aria-hidden=\\"true\\"><span role=\\"img\\" aria-label=\\"down\\" class=\\"anticon anticon-down ant-select-suffix\\"><svg viewBox=\\"64 64 896 896\\" focusable=\\"false\\" data-icon=\\"down\\" width=\\"1em\\" height=\\"1em\\" fill=\\"currentColor\\" aria-hidden=\\"true\\"><path d=\\"M884 256h-75c-5.1 0-9.9 2.5-12.9 6.6L512 654.2 227.9 262.6c-3-4.1-7.8-6.6-12.9-6.6h-75c-6.5 0-10.3 7.4-6.5 12.7l352.6 486.1c12.8 17.6 39 17.6 51.7 0l352.6-486.1c3.9-5.3.1-12.7-6.4-12.7z\\"></path></svg></span></span>
+              </div>
+            </div>
+            <div class=\\"node-action\\"><button style=\\"font-size: 12px; padding: 0px 4px; min-width: auto;\\" type=\\"button\\" class=\\"ant-btn ant-btn-sm\\"><span>参 照</span></button></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class=\\"\\">
+      <div tabindex=\\"-1\\" class=\\"ant-drawer ant-drawer-right issue-detail-drawer refer-detail\\" style=\\"position: absolute;\\">
+        <div class=\\"ant-drawer-mask\\"></div>
+        <div class=\\"ant-drawer-content-wrapper\\" style=\\"transform: translateX(100%); width: 100%;\\">
+          <div class=\\"ant-drawer-content\\">
+            <div class=\\"ant-drawer-wrapper-body\\">
+              <div class=\\"ant-drawer-header-no-title\\"><button type=\\"button\\" aria-label=\\"Close\\" class=\\"ant-drawer-close\\"><a><span role=\\"img\\" aria-label=\\"arrow-left\\" class=\\"anticon anticon-arrow-left\\"><svg viewBox=\\"64 64 896 896\\" focusable=\\"false\\" data-icon=\\"arrow-left\\" width=\\"1em\\" height=\\"1em\\" fill=\\"currentColor\\" aria-hidden=\\"true\\"><path d=\\"M872 474H286.9l350.2-304c5.6-4.9 2.2-14-5.2-14h-88.5c-3.9 0-7.6 1.4-10.5 3.9L155 487.8a31.96 31.96 0 000 48.3L535.1 866c1.5 1.3 3.3 2 5.2 2h91.5c7.4 0 10.8-9.2 5.2-14L286.9 550H872c4.4 0 8-3.6 8-8v-60c0-4.4-3.6-8-8-8z\\"></path></svg></span>返回</a></button></div>
+              <div class=\\"ant-drawer-body\\">
+                <div class=\\"ant-row refer-title\\"><span>正在链接：</span><span></span><span>.</span><span>.V</span></div>
+                <div class=\\"ant-row action-row\\"><span class=\\"panel-tab-title\\"><span>选择参照构件：</span><button disabled=\\"\\" type=\\"button\\" class=\\"ant-btn ant-btn-primary ant-btn-sm\\"><span>完 成</span></button></span></div>
+                <div class=\\"ant-row filter-row\\"><span class=\\"filter-label\\">筛选：</span>
+                  <div class=\\"ant-select ant-select-sm type-filter ant-select-single ant-select-show-arrow\\">
+                    <div class=\\"ant-select-selector\\"><span class=\\"ant-select-selection-search\\"><input autocomplete=\\"off\\" type=\\"search\\" class=\\"ant-select-selection-search-input\\" style=\\"opacity: 0;\\" role=\\"combobox\\" aria-haspopup=\\"listbox\\" aria-owns=\\"rc_select_TEST_OR_SSR_list\\" aria-autocomplete=\\"list\\" aria-controls=\\"rc_select_TEST_OR_SSR_list\\" aria-activedescendant=\\"rc_select_TEST_OR_SSR_list_0\\" readonly=\\"\\" unselectable=\\"on\\" value=\\"\\" id=\\"rc_select_TEST_OR_SSR\\"></span><span class=\\"ant-select-selection-item\\" title=\\"按构件类型筛选\\">按构件类型筛选</span></div><span class=\\"ant-select-arrow\\" style=\\"user-select: none;\\" unselectable=\\"on\\" aria-hidden=\\"true\\"><span role=\\"img\\" aria-label=\\"down\\" class=\\"anticon anticon-down ant-select-suffix\\"><svg viewBox=\\"64 64 896 896\\" focusable=\\"false\\" data-icon=\\"down\\" width=\\"1em\\" height=\\"1em\\" fill=\\"currentColor\\" aria-hidden=\\"true\\"><path d=\\"M884 256h-75c-5.1 0-9.9 2.5-12.9 6.6L512 654.2 227.9 262.6c-3-4.1-7.8-6.6-12.9-6.6h-75c-6.5 0-10.3 7.4-6.5 12.7l352.6 486.1c12.8 17.6 39 17.6 51.7 0l352.6-486.1c3.9-5.3.1-12.7-6.4-12.7z\\"></path></svg></span></span>
+                  </div>
+                </div>
+                <div class=\\"ant-row\\">123<div class=\\"ant-tree ant-tree-icon-hide ant-tree-unselectable\\">
+                    <div role=\\"tree\\"><input style=\\"width: 0px; height: 0px; display: flex; overflow: hidden; opacity: 0; border: 0px; padding: 0px; margin: 0px;\\" tabindex=\\"0\\" value=\\"\\"></div>
+                    <div class=\\"ant-tree-treenode\\" aria-hidden=\\"true\\" style=\\"position: absolute; pointer-events: none; visibility: hidden; height: 0px; overflow: hidden;\\">
+                      <div class=\\"ant-tree-indent\\">
+                        <div class=\\"ant-tree-indent-unit\\"></div>
+                      </div>
+                    </div>
+                    <div style=\\"position: relative;\\" class=\\"ant-tree-list\\">
+                      <div class=\\"ant-tree-list-holder\\">
+                        <div>
+                          <div style=\\"display: flex; flex-direction: column;\\" class=\\"ant-tree-list-holder-inner\\">
+                            <div class=\\"ant-tree-treenode ant-tree-treenode-switcher-open ant-tree-treenode-leaf-last\\"><span aria-hidden=\\"true\\" class=\\"ant-tree-indent\\"></span><span class=\\"ant-tree-switcher ant-tree-switcher-noop\\"></span><span class=\\"ant-tree-checkbox\\"><span class=\\"ant-tree-checkbox-inner\\"></span></span><span title=\\"全部\\" class=\\"ant-tree-node-content-wrapper ant-tree-node-content-wrapper-normal\\"><span class=\\"ant-tree-title\\">全部</span></span></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>"
+`;

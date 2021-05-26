@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`test issue detail status 1`] = `
+"<div class=\\"issue-status-actions \\">
+  <div class=\\"button-wrap show-tip\\"></div>
+</div>"
+`;

@@ -1,0 +1,32 @@
+@import "style/colors.scss";
+.work-unit-list {
+  display: flex;
+  flex-direction: column;
+  flex: auto;
+  height: 100%;
+  .versions {
+    padding: 2px !important;
+    .ant-select-selection-item {
+      font-size: 12px;
+    }
+  }
+  .checkbox {
+    transition-property: all;
+    transition-duration: 0.2s;
+    width: 0px;
+    max-width: 0px;
+    padding: 0px;
+    > label {
+      transform: scale(0.9);
+      opacity: 0;
+    }
+    &.selecting {
+      width: 40px;
+      max-width: 40px;
+      padding: 5px 10px;
+      > label {
+        opacity: 1;
+      }
+    }
+  }
+}

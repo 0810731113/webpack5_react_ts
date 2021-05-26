@@ -1,0 +1,112 @@
+.grid-route-page {
+  height: 100%;
+  display: flex;
+  overflow: auto;
+
+  flex-direction: column;
+
+  .header {
+    flex: 0;
+    z-index: 5;
+    //box-shadow: 1px 1px 3px 1px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.1);
+    background: #fff;
+    flex-basis: 48px;
+    //box-sizing: border-box;
+
+    padding-left: 16px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
+    font-size: 14px;
+  }
+
+  .body {
+    flex: 1;
+    overflow: auto;
+    padding: 32px;
+    background-color: #fbfbfb;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .intro {
+      flex: 0;
+      line-height: 1.5;
+      font-size: 16px;
+      opacity: 0.65;
+      max-width: 1056px;
+      width: 100%;
+    }
+
+    .intro-card {
+      max-width: 1076px;
+      flex: 1;
+      margin-top: 12px;
+      background-color: white;
+      border: 1px solid #dedede;
+      padding: 32px;
+
+      display: flex;
+
+      .info-area {
+        width: 350px;
+      }
+
+      .gif-area {
+        margin-left: 60px;
+        width: 600px;
+        border: solid 1px #cfcfcf;
+        img {
+          width: 100%;
+        }
+      }
+    }
+
+    .info-area {
+      display: flex;
+      flex-direction: column;
+
+      .info-title {
+        line-height: 1.5;
+        font-size: 14px;
+        display: flex;
+        align-items: center;
+
+        img {
+          height: 40px;
+        }
+
+        .ant-divider-vertical {
+          border-color: #dddbdb;
+        }
+      }
+
+      .info-body {
+        flex: 1;
+        margin-top: 32px;
+
+        li {
+          list-style-type: none;
+          line-height: 2;
+          //font-size: 12px;
+          .anticon {
+            color: #13c2c2;
+            margin-right: 6px;
+          }
+        }
+      }
+
+      .info-footer {
+        border-top: 1px solid #dddbdb;
+        padding-top: 16px;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+    }
+  }
+}

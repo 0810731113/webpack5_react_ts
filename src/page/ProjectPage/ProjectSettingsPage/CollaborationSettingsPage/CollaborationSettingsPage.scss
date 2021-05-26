@@ -1,0 +1,151 @@
+.permission-page {
+  height: 100%;
+  padding: 16px 32px 32px;
+
+  background-color: #f8f8f8;
+
+  display: flex;
+  overflow: auto;
+  flex-direction: column;
+
+  .ant-tabs {
+    .ant-tabs-nav {
+      margin: 0;
+      .ant-tabs-nav-list {
+        .ant-tabs-tab {
+          width: 80px;
+          margin: 0 16px 0 0;
+          display: flex;
+          justify-content: center;
+        }
+      }
+    }
+  }
+
+  main {
+    flex: 1;
+    margin-top: 16px;
+    background-color: white;
+    box-shadow: 0 1px 6px 1px rgba(0, 0, 0, 0.1);
+    overflow: auto;
+
+    display: flex;
+    $width: 180px;
+    .sidebar {
+      width: $width;
+      min-width: $width;
+      max-width: $width;
+      padding-top: 0.5em;
+      box-shadow: 0.5px 0.5px 3px 1px rgba(0, 0, 0, 0.1);
+      section {
+        //border-bottom: 2px solid rgba(0, 0, 0, 0.06);
+        .title {
+          padding: 8px 16px;
+          border-bottom: 2px solid rgba(0, 0, 0, 0.06);
+          svg {
+            margin-right: 0.5em;
+          }
+          &.active {
+            color: #13c2c2;
+          }
+        }
+        ul,
+        li {
+          list-style: none;
+          padding: 0;
+          margin: 0;
+          font-size: 12px;
+        }
+        ul {
+          padding: 5px 0;
+        }
+        li {
+          height: 32px;
+          display: flex;
+          a {
+            padding-left: 38px;
+            flex-grow: 1;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            color: #000;
+          }
+          &.active,
+          &:hover {
+            background-color: #13c2c2;
+            a {
+              color: #fff;
+            }
+          }
+        }
+      }
+    }
+    .content {
+      flex-grow: 1;
+      padding: 24px;
+      overflow: auto;
+      z-index: 0;
+    }
+    .sub-page {
+      flex-grow: 1;
+
+      overflow: auto;
+      z-index: 0;
+
+      display: flex;
+      flex-direction: column;
+
+      .page-header {
+        border-bottom: 1px solid #ececec;
+        display: flex;
+        padding: 24px 24px 0;
+
+        .img-area {
+          flex: 0;
+          align-self: flex-end;
+        }
+        .role {
+          flex: 1;
+          margin-right: 12px;
+          .role-name {
+            font-size: 18px;
+            line-height: 1.44;
+          }
+          .role-description {
+            margin: 12px 12px 12px 0;
+            font-size: 12px;
+            line-height: 1.67;
+            color: rgba(0, 0, 0, 0.67);
+          }
+        }
+      }
+
+      .page-body {
+        overflow: auto;
+        padding: 12px 24px;
+      }
+    }
+  }
+
+  .module {
+    .ant-divider-horizontal.ant-divider-with-text-left {
+      &:before {
+        width: 0;
+      }
+      .ant-divider-inner-text {
+        padding: 0;
+
+        .divider-title {
+          margin: 0 12px 0 4px;
+        }
+      }
+    }
+    .ant-card-bordered {
+      margin: 8px 0;
+
+      .ant-card-meta-description {
+        font-size: 12px;
+      }
+    }
+  }
+}

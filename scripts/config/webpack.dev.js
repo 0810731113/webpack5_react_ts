@@ -1,5 +1,5 @@
 const Webpack = require('webpack');
-const ErrorOverlayPlugin = require('error-overlay-webpack-plugin');
+// const ErrorOverlayPlugin = require('error-overlay-webpack-plugin');
 const { merge } = require('webpack-merge');
 const common = require('./webpack.common.js');
 const paths = require('../paths');
@@ -14,16 +14,19 @@ module.exports = merge(common, {
   },
   devServer: {
     compress: true,
-    stats: 'errors-only',
-    clientLogLevel: 'silent',
+    // stats: 'errors-only',
+    // clientLogLevel: 'silent',
     open: true,
     hot: true,
     noInfo: true,
     proxy: {
-      ...require(paths.appProxySetup),
+      // ...require(paths.appProxySetup),
     },
   },
-  plugins: [new Webpack.HotModuleReplacementPlugin(), new ErrorOverlayPlugin()],
+  plugins: [
+    new Webpack.HotModuleReplacementPlugin(),
+    // new ErrorOverlayPlugin()
+  ],
   optimization: {
     minimize: false,
     minimizer: [],

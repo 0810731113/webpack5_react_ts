@@ -1,0 +1,73 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: gdc-webapp-devstg
+  labels:
+    app: gdc-webapp-devstg
+    env: dev
+    stage: stage
+    service: gdc-webapp
+spec:
+  type: NodePort
+  selector:
+    app: gdc-webapp-devstg
+  ports:
+    - protocol: TCP
+      port: 80
+      name: http
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gdc-webapp-devstg
+  namespace: gdc-te
+  labels:
+    app: gdc-webapp-devstg
+    env: dev
+    stage: stage
+    service: gdc-webapp
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: gdc-webapp-devstg
+  template:
+    metadata:
+      labels:
+        app: gdc-webapp-devstg
+    spec:
+      imagePullSecrets:
+        - name: default-secret
+      containers:
+        - name: gdc-webapp-devstg
+          image: swr.cn-north-4.myhuaweicloud.com/gdc-te/webapp:v001
+          ports:
+            - containerPort: 80
+          readinessProbe:
+            httpGet:
+              path: /web/
+              port: 80
+            initialDelaySeconds: 10
+            timeoutSeconds: 1
+            failureThreshold: 1
+            periodSeconds: 3
+          livenessProbe:
+            httpGet:
+              path: /web/
+              port: 80
+            initialDelaySeconds: 10
+            timeoutSeconds: 5
+            failureThreshold: 3
+            periodSeconds: 5
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchExpressions:
+                  - key: "app"
+                    operator: In
+                    values:
+                      - gdc-webapp-devstg
+              topologyKey: "kubernetes.io/hostname"

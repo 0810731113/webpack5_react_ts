@@ -1,0 +1,2182 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "Api Documentation",
+    "version": "1.0",
+    "title": "Api Documentation",
+    "termsOfService": "urn:tos",
+    "contact": {},
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0"
+    }
+  },
+  "host": "gdc-de.glodon.com",
+  "basePath": "/store",
+  "tags": [
+    {
+      "name": "Namespace 名称空间操作接口",
+      "description": "Namespace Controller"
+    },
+    {
+      "name": "Table 表操作接口",
+      "description": "Table Controller"
+    },
+    {
+      "name": "basic-error-controller",
+      "description": "Basic Error Controller"
+    },
+    {
+      "name": "internal-test-controller",
+      "description": "Internal Test Controller"
+    },
+    {
+      "name": "web-mvc-links-handler",
+      "description": "Web Mvc Links Handler"
+    }
+  ],
+  "paths": {
+    "/error": {
+      "get": {
+        "tags": [
+          "basic-error-controller"
+        ],
+        "summary": "error",
+        "operationId": "errorUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "object"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      },
+      "head": {
+        "tags": [
+          "basic-error-controller"
+        ],
+        "summary": "error",
+        "operationId": "errorUsingHEAD",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "object"
+              }
+            }
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "deprecated": false
+      },
+      "post": {
+        "tags": [
+          "basic-error-controller"
+        ],
+        "summary": "error",
+        "operationId": "errorUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "object"
+              }
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      },
+      "put": {
+        "tags": [
+          "basic-error-controller"
+        ],
+        "summary": "error",
+        "operationId": "errorUsingPUT",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "object"
+              }
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      },
+      "delete": {
+        "tags": [
+          "basic-error-controller"
+        ],
+        "summary": "error",
+        "operationId": "errorUsingDELETE",
+        "produces": [
+          "*/*"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "object"
+              }
+            }
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "deprecated": false
+      },
+      "options": {
+        "tags": [
+          "basic-error-controller"
+        ],
+        "summary": "error",
+        "operationId": "errorUsingOPTIONS",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "object"
+              }
+            }
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "deprecated": false
+      },
+      "patch": {
+        "tags": [
+          "basic-error-controller"
+        ],
+        "summary": "error",
+        "operationId": "errorUsingPATCH",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "object"
+              }
+            }
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/exception": {
+      "get": {
+        "tags": [
+          "internal-test-controller"
+        ],
+        "summary": "exception",
+        "operationId": "exceptionUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "string"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/health": {
+      "get": {
+        "tags": [
+          "internal-test-controller"
+        ],
+        "summary": "healthy",
+        "operationId": "healthyUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "string"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/thirdtable/namespace": {
+      "get": {
+        "tags": [
+          "Namespace 名称空间操作接口"
+        ],
+        "summary": "列出可见的名称空间",
+        "operationId": "listAllNamespaceUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "owner",
+            "in": "query",
+            "description": "所有者",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "x_gdc_app_key",
+            "in": "header",
+            "description": "x_gdc_app_key",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«List«string»»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/thirdtable/namespace/{name}": {
+      "post": {
+        "tags": [
+          "Namespace 名称空间操作接口"
+        ],
+        "summary": "创建自定义名称空间",
+        "operationId": "createNamespaceUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "description": "空间名称",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "owner",
+            "in": "query",
+            "description": "所有者",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "x_gdc_app_key",
+            "in": "header",
+            "description": "x_gdc_app_key",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«Void»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      },
+      "delete": {
+        "tags": [
+          "Namespace 名称空间操作接口"
+        ],
+        "summary": "删除名称空间",
+        "operationId": "deleteNamespaceUsingDELETE",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "description": " 名称空间",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "owner",
+            "in": "query",
+            "description": "所有者",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "x_gdc_app_key",
+            "in": "header",
+            "description": "x_gdc_app_key",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«Void»"
+            }
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/thirdtable/namespace/{name}/authentication": {
+      "get": {
+        "tags": [
+          "Namespace 名称空间操作接口"
+        ],
+        "summary": "是否有有权访问空间",
+        "operationId": "hasAuthenticationUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "description": " 名称空间",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "owner",
+            "in": "query",
+            "description": "所有者",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "x_gdc_app_key",
+            "in": "header",
+            "description": "x_gdc_app_key",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«boolean»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/thirdtable/namespace/{name}/exist": {
+      "get": {
+        "tags": [
+          "Namespace 名称空间操作接口"
+        ],
+        "summary": "判断名称空间是否存在",
+        "operationId": "hasNamespaceUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "description": "空间名称",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«boolean»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/thirdtable/namespace/{name}/table/{tableName}": {
+      "get": {
+        "tags": [
+          "Namespace 名称空间操作接口"
+        ],
+        "summary": "空间下是否包含表",
+        "operationId": "hasTableUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "description": " 名称空间",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "tableName",
+            "in": "path",
+            "description": "表名称",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«boolean»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/thirdtable/namespace/{name}/tables": {
+      "get": {
+        "tags": [
+          "Namespace 名称空间操作接口"
+        ],
+        "summary": "列出名称空间下的表名",
+        "operationId": "listAllTablesUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "description": " 名称空间",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "owner",
+            "in": "query",
+            "description": "所有者",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "x_gdc_app_key",
+            "in": "header",
+            "description": "x_gdc_app_key",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«List«string»»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/thirdtable/table/{namespace}/{name}": {
+      "post": {
+        "tags": [
+          "Table 表操作接口"
+        ],
+        "summary": "创建表",
+        "operationId": "createTableUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "description": "表名称",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "namespace",
+            "in": "path",
+            "description": "名称空间",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "owner",
+            "in": "query",
+            "description": "所有者",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "x_gdc_app_key",
+            "in": "header",
+            "description": "x_gdc_app_key",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«Void»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      },
+      "delete": {
+        "tags": [
+          "Table 表操作接口"
+        ],
+        "summary": "删除表",
+        "operationId": "deleteTableUsingDELETE",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "description": "表名称",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "namespace",
+            "in": "path",
+            "description": "名称空间",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "owner",
+            "in": "query",
+            "description": "所有者",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "x_gdc_app_key",
+            "in": "header",
+            "description": "x_gdc_app_key",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«Void»"
+            }
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/thirdtable/table/{namespace}/{name}/data": {
+      "post": {
+        "tags": [
+          "Table 表操作接口"
+        ],
+        "summary": "根据条件查询数据",
+        "operationId": "loadDataUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "condition",
+            "description": "condition",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/LoadDataCondition"
+            }
+          },
+          {
+            "name": "name",
+            "in": "path",
+            "description": "表名称",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "namespace",
+            "in": "path",
+            "description": "名称空间",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x_gdc_app_key",
+            "in": "header",
+            "description": "x_gdc_app_key",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«RowsBean»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      },
+      "put": {
+        "tags": [
+          "Table 表操作接口"
+        ],
+        "summary": "更新行数据",
+        "operationId": "updateFieldUsingPUT",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "condition",
+            "description": "condition",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdateDataCondition"
+            }
+          },
+          {
+            "name": "name",
+            "in": "path",
+            "description": "表名称",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "namespace",
+            "in": "path",
+            "description": "名称空间",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x_gdc_app_key",
+            "in": "header",
+            "description": "x_gdc_app_key",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«UpdateResult»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/thirdtable/table/{namespace}/{name}/data/batch": {
+      "put": {
+        "tags": [
+          "Table 表操作接口"
+        ],
+        "summary": "批量更新行数据",
+        "operationId": "updateField4BatchUsingPUT",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "condition",
+            "description": "condition",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/BatchUpdateDataCondition"
+            }
+          },
+          {
+            "name": "name",
+            "in": "path",
+            "description": "表名称",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "namespace",
+            "in": "path",
+            "description": "名称空间",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "owner",
+            "in": "query",
+            "description": "所有者",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x_gdc_app_key",
+            "in": "header",
+            "description": "x_gdc_app_key",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«List«UpdateResult»»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/thirdtable/table/{namespace}/{name}/data/complex": {
+      "post": {
+        "tags": [
+          "Table 表操作接口"
+        ],
+        "summary": "使用复杂条件查询数据",
+        "operationId": "loadDataByComplexConditionUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "condition",
+            "description": "condition",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/LoadDataComplexCondition"
+            }
+          },
+          {
+            "name": "name",
+            "in": "path",
+            "description": "表名称",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "namespace",
+            "in": "path",
+            "description": "名称空间",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x_gdc_app_key",
+            "in": "header",
+            "description": "x_gdc_app_key",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«RowsBean»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/thirdtable/table/{namespace}/{name}/empty": {
+      "delete": {
+        "tags": [
+          "Table 表操作接口"
+        ],
+        "summary": "清空表",
+        "operationId": "deleteAllRowsUsingDELETE",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "description": "表名称",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "namespace",
+            "in": "path",
+            "description": "名称空间",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "owner",
+            "in": "query",
+            "description": "所有者",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "x_gdc_app_key",
+            "in": "header",
+            "description": "x_gdc_app_key",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«Void»"
+            }
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/thirdtable/table/{namespace}/{name}/partition": {
+      "post": {
+        "tags": [
+          "Table 表操作接口"
+        ],
+        "summary": "根据partition查询数据",
+        "operationId": "loadData4PartitionUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "condition",
+            "description": "condition",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/PartitionCondition"
+            }
+          },
+          {
+            "name": "name",
+            "in": "path",
+            "description": "表名称",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "namespace",
+            "in": "path",
+            "description": "名称空间",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x_gdc_app_key",
+            "in": "header",
+            "description": "x_gdc_app_key",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«RowsBean»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/thirdtable/table/{namespace}/{name}/poured/data/batch": {
+      "put": {
+        "tags": [
+          "Table 表操作接口"
+        ],
+        "summary": "批量灌入测试数据",
+        "operationId": "pouredTestDataUsingPUT",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "count",
+            "in": "query",
+            "description": "数据大小",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "fieldSize",
+            "in": "query",
+            "description": "fieldSize",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "name",
+            "in": "path",
+            "description": "表名称",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "namespace",
+            "in": "path",
+            "description": "名称空间",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "showrowkeys",
+            "in": "query",
+            "description": "showrowkeys",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "version",
+            "in": "query",
+            "description": "version",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«List«string»»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/thirdtable/table/{namespace}/{name}/row": {
+      "post": {
+        "tags": [
+          "Table 表操作接口"
+        ],
+        "summary": "添加行数据",
+        "operationId": "addRowsUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "dataDto",
+            "description": "dataDto",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AddRowDataDto"
+            }
+          },
+          {
+            "name": "name",
+            "in": "path",
+            "description": "表名称",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "namespace",
+            "in": "path",
+            "description": "名称空间",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x_gdc_app_key",
+            "in": "header",
+            "description": "x_gdc_app_key",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«List«RowData»»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      },
+      "delete": {
+        "tags": [
+          "Table 表操作接口"
+        ],
+        "summary": "删除数据",
+        "operationId": "deleteRowsUsingDELETE",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "dataDto",
+            "description": "dataDto",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DeleteRowDataDto"
+            }
+          },
+          {
+            "name": "name",
+            "in": "path",
+            "description": "表名称",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "namespace",
+            "in": "path",
+            "description": "名称空间",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x_gdc_app_key",
+            "in": "header",
+            "description": "x_gdc_app_key",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«Void»"
+            }
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/thirdtable/table/{namespace}/{name}/row/batch": {
+      "post": {
+        "tags": [
+          "Table 表操作接口"
+        ],
+        "summary": "批量添加行数据",
+        "operationId": "addRows4BatchUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "dataDto",
+            "description": "dataDto",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AddRowDataDto"
+            }
+          },
+          {
+            "name": "name",
+            "in": "path",
+            "description": "表名称",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "namespace",
+            "in": "path",
+            "description": "名称空间",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x_gdc_app_key",
+            "in": "header",
+            "description": "x_gdc_app_key",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«List«RowData»»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/thirdtable/table/{namespace}/{name}/rowkeys": {
+      "post": {
+        "tags": [
+          "Table 表操作接口"
+        ],
+        "summary": "根据rowkey集合条件查询数据",
+        "operationId": "loadData4RowKeysUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "condition",
+            "description": "condition",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/RowKeysCondition"
+            }
+          },
+          {
+            "name": "name",
+            "in": "path",
+            "description": "表名称",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "namespace",
+            "in": "path",
+            "description": "名称空间",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x_gdc_app_key",
+            "in": "header",
+            "description": "x_gdc_app_key",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«RowsBean»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    }
+  },
+  "securityDefinitions": {
+    "JWT": {
+      "type": "apiKey",
+      "name": "Authorization",
+      "in": "header"
+    }
+  },
+  "definitions": {
+    "AddRowDataDto": {
+      "type": "object",
+      "properties": {
+        "owner": {
+          "type": "string"
+        },
+        "rows": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/RowData"
+          }
+        }
+      },
+      "title": "AddRowDataDto"
+    },
+    "BatchUpdateDataCondition": {
+      "type": "object",
+      "properties": {
+        "condition": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/UpdateCondition"
+          }
+        },
+        "owner": {
+          "type": "string"
+        },
+        "partition": {
+          "type": "string"
+        }
+      },
+      "title": "BatchUpdateDataCondition"
+    },
+    "ComplexFilterCondition": {
+      "type": "object",
+      "properties": {
+        "conditionLists": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/FilterConditionList"
+          }
+        },
+        "joiner": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "title": "ComplexFilterCondition"
+    },
+    "DeleteRowDataDto": {
+      "type": "object",
+      "properties": {
+        "owner": {
+          "type": "string"
+        },
+        "partition": {
+          "type": "string"
+        },
+        "rowKeys": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "title": "DeleteRowDataDto"
+    },
+    "FieldFilter": {
+      "type": "object",
+      "properties": {
+        "compareOp": {
+          "type": "string"
+        },
+        "field": {
+          "$ref": "#/definitions/IField"
+        }
+      },
+      "title": "FieldFilter"
+    },
+    "FilterConditionList": {
+      "type": "object",
+      "properties": {
+        "condition": {
+          "type": "string"
+        },
+        "fieldFilters": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/FieldFilter"
+          }
+        }
+      },
+      "title": "FilterConditionList"
+    },
+    "IField": {
+      "type": "object",
+      "properties": {
+        "cf": {
+          "type": "string"
+        },
+        "key": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "type": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "value": {
+          "type": "string"
+        }
+      },
+      "title": "IField"
+    },
+    "Link": {
+      "type": "object",
+      "properties": {
+        "href": {
+          "type": "string"
+        },
+        "templated": {
+          "type": "boolean"
+        }
+      },
+      "title": "Link"
+    },
+    "LoadDataComplexCondition": {
+      "type": "object",
+      "properties": {
+        "complexCondition": {
+          "$ref": "#/definitions/ComplexFilterCondition"
+        },
+        "fields": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/IField"
+          }
+        },
+        "filterMissing": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "owner": {
+          "type": "string"
+        },
+        "page": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "pageSize": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "partition": {
+          "type": "string"
+        },
+        "reverse": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "title": "LoadDataComplexCondition"
+    },
+    "LoadDataCondition": {
+      "type": "object",
+      "properties": {
+        "fields": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/IField"
+          }
+        },
+        "filterConditionList": {
+          "$ref": "#/definitions/FilterConditionList"
+        },
+        "filterMissing": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "owner": {
+          "type": "string"
+        },
+        "page": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "pageSize": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "partition": {
+          "type": "string"
+        },
+        "reverse": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "title": "LoadDataCondition"
+    },
+    "Map«string,Link»": {
+      "type": "object",
+      "title": "Map«string,Link»",
+      "additionalProperties": {
+        "$ref": "#/definitions/Link"
+      }
+    },
+    "Map«string,object»": {
+      "type": "object",
+      "title": "Map«string,object»",
+      "additionalProperties": {
+        "type": "object"
+      }
+    },
+    "ModelAndView": {
+      "type": "object",
+      "properties": {
+        "empty": {
+          "type": "boolean"
+        },
+        "model": {
+          "type": "object"
+        },
+        "modelMap": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object"
+          }
+        },
+        "reference": {
+          "type": "boolean"
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "100 CONTINUE",
+            "101 SWITCHING_PROTOCOLS",
+            "102 PROCESSING",
+            "103 CHECKPOINT",
+            "200 OK",
+            "201 CREATED",
+            "202 ACCEPTED",
+            "203 NON_AUTHORITATIVE_INFORMATION",
+            "204 NO_CONTENT",
+            "205 RESET_CONTENT",
+            "206 PARTIAL_CONTENT",
+            "207 MULTI_STATUS",
+            "208 ALREADY_REPORTED",
+            "226 IM_USED",
+            "300 MULTIPLE_CHOICES",
+            "301 MOVED_PERMANENTLY",
+            "302 FOUND",
+            "302 MOVED_TEMPORARILY",
+            "303 SEE_OTHER",
+            "304 NOT_MODIFIED",
+            "305 USE_PROXY",
+            "307 TEMPORARY_REDIRECT",
+            "308 PERMANENT_REDIRECT",
+            "400 BAD_REQUEST",
+            "401 UNAUTHORIZED",
+            "402 PAYMENT_REQUIRED",
+            "403 FORBIDDEN",
+            "404 NOT_FOUND",
+            "405 METHOD_NOT_ALLOWED",
+            "406 NOT_ACCEPTABLE",
+            "407 PROXY_AUTHENTICATION_REQUIRED",
+            "408 REQUEST_TIMEOUT",
+            "409 CONFLICT",
+            "410 GONE",
+            "411 LENGTH_REQUIRED",
+            "412 PRECONDITION_FAILED",
+            "413 PAYLOAD_TOO_LARGE",
+            "413 REQUEST_ENTITY_TOO_LARGE",
+            "414 URI_TOO_LONG",
+            "414 REQUEST_URI_TOO_LONG",
+            "415 UNSUPPORTED_MEDIA_TYPE",
+            "416 REQUESTED_RANGE_NOT_SATISFIABLE",
+            "417 EXPECTATION_FAILED",
+            "418 I_AM_A_TEAPOT",
+            "419 INSUFFICIENT_SPACE_ON_RESOURCE",
+            "420 METHOD_FAILURE",
+            "421 DESTINATION_LOCKED",
+            "422 UNPROCESSABLE_ENTITY",
+            "423 LOCKED",
+            "424 FAILED_DEPENDENCY",
+            "426 UPGRADE_REQUIRED",
+            "428 PRECONDITION_REQUIRED",
+            "429 TOO_MANY_REQUESTS",
+            "431 REQUEST_HEADER_FIELDS_TOO_LARGE",
+            "451 UNAVAILABLE_FOR_LEGAL_REASONS",
+            "500 INTERNAL_SERVER_ERROR",
+            "501 NOT_IMPLEMENTED",
+            "502 BAD_GATEWAY",
+            "503 SERVICE_UNAVAILABLE",
+            "504 GATEWAY_TIMEOUT",
+            "505 HTTP_VERSION_NOT_SUPPORTED",
+            "506 VARIANT_ALSO_NEGOTIATES",
+            "507 INSUFFICIENT_STORAGE",
+            "508 LOOP_DETECTED",
+            "509 BANDWIDTH_LIMIT_EXCEEDED",
+            "510 NOT_EXTENDED",
+            "511 NETWORK_AUTHENTICATION_REQUIRED"
+          ]
+        },
+        "view": {
+          "$ref": "#/definitions/View"
+        },
+        "viewName": {
+          "type": "string"
+        }
+      },
+      "title": "ModelAndView"
+    },
+    "PartitionCondition": {
+      "type": "object",
+      "properties": {
+        "fields": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/IField"
+          }
+        },
+        "owner": {
+          "type": "string"
+        },
+        "partition": {
+          "type": "string"
+        },
+        "reverse": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "title": "PartitionCondition"
+    },
+    "Response«List«RowData»»": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32",
+          "description": "请求响应码"
+        },
+        "data": {
+          "type": "array",
+          "description": "请求响应数据",
+          "items": {
+            "$ref": "#/definitions/RowData"
+          }
+        },
+        "msg": {
+          "type": "string",
+          "description": "状态码对应的描述信息"
+        }
+      },
+      "title": "Response«List«RowData»»"
+    },
+    "Response«List«UpdateResult»»": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32",
+          "description": "请求响应码"
+        },
+        "data": {
+          "type": "array",
+          "description": "请求响应数据",
+          "items": {
+            "$ref": "#/definitions/UpdateResult"
+          }
+        },
+        "msg": {
+          "type": "string",
+          "description": "状态码对应的描述信息"
+        }
+      },
+      "title": "Response«List«UpdateResult»»"
+    },
+    "Response«List«string»»": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32",
+          "description": "请求响应码"
+        },
+        "data": {
+          "type": "array",
+          "description": "请求响应数据",
+          "items": {
+            "type": "string"
+          }
+        },
+        "msg": {
+          "type": "string",
+          "description": "状态码对应的描述信息"
+        }
+      },
+      "title": "Response«List«string»»"
+    },
+    "Response«RowsBean»": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32",
+          "description": "请求响应码"
+        },
+        "data": {
+          "description": "请求响应数据",
+          "$ref": "#/definitions/RowsBean"
+        },
+        "msg": {
+          "type": "string",
+          "description": "状态码对应的描述信息"
+        }
+      },
+      "title": "Response«RowsBean»"
+    },
+    "Response«UpdateResult»": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32",
+          "description": "请求响应码"
+        },
+        "data": {
+          "description": "请求响应数据",
+          "$ref": "#/definitions/UpdateResult"
+        },
+        "msg": {
+          "type": "string",
+          "description": "状态码对应的描述信息"
+        }
+      },
+      "title": "Response«UpdateResult»"
+    },
+    "Response«Void»": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32",
+          "description": "请求响应码"
+        },
+        "msg": {
+          "type": "string",
+          "description": "状态码对应的描述信息"
+        }
+      },
+      "title": "Response«Void»"
+    },
+    "Response«boolean»": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32",
+          "description": "请求响应码"
+        },
+        "data": {
+          "type": "boolean",
+          "description": "请求响应数据"
+        },
+        "msg": {
+          "type": "string",
+          "description": "状态码对应的描述信息"
+        }
+      },
+      "title": "Response«boolean»"
+    },
+    "RowData": {
+      "type": "object",
+      "properties": {
+        "etag": {
+          "type": "string"
+        },
+        "fields": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/IField"
+          }
+        },
+        "partition": {
+          "type": "string"
+        },
+        "rowKey": {
+          "type": "string"
+        },
+        "time": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "title": "RowData"
+    },
+    "RowKeysCondition": {
+      "type": "object",
+      "properties": {
+        "fields": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/IField"
+          }
+        },
+        "owner": {
+          "type": "string"
+        },
+        "partition": {
+          "type": "string"
+        },
+        "reverse": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "rowKeys": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "title": "RowKeysCondition"
+    },
+    "RowsBean": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "rows": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Map«string,object»"
+          }
+        },
+        "totalRecord": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "title": "RowsBean"
+    },
+    "UpdateCondition": {
+      "type": "object",
+      "properties": {
+        "etag": {
+          "type": "string"
+        },
+        "fields": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/IField"
+          }
+        },
+        "force": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "partition": {
+          "type": "string"
+        },
+        "rowKey": {
+          "type": "string"
+        }
+      },
+      "title": "UpdateCondition"
+    },
+    "UpdateDataCondition": {
+      "type": "object",
+      "properties": {
+        "condition": {
+          "$ref": "#/definitions/UpdateCondition"
+        },
+        "owner": {
+          "type": "string"
+        }
+      },
+      "title": "UpdateDataCondition"
+    },
+    "UpdateResult": {
+      "type": "object",
+      "properties": {
+        "etag": {
+          "type": "string"
+        },
+        "time": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "title": "UpdateResult"
+    },
+    "View": {
+      "type": "object",
+      "properties": {
+        "contentType": {
+          "type": "string"
+        }
+      },
+      "title": "View"
+    }
+  }
+}
