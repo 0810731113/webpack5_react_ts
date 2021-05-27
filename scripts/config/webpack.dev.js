@@ -5,6 +5,9 @@ const path = require('path');
 const common = require('./webpack.common.js');
 const paths = require('../paths');
 
+const filename = 'assets/js/[name].[chunkhash:7].js';
+const distPath = path.resolve('build');
+
 const declaredEnv = process.env.REACT_APP_ENV;
 const prod = ["trial", "production", "production-b"].includes(declaredEnv);
 const cdnMap = {
@@ -23,28 +26,23 @@ module.exports = merge(common, {
   devtool: 'cheap-module-source-map',
   target: 'web',
   output: {
-    filename: 'js/[name].js',
-    // filename: 'assets/js/[name].[chunkhash:7].js',
-    path: paths.appBuild,
-    // publicPath: '/web/',
-    // publicPath: `//gdc-${cdnMap[declaredEnv] || declaredEnv}-cdn.glodon.com`,
+    filename,
+    chunkFilename: filename,
+    path: distPath,
+    publicPath: '/web/',
+    libraryTarget: 'umd',
   },
   devServer: {
-    compress: true,
-    // stats: 'errors-only',
-    // clientLogLevel: 'silent',
-    open: true,
-    hot: true,
-    noInfo: true,
-    proxy: {
-      // ...require(paths.appProxySetup),
-    },
     headers: { 'Access-Control-Allow-Origin': '*' },
     contentBase: [path.resolve('./src')],
-    // historyApiFallback: {
-    //   // rewrites: [{from: /^\/web/, to: '/index.html'}]
-    // },
+    historyApiFallback: {
+      rewrites: [{ from: /^\/web/, to: '/web/dev.html' }]
+    },
+    compress: true,
+    hot: true,
+    open: true,
     inline: true,
+    noInfo: false,
     quiet: false,
     clientLogLevel: 'none',
     overlay: {

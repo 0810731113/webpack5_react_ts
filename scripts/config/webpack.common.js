@@ -165,8 +165,9 @@ module.exports = {
       ...projectEnv,
     }),
     new HtmlWebpackPlugin({
-      template: paths.appHtml,
-      cache: true,
+      template: path.resolve('./template/dev.html'),
+      // favoicon: 'src/assets/image/direct.ico',
+      filename: 'dev.html'
     }),
     new Dotenv(),
     new CopyPlugin({
