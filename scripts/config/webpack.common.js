@@ -1,5 +1,6 @@
+const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+// const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const WebpackBar = require('webpackbar');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
@@ -8,7 +9,7 @@ const { isDevelopment, isProduction } = require('../env');
 const { imageInlineSizeLimit } = require('../conf');
 
 const getCssLoaders = (importLoaders) => [
-  isDevelopment ? 'style-loader' : MiniCssExtractPlugin.loader,
+  'style-loader',
   {
     loader: 'css-loader',
     options: {
@@ -102,9 +103,14 @@ module.exports = {
     ],
   },
   plugins: [
+    // new HtmlWebpackPlugin({
+    //   template: paths.appHtml,
+    //   cache: true,
+    // }),
     new HtmlWebpackPlugin({
-      template: paths.appHtml,
-      cache: true,
+      template: path.resolve('./template/dev.html'),
+      // favoicon: 'src/assets/image/direct.ico',
+      filename: 'dev.html'
     }),
     new CopyPlugin({
       patterns: [
@@ -125,10 +131,10 @@ module.exports = {
       name: isDevelopment ? 'RUNNING' : 'BUNDLING',
       color: isDevelopment ? '#52c41a' : '#722ed1',
     }),
-    new ForkTsCheckerWebpackPlugin({
-      typescript: {
-        configFile: paths.appTsConfig,
-      },
-    }),
+    // new ForkTsCheckerWebpackPlugin({
+    //   typescript: {
+    //     configFile: paths.appTsConfig,
+    //   },
+    // }),
   ],
 };
