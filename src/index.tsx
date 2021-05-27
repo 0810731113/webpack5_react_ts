@@ -2,14 +2,16 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import RealApp from './App';
 
-import { Router } from 'react-router';
-import { createBrowserHistory } from 'history';
+// import { Router } from 'react-router';
+// import { createBrowserHistory } from 'history';
+//
+// window.__eptn__ = {
+//   routerHistory: createBrowserHistory({
+//     basename: '/'
+//   })
+// };
 
-window.__eptn__ = {
-  routerHistory: createBrowserHistory({
-    basename: '/'
-  })
-};
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 if (module && module.hot) {
   module.hot.accept();
@@ -25,10 +27,9 @@ class App extends React.Component {
 
             <Router
               key={Math.random()}
-              history={__eptn__.routerHistory}
-              // forceRefresh={!supportsHistory}
+              basename={'/web'}
             >
-              <RealApp history={__eptn__.routerHistory} />
+              <RealApp  />
             </Router>
     );
   }

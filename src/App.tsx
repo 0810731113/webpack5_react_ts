@@ -1,7 +1,8 @@
 import React from 'react';
 import Header from 'Components/Header';
-import {Route} from 'react-router';
+import {Route} from 'react-router-dom';
 import './App.scss';
+import Main from './views/main';
 
 interface IProps {
   name: string;
@@ -9,7 +10,7 @@ interface IProps {
 }
 
 const Index = () => <h1>Index</h1>
-const Main = () => <h1>Main</h1>
+// const Main = () => <h1>Main</h1>
 const Home = () => <h1>Home</h1>
 const About = () => <h1>About</h1>
 
@@ -19,10 +20,11 @@ function App(props: IProps) {
     <div className='app'>
       {/*<Header />*/}
       <span>{`Hello! I'm ${name}, ${age} yearssss old.`}</span>
-      <Route path={'/web/index'} component={Index}/>
-      <Route path={'/web/main'} component={Main}/>
-      <Route path={'/web/home'} component={Home}/>
-      <Route path={'/web/about'} component={About}/>
+      <img src={'/web/enterpriseAccount.png'}/>
+      <Route path={'/index'} component={Index}/>
+      <Route path={'/main'} component={Main}/>
+      <Route path={'/home'} component={Home}/>
+      <Route path={'/about'} component={About}/>
     </div>
   );
 }
