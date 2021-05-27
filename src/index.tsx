@@ -14,7 +14,7 @@ import zhCN from "antd/es/locale/zh_CN";
 import { isPanel, loadConfig as LoadConfigFromServer } from "consts";
 // import React from "react";
 // import ReactDOM from "react-dom";
-// import "url-search-params-polyfill";
+import "url-search-params-polyfill";
 import "./index.css";
 // import * as serviceWorker from "./serviceWorker";
 

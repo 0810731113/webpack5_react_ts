@@ -30,6 +30,20 @@ function resolveModule(resolveFn, filePath) {
   return resolveFn(`${filePath}.ts`); // default is .ts
 }
 
+const declaredEnv = process.env.REACT_APP_ENV;
+const prod = ["trial", "production", "production-b"].includes(declaredEnv);
+const cdnMap = {
+  development: 'de',
+  production: 'gteam-a',
+  'production-b': 'gteam-b',
+  qa: 'qa',
+  qastg: 'qastg',
+
+};
+
+const PUBLIC_PATH = '/web/' ;
+const publicPath = `//gdc-${cdnMap[declaredEnv] || declaredEnv}-cdn.glodon.com${PUBLIC_PATH}` ;
+
 module.exports = {
   appBuild: resolveApp('build'),
   appPublic: resolveApp('public'),
@@ -44,4 +58,5 @@ module.exports = {
   appTsConfig: resolveApp('tsconfig.json'),
   moduleFileExtensions,
   resolveApp,
+  publicPath,
 };

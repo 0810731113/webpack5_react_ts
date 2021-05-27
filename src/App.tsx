@@ -1,22 +1,3 @@
-/*import React from 'react';
-import './App.scss';
-
-interface IProps {
-  name: string;
-  age: number;
-}
-
-function App(props: IProps) {
-  const { name, age } = props;
-  return (
-    <div className='app'>
-      我是一个组件
-    </div>
-  );
-}
-
-export default App;*/
-
 import React, { Component, Suspense, lazy,useEffect } from 'react';
 import {Spin} from 'antd';
 // import Drawer from "component/Drawer/Drawer";

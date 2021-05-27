@@ -16,7 +16,13 @@
       "src/*": ["src/*"],
       "component/*": ["src/components/*"],
       "utils/*": ["src/utils/*"],
-      "util/*": ["src/util/*"]
+      "util/*": ["src/util/*"],
+      "crypto": [
+        "node_modules/crypto-browserify"
+      ],
+      "stream": [
+        "node_modules/stream-browserify"
+      ]
     },
 
     "experimentalDecorators": true,

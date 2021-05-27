@@ -4,6 +4,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const WebpackBar = require('webpackbar');
 // const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
+const { projectEnv } = require('../processEnv');
 const paths = require('../paths');
 const { isDevelopment, isProduction } = require('../env');
 const { imageInlineSizeLimit } = require('../conf');
@@ -16,8 +17,8 @@ srcArr.map(item => {
   srcDirObj[item] = path.resolve(process.cwd(), `src/${item}`);
 });
 
-console.log(`srcDirObj`);
-console.log(srcDirObj);
+// console.log(`srcDirObj`);
+// console.log(srcDirObj);
 
 const getCssLoaders = (importLoaders) => [
   isDevelopment ? 'style-loader' : MiniCssExtractPlugin.loader,
@@ -75,6 +76,7 @@ module.exports = {
       util: paths.appSrcUtil,
       ...srcDirObj,
     },
+    fallback: { crypto: false },
   },
   externals: {
     // react: 'React',
@@ -108,36 +110,59 @@ module.exports = {
           },
         }],
       },
+      // {
+      //   test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
+      //   loader: 'file-loader',
+      //   exclude: /node_modules/,
+      //   options: {
+      //     name: 'assets/image/[name].[ext]?[hash:7]',
+      //   },
+      // },
+      // {
+      //   test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/,
+      //   loader: 'file-loader',
+      //   exclude: /node_modules/,
+      //   options: {
+      //     name: 'assets/media/[name].[ext]?[hash:7]',
+      //   }
+      // },
+      // {
+      //   test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
+      //   loader: 'file-loader',
+      //   exclude: /node_modules/,
+      //   options: {
+      //     name: 'assets/font/[name].[ext]?[hash:7]'
+      //   },
+      // },
       {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
-        loader: 'file-loader',
-        exclude: /node_modules/,
-        options: {
-          name: 'assets/image/[name].[ext]?[hash:7]',
+        type: 'asset',
+        parser: {
+          dataUrlCondition: {
+            maxSize: imageInlineSizeLimit,
+          },
         },
       },
       {
         test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/,
-        loader: 'file-loader',
-        exclude: /node_modules/,
-        options: {
-          name: 'assets/media/[name].[ext]?[hash:7]',
-        }
+        type: 'asset',
+        parser: {
+          dataUrlCondition: {
+            maxSize: imageInlineSizeLimit,
+          },
+        },
       },
       {
         test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
-        loader: 'file-loader',
-        exclude: /node_modules/,
-        options: {
-          name: 'assets/font/[name].[ext]?[hash:7]'
-        }
-      }
+        type: 'asset/resource',
+      },
     ],
   },
   plugins: [
     new InterpolateHtmlPlugin({
-      NODE_ENV: 'development',
-      PUBLIC_URL: '1111333666',
+      // NODE_ENV: 'development',
+      // PUBLIC_URL: '1111333666',
+      ...projectEnv,
     }),
     new HtmlWebpackPlugin({
       template: paths.appHtml,
@@ -159,6 +184,24 @@ module.exports = {
         },
       ],
     }),
+    // new CopyPlugin({
+    //   patterns: [
+    //     {
+    //       context: paths.appPublic,
+    //       from: path.join(process.cwd(), './public'),
+    //       to: paths.appBuild,
+    //       toType: 'dir',
+    //       // globOptions: {
+    //       //   dot: true,
+    //       //   gitignore: true,
+    //       //   ignore: ['**/index.html'],
+    //       // },
+    //     },
+    //   ],
+    // }),
+    // new CopyPlugin([
+    //   { from: path.join(__dirname, './public'), to: path.join(__dirname, './dist') }
+    // ]),
     new WebpackBar({
       name: isDevelopment ? 'RUNNING' : 'BUNDLING',
       color: isDevelopment ? '#52c41a' : '#722ed1',

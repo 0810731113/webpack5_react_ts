@@ -13,7 +13,7 @@ srcFiles.map((item) => {
   return item;
 });
 
-console.log(srcArr);
+// console.log(srcArr);
 
 module.exports = {
   srcArr,

@@ -1,15 +1,17 @@
 const path = require('path');
+const host = require('./getLocalIp.js')();
 
 const PROJECT_PATH = path.resolve(__dirname, '../');
 const PROJECT_NAME = path.parse(PROJECT_PATH).name;
 
 // Dev server host and port
-const SERVER_HOST = 'localhost';
+// const SERVER_HOST = 'localhost';
+const SERVER_HOST = host;
 const SERVER_PORT = 9000;
 
 // Whether to enable bundle package analysis
 const shouldOpenAnalyzer = false;
-const ANALYZER_HOST = 'localhost';
+const ANALYZER_HOST = host;
 const ANALYZER_PORT = '8888';
 
 // Resource size limit
