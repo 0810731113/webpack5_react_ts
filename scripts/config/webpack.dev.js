@@ -5,7 +5,7 @@ const path = require('path');
 const common = require('./webpack.common.js');
 const paths = require('../paths');
 
-const filename = 'assets/js/[name].[chunkhash:7].js';
+const filename = 'asset/js/[name].[chunkhash:7].js';
 const distPath = path.resolve('build');
 
 const declaredEnv = process.env.REACT_APP_ENV;

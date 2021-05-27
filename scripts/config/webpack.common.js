@@ -1,6 +1,7 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const WebpackBar = require('webpackbar');
 // const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
@@ -22,11 +23,20 @@ srcArr.map(item => {
 
 const getCssLoaders = (importLoaders) => [
   isDevelopment ? 'style-loader' : MiniCssExtractPlugin.loader,
+  // isDevelopment ? 'style-loader'
+  //   :
+  // {
+  //   loader: MiniCssExtractPlugin.extract([]),
+  //   options: {
+  //     publicPath: '/web/',
+  //     // hmr: process.env.NODE_ENV === 'development',
+  //   },
+  // },
   {
     loader: 'css-loader',
     options: {
       modules: false,
-      sourceMap: isDevelopment,
+      // sourceMap: isDevelopment,
       importLoaders,
     },
   },
@@ -73,7 +83,7 @@ module.exports = {
       AppPanel: path.resolve(process.cwd(), './src/AppPanel'),
       style: path.resolve('./src/AppPanel'),
       component: paths.appSrcComponent,
-      util: paths.appSrcUtil,
+      // util: paths.appSrcUtil,
       ...srcDirObj,
     },
     fallback: { crypto: false },
@@ -111,51 +121,75 @@ module.exports = {
         }],
       },
       // {
-      //   test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
-      //   loader: 'file-loader',
-      //   exclude: /node_modules/,
-      //   options: {
-      //     name: 'assets/image/[name].[ext]?[hash:7]',
-      //   },
+      //   test: /\.scss$/,
+      //   loader: ExtractTextPlugin.extract({
+      //     use:['css-loader', 'sass-loader'],
+      //     fallback: 'style-loader',
+      //   }) ,
+      //   include: [path.resolve(process.cwd(),'./public'),path.resolve(process.cwd(),'./src')],
       // },
       // {
-      //   test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/,
-      //   loader: 'file-loader',
-      //   exclude: /node_modules/,
-      //   options: {
-      //     name: 'assets/media/[name].[ext]?[hash:7]',
-      //   }
+      //   test: /\.css$/,
+      //   loader  : ExtractTextPlugin.extract({
+      //     use:['css-loader', 'sass-loader'],
+      //     fallback: 'style-loader',
+      //   }),
+      //   include : [path.resolve(process.cwd(),'./public'),path.resolve(process.cwd(),'./src')],
       // },
       // {
-      //   test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
-      //   loader: 'file-loader',
-      //   exclude: /node_modules/,
-      //   options: {
-      //     name: 'assets/font/[name].[ext]?[hash:7]'
-      //   },
+      //   test: /\.less$/,
+      //   loader  : ExtractTextPlugin.extract({
+      //     use:['css-loader', 'less-loader'],
+      //     fallback: 'style-loader',
+      //   }),
+      //   include : [path.resolve(process.cwd(),'./public'),path.resolve(process.cwd(),'./src')],
       // },
       {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
-        type: 'asset',
-        parser: {
-          dataUrlCondition: {
-            maxSize: imageInlineSizeLimit,
-          },
+        loader: 'file-loader',
+        exclude: /node_modules/,
+        options: {
+          name: 'assets/images/[name].[ext]',
         },
       },
       {
         test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/,
-        type: 'asset',
-        parser: {
-          dataUrlCondition: {
-            maxSize: imageInlineSizeLimit,
-          },
-        },
+        loader: 'file-loader',
+        exclude: /node_modules/,
+        options: {
+          name: 'assets/media/[name].[ext]?[hash:7]',
+        }
       },
       {
         test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
-        type: 'asset/resource',
+        loader: 'file-loader',
+        exclude: /node_modules/,
+        options: {
+          name: 'assets/font/[name].[ext]?[hash:7]'
+        },
       },
+      // {
+      //   test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
+      //   type: 'asset',
+      //   parser: {
+      //     dataUrlCondition: {
+      //       maxSize: imageInlineSizeLimit,
+      //     },
+      //   },
+      // },
+      // {
+      //   test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/,
+      //   type: 'asset',
+      //   parser: {
+      //     dataUrlCondition: {
+      //       maxSize: imageInlineSizeLimit,
+      //     },
+      //   },
+      // },
+      // {
+      //   test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
+      //   type: 'asset/resource',
+      // },
     ],
   },
   plugins: [
@@ -169,22 +203,23 @@ module.exports = {
       // favoicon: 'src/assets/image/direct.ico',
       filename: 'dev.html'
     }),
+    new MiniCssExtractPlugin(),
     new Dotenv(),
-    new CopyPlugin({
-      patterns: [
-        {
-          context: paths.appPublic,
-          from: '*',
-          to: paths.appBuild,
-          toType: 'dir',
-          globOptions: {
-            dot: true,
-            gitignore: true,
-            ignore: ['**/index.html'],
-          },
-        },
-      ],
-    }),
+    // new CopyPlugin({
+    //   patterns: [
+    //     {
+    //       context: paths.appPublic,
+    //       from: '*',
+    //       to: paths.appBuild,
+    //       toType: 'dir',
+    //       globOptions: {
+    //         dot: true,
+    //         gitignore: true,
+    //         ignore: ['**/index.html'],
+    //       },
+    //     },
+    //   ],
+    // }),
     // new CopyPlugin({
     //   patterns: [
     //     {
@@ -200,9 +235,11 @@ module.exports = {
     //     },
     //   ],
     // }),
-    // new CopyPlugin([
-    //   { from: path.join(__dirname, './public'), to: path.join(__dirname, './dist') }
-    // ]),
+    new CopyPlugin({
+      patterns:[
+        { from: path.join(process.cwd(), './public'), to: path.join(process.cwd(), './build') }
+      ]
+    }),
     new WebpackBar({
       name: isDevelopment ? 'RUNNING' : 'BUNDLING',
       color: isDevelopment ? '#52c41a' : '#722ed1',
