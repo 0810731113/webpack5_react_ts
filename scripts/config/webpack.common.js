@@ -10,14 +10,13 @@ const paths = require('../paths');
 const { isDevelopment, isProduction } = require('../env');
 const { imageInlineSizeLimit } = require('../conf');
 const InterpolateHtmlPlugin = require('interpolate-html-plugin');
-const Dotenv = require('dotenv-webpack');
 
 const { srcArr } = require('../getSrcDir');
 const srcDirObj = {};
 srcArr.map(item => {
   srcDirObj[item] = path.resolve(process.cwd(), `src/${item}`);
 });
-
+const Dotenv = require('dotenv-webpack');
 // console.log(`srcDirObj`);
 // console.log(srcDirObj);
 
@@ -144,52 +143,52 @@ module.exports = {
       //   }),
       //   include : [path.resolve(process.cwd(),'./public'),path.resolve(process.cwd(),'./src')],
       // },
-      {
-        test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
-        loader: 'file-loader',
-        exclude: /node_modules/,
-        options: {
-          name: 'assets/images/[name].[ext]',
-        },
-      },
-      {
-        test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/,
-        loader: 'file-loader',
-        exclude: /node_modules/,
-        options: {
-          name: 'assets/media/[name].[ext]?[hash:7]',
-        }
-      },
-      {
-        test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
-        loader: 'file-loader',
-        exclude: /node_modules/,
-        options: {
-          name: 'assets/font/[name].[ext]?[hash:7]'
-        },
-      },
       // {
       //   test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
-      //   type: 'asset',
-      //   parser: {
-      //     dataUrlCondition: {
-      //       maxSize: imageInlineSizeLimit,
-      //     },
+      //   loader: 'file-loader',
+      //   exclude: /node_modules/,
+      //   options: {
+      //     name: 'assets/images/[name].[ext]',
       //   },
       // },
       // {
       //   test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/,
-      //   type: 'asset',
-      //   parser: {
-      //     dataUrlCondition: {
-      //       maxSize: imageInlineSizeLimit,
-      //     },
-      //   },
+      //   loader: 'file-loader',
+      //   exclude: /node_modules/,
+      //   options: {
+      //     name: 'assets/media/[name].[ext]?[hash:7]',
+      //   }
       // },
       // {
       //   test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
-      //   type: 'asset/resource',
+      //   loader: 'file-loader',
+      //   exclude: /node_modules/,
+      //   options: {
+      //     name: 'assets/font/[name].[ext]?[hash:7]'
+      //   },
       // },
+      {
+        test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
+        type: 'asset',
+        parser: {
+          dataUrlCondition: {
+            // maxSize: imageInlineSizeLimit,
+          },
+        },
+      },
+      {
+        test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/,
+        type: 'asset',
+        parser: {
+          dataUrlCondition: {
+            // maxSize: imageInlineSizeLimit,
+          },
+        },
+      },
+      {
+        test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
+        type: 'asset/resource',
+      },
     ],
   },
   plugins: [
@@ -204,7 +203,9 @@ module.exports = {
       filename: 'dev.html'
     }),
     new MiniCssExtractPlugin(),
-    new Dotenv(),
+    new Dotenv({
+      path: `.env.${process.env.NODE_ENV}`,
+    }),
     // new CopyPlugin({
     //   patterns: [
     //     {
@@ -237,7 +238,7 @@ module.exports = {
     // }),
     new CopyPlugin({
       patterns:[
-        { from: path.join(process.cwd(), './public'), to: path.join(process.cwd(), './build') }
+        { from: path.join(process.cwd(), './public'), to: path.join(process.cwd(), './build/web') }
       ]
     }),
     new WebpackBar({

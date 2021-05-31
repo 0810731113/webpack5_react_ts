@@ -29,14 +29,15 @@ module.exports = merge(common, {
     filename,
     chunkFilename: filename,
     path: distPath,
-    publicPath: '/web/',
+    publicPath: '/',
     libraryTarget: 'umd',
   },
   devServer: {
     headers: { 'Access-Control-Allow-Origin': '*' },
     contentBase: [path.resolve('./src')],
     historyApiFallback: {
-      rewrites: [{ from: /^\/web/, to: '/web/dev.html' }]
+      // rewrites: [{ from: /^\/web/, to: '/web/dev.html' }],
+      rewrites: [{ from: /^\//, to: '/dev.html' }]
     },
     compress: true,
     hot: true,

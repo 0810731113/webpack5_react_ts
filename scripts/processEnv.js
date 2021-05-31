@@ -2,8 +2,10 @@ const { config } = require('dotenv');
 const dotenvExpand = require('dotenv-expand');
 
 let env;
-if (process.env.ENVIRONMENT) {
-  env = config({ path: `.env.${process.env.BUILD_ENV}` });
+if (process.env.NODE_ENV) {
+  console.log(`process.env.NODE_ENV`);
+  console.log(process.env.NODE_ENV);
+  env = config({ path: `.env.${process.env.NODE_ENV}` });
 } else {
   env = config({ path: `.env.development` });
 }
