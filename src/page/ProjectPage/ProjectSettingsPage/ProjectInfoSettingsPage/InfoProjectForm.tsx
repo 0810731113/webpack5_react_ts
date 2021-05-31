@@ -73,7 +73,7 @@ const InfoProjectForm = (props: InfoProjectFormProps) => {
               </Col>
             </Row>
 
-            {/* <Row gutter={[16, 16]}>
+            <Row gutter={[16, 16]}>
               <Col span={12}>
                 <Form.Item label="建筑类型" name="buildingType">
                   <Input readOnly />
@@ -100,7 +100,7 @@ const InfoProjectForm = (props: InfoProjectFormProps) => {
                   <Input readOnly />
                 </Form.Item>
               </Col>
-            </Row> */}
+            </Row>
           </Form>
         </Col>
       </Row>
@@ -201,7 +201,7 @@ const InfoProjectForm = (props: InfoProjectFormProps) => {
             setViolation={setViolation}
           />
 
-          {/* <Row gutter={[16, 16]}>
+          <Row gutter={[16, 16]}>
             <Col span={12}>
               <Form.Item
                 label="建筑类型"
@@ -308,7 +308,7 @@ const InfoProjectForm = (props: InfoProjectFormProps) => {
                 />
               </Form.Item>
             </Col>
-          </Row> */}
+          </Row>
         </Form>
       </Col>
     </Row>

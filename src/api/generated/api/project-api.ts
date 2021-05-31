@@ -537,10 +537,11 @@ export const ProjectApiAxiosParamCreator = function (configuration?: Configurati
          * 
          * @summary 获取项目列表
          * @param {string} xGdcUserid x-gdc-userid
+         * @param {'DEFAULT' | 'ARCHIVE' | 'OWNER'} [scenario] scenario
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getAllProjectsUsingGET: async (xGdcUserid: string, options: any = {}): Promise<RequestArgs> => {
+        getAllProjectsUsingGET: async (xGdcUserid: string, scenario?: 'DEFAULT' | 'ARCHIVE' | 'OWNER', options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'xGdcUserid' is not null or undefined
             if (xGdcUserid === null || xGdcUserid === undefined) {
                 throw new RequiredError('xGdcUserid','Required parameter xGdcUserid was null or undefined when calling getAllProjectsUsingGET.');
@@ -554,6 +555,10 @@ export const ProjectApiAxiosParamCreator = function (configuration?: Configurati
             const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
+
+            if (scenario !== undefined) {
+                localVarQueryParameter['scenario'] = scenario;
+            }
 
             if (xGdcUserid !== undefined && xGdcUserid !== null) {
                 localVarHeaderParameter['x-gdc-userid'] = String(xGdcUserid);
@@ -1612,11 +1617,12 @@ export const ProjectApiFp = function(configuration?: Configuration) {
          * 
          * @summary 获取项目列表
          * @param {string} xGdcUserid x-gdc-userid
+         * @param {'DEFAULT' | 'ARCHIVE' | 'OWNER'} [scenario] scenario
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getAllProjectsUsingGET(xGdcUserid: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<Project>>> {
-            const localVarAxiosArgs = await ProjectApiAxiosParamCreator(configuration).getAllProjectsUsingGET(xGdcUserid, options);
+        async getAllProjectsUsingGET(xGdcUserid: string, scenario?: 'DEFAULT' | 'ARCHIVE' | 'OWNER', options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<Project>>> {
+            const localVarAxiosArgs = await ProjectApiAxiosParamCreator(configuration).getAllProjectsUsingGET(xGdcUserid, scenario, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -2058,11 +2064,12 @@ export const ProjectApiFactory = function (configuration?: Configuration, basePa
          * 
          * @summary 获取项目列表
          * @param {string} xGdcUserid x-gdc-userid
+         * @param {'DEFAULT' | 'ARCHIVE' | 'OWNER'} [scenario] scenario
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getAllProjectsUsingGET(xGdcUserid: string, options?: any): AxiosPromise<Array<Project>> {
-            return ProjectApiFp(configuration).getAllProjectsUsingGET(xGdcUserid, options).then((request) => request(axios, basePath));
+        getAllProjectsUsingGET(xGdcUserid: string, scenario?: 'DEFAULT' | 'ARCHIVE' | 'OWNER', options?: any): AxiosPromise<Array<Project>> {
+            return ProjectApiFp(configuration).getAllProjectsUsingGET(xGdcUserid, scenario, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -2439,12 +2446,13 @@ export class ProjectApi extends BaseAPI {
      * 
      * @summary 获取项目列表
      * @param {string} xGdcUserid x-gdc-userid
+     * @param {'DEFAULT' | 'ARCHIVE' | 'OWNER'} [scenario] scenario
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ProjectApi
      */
-    public getAllProjectsUsingGET(xGdcUserid: string, options?: any) {
-        return ProjectApiFp(this.configuration).getAllProjectsUsingGET(xGdcUserid, options).then((request) => request(this.axios, this.basePath));
+    public getAllProjectsUsingGET(xGdcUserid: string, scenario?: 'DEFAULT' | 'ARCHIVE' | 'OWNER', options?: any) {
+        return ProjectApiFp(this.configuration).getAllProjectsUsingGET(xGdcUserid, scenario, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

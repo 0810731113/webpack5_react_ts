@@ -46,7 +46,6 @@ export default function ArchiveListPage(props: ArchiveListPageProps) {
           >
             <Button
               type="primary"
-              ghost
               onClick={() => {
                 publishEvent(`createArchives`, ["项目交付", "交付包"], {
                   eventLevel: "P1",

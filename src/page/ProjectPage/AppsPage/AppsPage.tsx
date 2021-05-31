@@ -43,6 +43,14 @@ export default function AppsPage(props: AppsPageProps) {
               "检测自碰撞以及多团队多个模型间的碰撞，产生的冲突及时推送相关负责人解决，可显著减少设计变更。",
             siteUrl: `${CLASH_URL}/#/space?`,
           },
+          {
+            title: "净高分析",
+            key: "cha",
+            imgSrc: `${PUBLIC_URL}/clearheight.png`,
+            description:
+              "检测模型中构件、管线的净高是否满足要求，根据检测结果快速定位并重新布置，减少设计变更。",
+            siteUrl: `${EXTENSION_CLEARHEIGHT_URL}?`,
+          },
         ]
       : [
           {
@@ -70,7 +78,7 @@ export default function AppsPage(props: AppsPageProps) {
             siteUrl: `${EXTENSION_MODELCHECK_URL}?`,
           },
           {
-            title: "ShakeSpark渲染",
+            title: "Shapespark渲染",
             key: "ss",
             imgSrc: `${PUBLIC_URL}/ss.png`,
             description:
@@ -79,7 +87,7 @@ export default function AppsPage(props: AppsPageProps) {
           },
         ];
 
-  const clickEvent = (host: string) => {
+  const clickEvent = (host: string, title: string) => {
     // 临时方案，看项目是否删除
     projectService.getProjectInfoV2(projectId).then(() => {
       // publishEvent(`进入应用`, {
@@ -89,7 +97,7 @@ export default function AppsPage(props: AppsPageProps) {
       const tabUrl = `${host}token=${authService.getToken()}&userId=${authService.getUserId()}&id=${projectId}`;
       window.open(tabUrl, "_blank");
       publishEvent("useApps", ["扩展应用"], {
-        appName: "碰撞检测",
+        appName: title,
       });
     });
   };
@@ -109,7 +117,7 @@ export default function AppsPage(props: AppsPageProps) {
             <a
               target="_blank"
               rel="noreferrer"
-              onClick={() => clickEvent(app.siteUrl)}
+              onClick={() => clickEvent(app.siteUrl, app.title)}
             >
               <Badge.Ribbon text="抢先体验版" style={{ padding: "0 8px" }}>
                 <div className="apps-card">

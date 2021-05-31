@@ -30,6 +30,7 @@ export const useWorkUnitListByProjectId = (
               ...unit,
               type: commitId ? "committedWorkunit" : unit.type,
               id: commitId || unit.id,
+              draftDataSetId: unit.id,
             };
           });
         }
@@ -66,6 +67,7 @@ export const useWorkUnitListByTeamId = (
 export const useVersionListByWorkUnits = (
   workUnit?: DataSetVO[] | string,
   status?: "draft" | "committed",
+  mvd?:string,
 ) => {
   const [versions, setVersions] = useState<VersionVO[]>([]);
   const workUnitIds: string[] =
@@ -81,6 +83,7 @@ export const useVersionListByWorkUnits = (
           workUnitIds,
           undefined,
           status || "draft",
+          mvd,
         );
         setVersions(list);
       } else {

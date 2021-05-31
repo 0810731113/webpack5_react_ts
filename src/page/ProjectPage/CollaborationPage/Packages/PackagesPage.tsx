@@ -25,7 +25,7 @@ export default function PackagesPage(props: PackagesPageProps) {
     1,
   );
   return (
-    <>
+    <div className="content">
       <BreadcrumbHeader breadCrumbs={breadCrumbs} />
       {type === "shared" && <SharedPackagesPage />}
       {type === "received" && <ReceivedPackagesPage />}
@@ -38,6 +38,6 @@ export default function PackagesPage(props: PackagesPageProps) {
           />
         </Switch>
       )}
-    </>
+    </div>
   );
 }

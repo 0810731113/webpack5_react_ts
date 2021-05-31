@@ -42,7 +42,7 @@ import React, {
   useRef,
 } from "react";
 import { defaultScrollbarSettings, detectEnv } from "consts";
-import { projectService, workUnitService } from "service";
+import { projectService, userService, workUnitService } from "service";
 import { useImmer } from "use-immer";
 import useCheckMaintenance from "hook/use-check-maintenance.hook";
 import useCheckAppVersion from "hook/use-check-appversion";
@@ -174,7 +174,7 @@ export default function PanelPage(props: PanelPageProps) {
     projects: [],
     debugResponse: "",
     activeKey: "1",
-    hidden: false,
+    hidden: true,
     progressList: [],
     totalProgress: 0,
     activeProgressNum: 0,
@@ -232,6 +232,13 @@ export default function PanelPage(props: PanelPageProps) {
     }
     resetProject();
   }, [projectContent]);
+  // GDC-2034 默认选中第一个
+  useEffect(() => {
+    if (projects?.length > 0 && !projectId) {
+      const defaultId = projects[0]?.id;
+      if (defaultId) setProjectId(defaultId);
+    }
+  }, [projects]);
   useEffect(() => {
     const featureList: any = user?.featureList;
     setShowprocess(featureList?.JobManager === false ? 0 : 1);
@@ -354,6 +361,22 @@ export default function PanelPage(props: PanelPageProps) {
       });
     }
   }, [progressList?.length]);
+
+  const checkNetwork = async () => {
+    await userService.me();
+    sessionStorage.removeItem("isOffline");
+    panelService.networkState("online");
+    return true;
+  };
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      checkNetwork();
+    }, 60 * 3 * 1000);
+    return () => {
+      clearInterval(interval);
+    };
+  }, []);
   useEffect(() => {
     const subscription = qwebService.subscribe((e) => {
       console.log("received qt event: ", e);
@@ -409,6 +432,9 @@ export default function PanelPage(props: PanelPageProps) {
               );
             });
           }
+          break;
+        case "checknetwork":
+          checkNetwork();
           break;
         default:
           break;
@@ -493,26 +519,45 @@ export default function PanelPage(props: PanelPageProps) {
     history.replace("/maintenance?isPanel=true");
   }
 
+  const siderOnClick = async () => {
+    const isOffline = sessionStorage.getItem("isOffline");
+    if (isOffline) {
+      try {
+        return await checkNetwork();
+      } catch (error) {
+        panelService.networkState("offline");
+        return false;
+      }
+    }
+    return true;
+  };
+
   return (
     <Layout className={["panel-page", hidden ? "hidden" : ""].join(" ")}>
       <Sider width={32}>
         <div
           className="hidden-button"
-          onClick={() =>
-            updateState((draft) => {
-              draft.hidden = !hidden;
-            })
-          }
+          onClick={async () => {
+            const online = await siderOnClick();
+            if (online) {
+              updateState((draft) => {
+                draft.hidden = !hidden;
+              });
+            }
+          }}
         >
           {hidden ? <RightOutlined /> : <LeftOutlined />}
         </div>
         <div
           className="avatar-button"
-          onClick={() =>
-            updateState((draft) => {
-              draft.hidden = false;
-            })
-          }
+          onClick={async () => {
+            const online = await siderOnClick();
+            if (online) {
+              updateState((draft) => {
+                draft.hidden = false;
+              });
+            }
+          }}
         >
           <Avatar shape="square" size={24} icon={<UserOutlined />} />
         </div>
@@ -522,11 +567,14 @@ export default function PanelPage(props: PanelPageProps) {
           theme="dark"
           inlineCollapsed
           inlineIndent={9}
-          onClick={({ key }) => {
-            updateState((draft) => {
-              draft.activeKey = key?.toString();
-              draft.hidden = false;
-            });
+          onClick={async ({ key }) => {
+            const online = await siderOnClick();
+            if (online) {
+              updateState((draft) => {
+                draft.activeKey = key?.toString();
+                draft.hidden = false;
+              });
+            }
           }}
         >
           <MenuItem key="1" icon={<BarsOutlined />} tooltip="工作单元">

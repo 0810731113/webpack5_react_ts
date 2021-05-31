@@ -51,10 +51,22 @@ export interface Version {
     dataSetSourceFile?: string;
     /**
      * 
+     * @type {string}
+     * @memberof Version
+     */
+    dataUploadStatus?: string;
+    /**
+     * 
      * @type {number}
      * @memberof Version
      */
     deletedElementCount?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof Version
+     */
+    description?: string;
     /**
      * 
      * @type {string}

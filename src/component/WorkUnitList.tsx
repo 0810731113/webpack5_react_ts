@@ -15,7 +15,7 @@ import {
 import { InfoCircleFilled, InfoCircleOutlined } from "@ant-design/icons";
 import Table, { ColumnType } from "antd/lib/table";
 import { TableRowSelection } from "antd/lib/table/interface";
-import { DataSetVO, Project, VersionVO } from "api/generated/model";
+import { DataSetVO, ProjectVO, VersionVO } from "api/generated/model";
 import {
   isViewableFormat,
   // isViewableVersion,
@@ -198,9 +198,8 @@ export default function WorkUnitList(props: WorkUnitListProps) {
                 versions={versions[record.id!]}
                 onVersionSelected={(version) => {
                   updateState((newDraft) => {
-                    newDraft.selectedVersions[
-                      version?.dataSetId ?? ""
-                    ] = version;
+                    newDraft.selectedVersions[version?.dataSetId ?? ""] =
+                      version;
                   });
                 }}
               />
@@ -255,7 +254,7 @@ export default function WorkUnitList(props: WorkUnitListProps) {
               );
             }
 
-            const maxVersion = versions[record.id!].reduce((prev, cur) =>
+            const maxVersion = versions[record.id!]?.reduce((prev, cur) =>
               (prev.version ?? 0) > (cur.version ?? -1) ? prev : cur,
             );
 
@@ -269,7 +268,7 @@ export default function WorkUnitList(props: WorkUnitListProps) {
                   isDocument={isDocument}
                 />
 
-                {extraActions?.(record, version, maxVersion.id === version.id)}
+                {extraActions?.(record, version, maxVersion?.id === version.id)}
               </>
             );
           },
@@ -519,7 +518,7 @@ export function VersionStatus({
   version: VersionVO | null;
   workUnitType?: string;
   label?: string;
-  project: Project | null;
+  project: ProjectVO | null;
   mode?: string;
   isDocument?: boolean;
 }) {

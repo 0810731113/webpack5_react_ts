@@ -33,6 +33,12 @@ export interface UserRoleVO {
     email?: string;
     /**
      * 
+     * @type {boolean}
+     * @memberof UserRoleVO
+     */
+    enabled?: boolean;
+    /**
+     * 
      * @type {object}
      * @memberof UserRoleVO
      */
@@ -67,6 +73,12 @@ export interface UserRoleVO {
      * @memberof UserRoleVO
      */
     name?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof UserRoleVO
+     */
+    parentId?: string;
     /**
      * 
      * @type {string}
@@ -115,7 +127,8 @@ export enum UserRoleVORoleTypesEnum {
     BopsMarket = 'BopsMarket',
     BopsProduct = 'BopsProduct',
     BopsUser = 'BopsUser',
-    BopsDeveloper = 'BopsDeveloper'
+    BopsDeveloper = 'BopsDeveloper',
+    BimmakeArchvie = 'BimmakeArchvie'
 }
 
 

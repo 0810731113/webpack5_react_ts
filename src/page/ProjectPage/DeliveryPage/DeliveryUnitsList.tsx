@@ -358,6 +358,8 @@ export default function DeliveryUnitsList(props: DeliveryUnitsListProps) {
           //   });
           //   return;
           // }
+          // console.log(`selectedRowKeys`);
+          // console.log(selectedRowKeys);
 
           onCheckUnits?.(selectedRowKeys as number[]);
         },

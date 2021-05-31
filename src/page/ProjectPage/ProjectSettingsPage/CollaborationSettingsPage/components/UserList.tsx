@@ -1,6 +1,6 @@
 import { Button, message, Popconfirm, Space, Tooltip } from "antd";
 import Table, { ColumnType } from "antd/lib/table";
-import { UserRoleVO, ProjectVisibilityEnum } from "api/generated/model";
+import { UserRoleVO, ProjectVOVisibilityEnum } from "api/generated/model";
 import ProjectPageContext from "page/ProjectPage/ProjectPageContext";
 import React, { useContext } from "react";
 import { useRecoilValue, useRecoilState } from "recoil";
@@ -42,7 +42,7 @@ export default function UserList({
       dataIndex: "telephone",
       key: "telephone",
       render(row, record) {
-        return project?.visibility === ProjectVisibilityEnum.Global ? "-" : row;
+        return project?.visibility === ProjectVOVisibilityEnum.Global ? "-" : row;
       },
     },
     {

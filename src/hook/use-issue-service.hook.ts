@@ -136,6 +136,5 @@ export const useIssueImg = (path?: string) => {
     }
   }, [path]);
   const { loading } = useLoading(getData, undefined, null);
-  console.log(path, issueImg);
   return { issueImg, refresh: getData, loading };
 };

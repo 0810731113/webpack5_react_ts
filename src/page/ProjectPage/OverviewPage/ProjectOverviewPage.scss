@@ -1,0 +1,189 @@
+.board-page {
+  padding: 24px;
+  background-color: #f9f9f9;
+  height: 100%;
+  // overflow: auto;
+  display: flex;
+  flex-direction: column;
+
+  .title {
+    flex: 0 0 auto;
+    font-size: 16px;
+    width: 100%;
+    padding-bottom: 12px;
+    margin-bottom: 16px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  }
+
+  .body {
+    display: flex;
+    flex: 1;
+
+    .card {
+      &:not(:nth-last-child(1)) {
+        margin-bottom: 16px;
+      }
+      background-color: white;
+      box-shadow: 0 1px 6px 1px rgba(0, 0, 0, 0.1);
+
+      display: flex;
+      flex-direction: column;
+      overflow: auto;
+
+      .card-title {
+        display: flex;
+        justify-content: space-between;
+
+        flex: 0 0 56px;
+        align-items: center;
+        padding: 0 24px;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+      }
+
+      .card-body {
+        flex: 1;
+        // overflow: auto;
+
+        .ant-empty {
+          padding: 0 0 16px 0;
+          .ant-empty-description > div {
+            margin: 0 0 4px 0;
+          }
+          .ant-empty-image {
+            margin: 0;
+          }
+        }
+      }
+    }
+
+    .left {
+      flex-basis: 20%;
+      min-width: 300px;
+      margin-right: 16px;
+
+      .project-info {
+        max-height: 400px;
+        overflow: hidden;
+
+        .card-body {
+          //max-height: 344px;
+          .corbusiser {
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            position: relative;
+            // width: $corbusier-height;
+            height: 140px;
+          }
+          .menta {
+            padding: 24px 24px 12px;
+          }
+        }
+      }
+
+      .team-info {
+        max-height: 360px;
+        overflow: hidden;
+
+        .card-body {
+          padding-top: 6px;
+
+          .team-line {
+            display: flex;
+            align-items: center;
+            // justify-content: space-between;
+            padding: 6px 24px;
+
+            font-size: 12px;
+
+            .ant-typography {
+              margin-left: 12px;
+              flex: 1;
+              // overflow: hidden;
+              // text-overflow: ellipsis;
+            }
+
+            .action {
+              display: none;
+              // visibility: hidden;
+            }
+
+            &:hover {
+              background-color: #e6fffb;
+              .action {
+                display: block;
+                // visibility: visible;
+              }
+            }
+          }
+        }
+      }
+
+      .member-info {
+        // max-height: 440px;
+        .card-body {
+          padding-top: 12px;
+
+          .gdc-toggle {
+            margin: 6px 24px;
+            &:hover {
+              cursor: pointer;
+            }
+          }
+
+          .member-line {
+            margin: 12px 24px;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+          }
+        }
+      }
+    }
+
+    .right {
+      flex-basis: 80%;
+      min-width: 300px;
+
+      .global-info {
+        .card-body {
+          padding: 24px 24px 0;
+          display: flex;
+          flex-wrap: wrap;
+
+          .block {
+            margin-bottom: 24px;
+            flex: 0 0 16.6%;
+            text-align: center;
+            min-width: 120px;
+
+            // &:not(:nth-last-child(1)) {
+            //   border-right: solid 1px rgba(0, 0, 0, 0.1);
+            // }
+
+            .name {
+              line-height: 1.67;
+              color: rgba(0, 0, 0, 0.45);
+              margin-bottom: 12px;
+            }
+
+            .number {
+              font-size: 30px;
+              line-height: 0.93;
+            }
+          }
+        }
+      }
+      .issue-info {
+        height: 400px;
+        .card-body {
+          padding: 24px;
+
+          .ant-empty {
+            margin-top: 40px;
+          }
+        }
+      }
+    }
+  }
+}

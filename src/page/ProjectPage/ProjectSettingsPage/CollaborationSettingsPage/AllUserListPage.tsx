@@ -39,9 +39,9 @@ export default function AllUserListPage(props: AllUserListPageProps) {
 
   const { loading, data, run } = useRequest(
     () =>
-      userService.listProjectRoleUsers(projectId).then((users) =>
+      userService.listProjectRoleUsers(projectId).then((_users) =>
         updateState((draft) => {
-          draft.users = users ?? [];
+          draft.users = _users ?? [];
         }),
       ),
     { manual: true },
@@ -62,10 +62,11 @@ export default function AllUserListPage(props: AllUserListPageProps) {
           resouseType={ResourcePermissionResourceEnum.CollaborationSetting}
         >
           <TooltipWrapper
-            when={(props) => props.disabled ?? false}
+            when={(tooltipProps) => tooltipProps.disabled ?? false}
             title="处于示例项目中无该功能权限"
           >
             <Button
+              type="primary"
               onClick={() => {
                 updateState((draft) => {
                   draft.showAddUser = true;
@@ -100,7 +101,7 @@ export default function AllUserListPage(props: AllUserListPageProps) {
         visible={!!selectedUserId}
         userId={selectedUserId!}
         onClose={() => {
-          updateState((draft) => void (draft.selectedUserId = null));
+          updateState((draft) =>  {draft.selectedUserId = null});
         }}
         onComplete={() => {
           run();

@@ -73,6 +73,12 @@ export interface ElementQuery {
      * @memberof ElementQuery
      */
     targetVersion?: number;
+    /**
+     * 可选。 是否支持动态打包。false的时候，为固定500构件一个包
+     * @type {boolean}
+     * @memberof ElementQuery
+     */
+    useDynamicPackageSize?: boolean;
 }
 
 

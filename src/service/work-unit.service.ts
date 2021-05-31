@@ -174,10 +174,11 @@ export class WorkUnitService {
     projectId: string,
     status?: "draft" | "committed",
   ) {
-    const response = await this.workUnitApi.getDataSetsInProjectByStatusUsingGET(
-      projectId,
-      status,
-    );
+    const response =
+      await this.workUnitApi.getDataSetsInProjectByStatusUsingGET(
+        projectId,
+        status,
+      );
     return response.data.data ?? [];
   }
 
@@ -210,14 +211,27 @@ export class WorkUnitService {
     workUnitIds: Array<string>,
     onlySuccess?: boolean,
     status?: "draft" | "committed",
+    mvd?: string,
   ) {
-    const response = await this.workUnitApi.getDatasetsVersionsByStatusMVDUsingPOST(
-      workUnitIds,
-      "mvd",
-      onlySuccess,
-      status,
-    );
+    const response =
+      await this.workUnitApi.getDatasetsVersionsByStatusMVDUsingPOST(
+        workUnitIds,
+        mvd,
+        onlySuccess,
+        status,
+      );
     return orderBy(response.data.data, "version").reverse();
+  }
+
+  async getSASOfVersionBlockFiles(
+    datasetId: string,
+    datasetFilePaths: string[],
+  ) {
+    const response = await this.workUnitApi.getSASOfVersionBlockFilesUsingPOST(
+      datasetId,
+      datasetFilePaths,
+    );
+    return response.data.data;
   }
   // async listWorkUnitVersions(workUnitId: string) {
   //   const response = await this.workUnitApi.getDataSetVersionsUsingGET(
@@ -277,18 +291,21 @@ export class WorkUnitService {
   }
 
   async loadWorkUnitCommittedVersions(workUnitId: string) {
-    const response = await this.workUnitApi.getDatasetsVersionsByStatusMVDUsingPOST(
-      [workUnitId],
-      "mvd",
-      true,
-      "committed",
-    );
+    const response =
+      await this.workUnitApi.getDatasetsVersionsByStatusMVDUsingPOST(
+        [workUnitId],
+        "mvd",
+        true,
+        "committed",
+      );
     return orderBy(response.data.data, "version").reverse();
   }
 
-  async batchLoadWorkUnitsVersions(workUnitIdList: string[]) {
+  async batchLoadWorkUnitsVersions(workUnitIdList: string[], mvd?: string) {
     const response = await this.versionApi.getVersionsByDataSetIdsMVDUsingPOST(
       workUnitIdList,
+      true,
+      mvd,
     );
     const versions = response.data.data as VersionVO[];
     return versions.reduce<{ [workUnitId: string]: VersionVO[] }>(
@@ -302,12 +319,13 @@ export class WorkUnitService {
   }
 
   async batchLoadCommittedWorkUnitsVersions(workUnitIdList: string[]) {
-    const response = await this.workUnitApi.getDatasetsVersionsByStatusMVDUsingPOST(
-      workUnitIdList,
-      "mvd",
-      true,
-      "committed",
-    );
+    const response =
+      await this.workUnitApi.getDatasetsVersionsByStatusMVDUsingPOST(
+        workUnitIdList,
+        "mvd",
+        true,
+        "committed",
+      );
     const versions = response.data.data as VersionVO[];
     return versions.reduce<{ [workUnitId: string]: VersionVO[] }>(
       (pre, current) => {

@@ -26,6 +26,18 @@ export interface DatasetUploadBeginRequest {
      */
     datasetBaseVersion?: number;
     /**
+     * 需要上传的mvd
+     * @type {string}
+     * @memberof DatasetUploadBeginRequest
+     */
+    mvd?: string;
+    /**
+     * 是否是补全现有版本的数据
+     * @type {boolean}
+     * @memberof DatasetUploadBeginRequest
+     */
+    patch?: boolean;
+    /**
      * 上传总分片数
      * @type {number}
      * @memberof DatasetUploadBeginRequest

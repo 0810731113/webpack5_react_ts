@@ -16,6 +16,9 @@ import "./ReferPage.scss";
 import Loading from "component/Loading";
 import { DrawerProps } from "antd/lib/drawer";
 import { useClassificationTree } from "hook/use-classification.hook";
+import { DataNode } from "rc-tree/lib/interface";
+import { DataCode } from "api-bimcode/generated/model";
+import { workUnitService } from "service";
 import { ReferedVersionVO } from ".";
 
 const { Title, Text } = Typography;
@@ -28,20 +31,26 @@ interface ReferDetailMiniProps extends DrawerProps {
 interface ReferDetailMiniState {
   filterType?: string;
   checkedKeys: ReactText[];
+  viewTreeData: DataNode[];
 }
+
 const ReferDetail = (props: ReferDetailMiniProps) => {
   const { dataSet, version, onCommit, ...rest } = props;
   const { treeData, loading } = useClassificationTree(dataSet?.specialtyId);
-  const [{ filterType, checkedKeys }, update] = useImmer<ReferDetailMiniState>({
-    filterType: "1",
-    checkedKeys: [],
-  });
-  console.log(treeData, filterType);
+  const [{ filterType, checkedKeys, viewTreeData }, update] =
+    useImmer<ReferDetailMiniState>({
+      filterType: "1",
+      checkedKeys: [],
+      viewTreeData: [],
+    });
   useEffect(() => {
     update((draft) => {
-      draft.checkedKeys = version?.checkedDataCodeKeys ?? [];
+      draft.checkedKeys = version?.checkedDataCodeKeys ?? ["all"];
     });
-  }, [version]);
+  }, [version, treeData]);
+  useEffect(() => {
+    update((draft) => {});
+  }, [version, viewTreeData]);
   // const { issue, loading } = useReferDetail(issueId);
   // const currentUnit =
   //   (issue &&
@@ -67,19 +76,17 @@ const ReferDetail = (props: ReferDetailMiniProps) => {
       style={{ position: "absolute" }}
       {...rest}
     >
-      <Row className="refer-title">
-        <span key="titleLabel">正在链接：</span>
-        <span key="titleTeam">{dataSet?.team?.name}</span>
-        <span key="titleDataSet">.{dataSet?.name}</span>
-        <span key="titleVersion">
-          .V
-          {version?.displayVersion}
-        </span>
-      </Row>
       <Row className="action-row">
         <PanelTabTitle
           key="label"
-          title="选择参照构件"
+          title={
+            <span className="refer-title">
+              <span key="titleLabel">正在参照&quot;</span>
+              <span key="titleTeam">{dataSet?.team?.name}</span>
+              <span key="titleDataSet">.{dataSet?.name}</span>
+              <span key="titleVersion">.{version?.displayVersion}</span>&quot;
+            </span>
+          }
           actions={
             <Button
               key="button"
@@ -93,51 +100,55 @@ const ReferDetail = (props: ReferDetailMiniProps) => {
           }
         />
       </Row>
-      <Row className="filter-row">
-        <span className="filter-label" key="label">
-          筛选：
-        </span>
-        <Select
-          key="select"
-          className="type-filter"
-          value={filterType}
-          onChange={(value) =>
-            update((draft) => {
-              draft.filterType = value;
-            })
-          }
-          size="small"
-          placeholder="全部"
-        >
-          {ReferTypes.map((type) => (
-            <SelectOption key={type.key} value={type.key}>
-              {type.label}
-            </SelectOption>
-          ))}
-        </Select>
-      </Row>
-      <Row>
-        {filterType === "1" &&
-          (loading ? (
-            <Loading absolute />
-          ) : (
-            <Tree
-              onCheck={(newCheckedKeys) => {
+      <div className="refers-filter">
+        <div className="refer">
+          <Row className="filter-row border-row">
+            <span className="filter-label" key="label">
+              选择模型
+            </span>
+            <Select
+              key="select"
+              className="type-filter"
+              value={filterType}
+              onChange={(value) =>
                 update((draft) => {
-                  draft.checkedKeys = Array.isArray(newCheckedKeys)
-                    ? newCheckedKeys
-                    : newCheckedKeys.checked;
-                });
-              }}
-              defaultExpandedKeys={["all"]}
-              checkedKeys={checkedKeys}
-              selectable={false}
-              key="tree"
-              checkable
-              treeData={treeData}
-            />
-          ))}
-      </Row>
+                  draft.filterType = value;
+                })
+              }
+              size="small"
+              placeholder="全部"
+            >
+              {ReferTypes.map((type) => (
+                <SelectOption key={type.key} value={type.key}>
+                  {type.label}
+                </SelectOption>
+              ))}
+            </Select>
+          </Row>
+          <Row className="border-row tree-row">
+            {filterType === "1" &&
+              (loading ? (
+                <Loading absolute />
+              ) : (
+                <Tree
+                  onCheck={(newCheckedKeys) => {
+                    update((draft) => {
+                      draft.checkedKeys = Array.isArray(newCheckedKeys)
+                        ? newCheckedKeys
+                        : newCheckedKeys.checked;
+                    });
+                  }}
+                  defaultExpandedKeys={["all"]}
+                  checkedKeys={checkedKeys}
+                  selectable={false}
+                  key="tree"
+                  checkable
+                  treeData={treeData}
+                />
+              ))}
+          </Row>
+        </div>
+      </div>
     </Drawer>
   );
 };

@@ -33,6 +33,12 @@ export interface UserVO {
     email?: string;
     /**
      * 
+     * @type {boolean}
+     * @memberof UserVO
+     */
+    enabled?: boolean;
+    /**
+     * 
      * @type {object}
      * @memberof UserVO
      */
@@ -67,6 +73,12 @@ export interface UserVO {
      * @memberof UserVO
      */
     name?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof UserVO
+     */
+    parentId?: string;
     /**
      * 
      * @type {string}

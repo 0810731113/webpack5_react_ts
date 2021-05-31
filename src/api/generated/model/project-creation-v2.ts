@@ -49,6 +49,12 @@ export interface ProjectCreationV2 {
      * @type {string}
      * @memberof ProjectCreationV2
      */
+    id?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ProjectCreationV2
+     */
     name?: string;
     /**
      * 

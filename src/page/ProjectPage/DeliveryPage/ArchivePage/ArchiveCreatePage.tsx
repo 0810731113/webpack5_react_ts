@@ -49,7 +49,7 @@ export default function ArchiveCreatePage(props: ArchiveCreatePageProps) {
     params: { projectId },
   } = useRouteMatch<ProjectParams>();
 
-  const { replace } = useHistory();
+  const history = useHistory();
   const backUrl = url.split("/create")[0];
 
   const [leaveConfirm, setLeaveConfirm] = useState(true);
@@ -79,14 +79,14 @@ export default function ArchiveCreatePage(props: ArchiveCreatePageProps) {
             const newArchiveId = res?.id;
             if (newArchiveId) {
               return newArchiveId;
-            } 
+            }
               return Promise.reject("id error");
             
           })
           .then((id) => archiveService
               .postAchiveResources(id, selectedVersionIds)
               .then(() => {
-                replace(backUrl);
+                history.replace(backUrl);
                 message.success("交付包创建成功");
               }));
       },
@@ -110,13 +110,12 @@ export default function ArchiveCreatePage(props: ArchiveCreatePageProps) {
           return newArchiveId;
         } 
           return Promise.reject("id error");
-        
       })
       .then((id) => {
         archiveService
           .postDraftAchiveResources(id, selectedVersionIds)
           .then(() => {
-            replace(backUrl);
+            history.replace(backUrl);
             message.success("交付包存草稿成功");
           });
       })

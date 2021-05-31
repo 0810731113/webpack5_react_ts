@@ -36,12 +36,12 @@
       min-width: $width;
       max-width: $width;
       padding-top: 0.5em;
-      box-shadow: 0.5px 0.5px 3px 1px rgba(0, 0, 0, 0.1);
+      border-right: 1px solid rgba(0, 0, 0, 0.1);
       section {
         //border-bottom: 2px solid rgba(0, 0, 0, 0.06);
         .title {
           padding: 8px 16px;
-          border-bottom: 2px solid rgba(0, 0, 0, 0.06);
+          border-bottom: 1px solid rgba(0, 0, 0, 0.1);
           svg {
             margin-right: 0.5em;
           }

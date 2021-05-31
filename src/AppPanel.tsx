@@ -22,6 +22,7 @@ import { useImmer } from "use-immer";
 import { QueryParamProvider } from "use-query-params";
 import "./App.less";
 import "./App.scss";
+import "./AppPanel.scss";
 import "./style/scrollbar.css";
 import PanelComponentPage from "page/PanelPage/PanelComponentPage/PanelComponentPage";
 import { PanelMaintenance } from "page/UnderMaintenance";

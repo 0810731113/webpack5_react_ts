@@ -1,7 +1,5 @@
 import { DataSetVO, VersionVO, Folder, FolderVO } from "api/generated/model";
 import Loading from "component/Loading";
-import WorkUnitList from "component/WorkUnitList";
-import useBreadCrumbs from "hook/use-breadcrumb.hook";
 import { FileListParams } from "model/route-params.model";
 import React, { useEffect } from "react";
 import { useRouteMatch } from "react-router";

@@ -51,6 +51,12 @@ export interface DatasetUploadEndRequest {
      */
     metaInfoMap?: object;
     /**
+     * 上传数据属于哪些mvd
+     * @type {string}
+     * @memberof DatasetUploadEndRequest
+     */
+    mvd?: string;
+    /**
      * 回调url
      * @type {string}
      * @memberof DatasetUploadEndRequest
@@ -62,6 +68,12 @@ export interface DatasetUploadEndRequest {
      * @memberof DatasetUploadEndRequest
      */
     packetsWithMD5?: { [key: string]: string; };
+    /**
+     * 操作是否是补全上传
+     * @type {boolean}
+     * @memberof DatasetUploadEndRequest
+     */
+    patch?: boolean;
     /**
      * rawData文件的url
      * @type {string}

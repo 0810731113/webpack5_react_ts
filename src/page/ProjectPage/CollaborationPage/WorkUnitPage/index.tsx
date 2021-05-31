@@ -13,7 +13,7 @@ import {
   ShareRecordVOStatusEnum,
   VersionVO,
   Team,
-  Project,
+  ProjectVO,
 } from "api/generated/model";
 import { useImmer } from "use-immer";
 import "./WorkUnitPage.scss";
@@ -48,7 +48,7 @@ export interface WorkUnitPageState extends WorkUnitListProps {
 const versionComparatorButton = (
   versions: VersionVO[],
   from: string,
-  project: Project | null,
+  project: ProjectVO | null,
   link?: boolean,
 ) => {
   const enabledVersions = versions?.filter((version) => {

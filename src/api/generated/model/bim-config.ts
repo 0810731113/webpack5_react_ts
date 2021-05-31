@@ -69,14 +69,17 @@ export interface BimConfig {
     */
 export enum BimConfigConfigTypeEnum {
     SpaceConfig = 'SpaceConfig',
-    GridConfig = 'GridConfig'
+    GridConfig = 'GridConfig',
+    SubItem = 'SubItem',
+    Coordinate = 'Coordinate'
 }
 /**
     * @export
     * @enum {string}
     */
 export enum BimConfigScopeEnum {
-    Project = 'Project'
+    Project = 'Project',
+    Building = 'Building'
 }
 
 

@@ -1,7 +1,7 @@
 import { ProjectRole } from "service/role.service";
 import {
   Folder,
-  Project,
+  ProjectVO,
   ProjectTemplate,
   SpecialtyVO,
   Team,
@@ -14,7 +14,7 @@ import { ResourcePermission } from "api-authorization/generated/model";
 
 export interface ProjectPageState {
   projectId: string;
-  project: Project | null;
+  project: ProjectVO | null;
   folders: Folder[];
   teams: Team[];
   myTeams: Team[] | null;

@@ -99,8 +99,10 @@ export default function StructurePage(props: StructurePageProps) {
   return (
     <div className="structure-page">
       <div className="header">
-        {/* <span>{breadCrumbs[0].title}</span> */}
-        <span>项目构件库</span>
+        <div className="title">项目构件库</div>
+        <div className="sub-title">
+          对项目构件进行统一的配置和管理，保证各个团队在协同过程中的设计一致性。
+        </div>
       </div>
 
       <div className="body">

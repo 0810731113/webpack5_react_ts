@@ -32,6 +32,7 @@ import { VersionService } from "./version.service";
 import { WorkUnitService } from "./work-unit.service";
 import { XmonitorService } from "./xmonitor.service";
 import { FontService } from "./font.service";
+import { StatService } from './stat.service';
 
 const {
   API_BASE_STRUC_URL,
@@ -41,6 +42,7 @@ const {
   API_BASE_SYSTEM_URL,
   API_BASE_STORE_URL,
   API_BASE_AUTHORIZATION_URL,
+  API_BASE_STAT_URL,
   AUTH_BASE_URL,
 } = consts;
 
@@ -77,6 +79,7 @@ const classificationService = new ClassificationService(
   API_BASE_BIMCODE_URL,
   Axios,
 );
+const statService = new StatService(API_BASE_STAT_URL, Axios);
 const bfproxyService = new BfproxyService(API_BASE_BIMFACE_URL, Axios);
 const systemService = new SystemService(API_BASE_SYSTEM_URL, Axios.create());
 const applyService = new ApplyService(AUTH_BASE_URL, Axios.create());
@@ -119,4 +122,5 @@ export {
   xmonitorService,
   applyService,
   enterpriseService,
+  statService,
 };

@@ -3041,10 +3041,11 @@ export const DataSetApiAxiosParamCreator = function (configuration?: Configurati
          * @summary 提升工作单元指定版本为最新版
          * @param {string} dsId dsId
          * @param {number} version version
+         * @param {string} [xGdcUserid] x-gdc-userid
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        promoteVersion2UsingPOST: async (dsId: string, version: number, options: any = {}): Promise<RequestArgs> => {
+        promoteVersion2UsingPOST: async (dsId: string, version: number, xGdcUserid?: string, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'dsId' is not null or undefined
             if (dsId === null || dsId === undefined) {
                 throw new RequiredError('dsId','Required parameter dsId was null or undefined when calling promoteVersion2UsingPOST.');
@@ -3065,6 +3066,10 @@ export const DataSetApiAxiosParamCreator = function (configuration?: Configurati
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
+            if (xGdcUserid !== undefined && xGdcUserid !== null) {
+                localVarHeaderParameter['x-gdc-userid'] = String(xGdcUserid);
+            }
+
 
     
             localVarUrlObj.query = {...localVarUrlObj.query, ...localVarQueryParameter, ...options.query};
@@ -3083,10 +3088,11 @@ export const DataSetApiAxiosParamCreator = function (configuration?: Configurati
          * @summary 提升工作单元指定版本为最新版
          * @param {string} dsId dsId
          * @param {number} version version
+         * @param {string} [xGdcUserid] x-gdc-userid
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        promoteVersionUsingPOST: async (dsId: string, version: number, options: any = {}): Promise<RequestArgs> => {
+        promoteVersionUsingPOST: async (dsId: string, version: number, xGdcUserid?: string, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'dsId' is not null or undefined
             if (dsId === null || dsId === undefined) {
                 throw new RequiredError('dsId','Required parameter dsId was null or undefined when calling promoteVersionUsingPOST.');
@@ -3106,6 +3112,10 @@ export const DataSetApiAxiosParamCreator = function (configuration?: Configurati
             const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
+
+            if (xGdcUserid !== undefined && xGdcUserid !== null) {
+                localVarHeaderParameter['x-gdc-userid'] = String(xGdcUserid);
+            }
 
 
     
@@ -4491,11 +4501,12 @@ export const DataSetApiFp = function(configuration?: Configuration) {
          * @summary 提升工作单元指定版本为最新版
          * @param {string} dsId dsId
          * @param {number} version version
+         * @param {string} [xGdcUserid] x-gdc-userid
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async promoteVersion2UsingPOST(dsId: string, version: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ResponseVersionVO>> {
-            const localVarAxiosArgs = await DataSetApiAxiosParamCreator(configuration).promoteVersion2UsingPOST(dsId, version, options);
+        async promoteVersion2UsingPOST(dsId: string, version: number, xGdcUserid?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ResponseVersionVO>> {
+            const localVarAxiosArgs = await DataSetApiAxiosParamCreator(configuration).promoteVersion2UsingPOST(dsId, version, xGdcUserid, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -4506,11 +4517,12 @@ export const DataSetApiFp = function(configuration?: Configuration) {
          * @summary 提升工作单元指定版本为最新版
          * @param {string} dsId dsId
          * @param {number} version version
+         * @param {string} [xGdcUserid] x-gdc-userid
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async promoteVersionUsingPOST(dsId: string, version: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ResponseVersionVO>> {
-            const localVarAxiosArgs = await DataSetApiAxiosParamCreator(configuration).promoteVersionUsingPOST(dsId, version, options);
+        async promoteVersionUsingPOST(dsId: string, version: number, xGdcUserid?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ResponseVersionVO>> {
+            const localVarAxiosArgs = await DataSetApiAxiosParamCreator(configuration).promoteVersionUsingPOST(dsId, version, xGdcUserid, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -5382,22 +5394,24 @@ export const DataSetApiFactory = function (configuration?: Configuration, basePa
          * @summary 提升工作单元指定版本为最新版
          * @param {string} dsId dsId
          * @param {number} version version
+         * @param {string} [xGdcUserid] x-gdc-userid
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        promoteVersion2UsingPOST(dsId: string, version: number, options?: any): AxiosPromise<ResponseVersionVO> {
-            return DataSetApiFp(configuration).promoteVersion2UsingPOST(dsId, version, options).then((request) => request(axios, basePath));
+        promoteVersion2UsingPOST(dsId: string, version: number, xGdcUserid?: string, options?: any): AxiosPromise<ResponseVersionVO> {
+            return DataSetApiFp(configuration).promoteVersion2UsingPOST(dsId, version, xGdcUserid, options).then((request) => request(axios, basePath));
         },
         /**
          * 
          * @summary 提升工作单元指定版本为最新版
          * @param {string} dsId dsId
          * @param {number} version version
+         * @param {string} [xGdcUserid] x-gdc-userid
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        promoteVersionUsingPOST(dsId: string, version: number, options?: any): AxiosPromise<ResponseVersionVO> {
-            return DataSetApiFp(configuration).promoteVersionUsingPOST(dsId, version, options).then((request) => request(axios, basePath));
+        promoteVersionUsingPOST(dsId: string, version: number, xGdcUserid?: string, options?: any): AxiosPromise<ResponseVersionVO> {
+            return DataSetApiFp(configuration).promoteVersionUsingPOST(dsId, version, xGdcUserid, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -6360,12 +6374,13 @@ export class DataSetApi extends BaseAPI {
      * @summary 提升工作单元指定版本为最新版
      * @param {string} dsId dsId
      * @param {number} version version
+     * @param {string} [xGdcUserid] x-gdc-userid
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DataSetApi
      */
-    public promoteVersion2UsingPOST(dsId: string, version: number, options?: any) {
-        return DataSetApiFp(this.configuration).promoteVersion2UsingPOST(dsId, version, options).then((request) => request(this.axios, this.basePath));
+    public promoteVersion2UsingPOST(dsId: string, version: number, xGdcUserid?: string, options?: any) {
+        return DataSetApiFp(this.configuration).promoteVersion2UsingPOST(dsId, version, xGdcUserid, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -6373,12 +6388,13 @@ export class DataSetApi extends BaseAPI {
      * @summary 提升工作单元指定版本为最新版
      * @param {string} dsId dsId
      * @param {number} version version
+     * @param {string} [xGdcUserid] x-gdc-userid
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DataSetApi
      */
-    public promoteVersionUsingPOST(dsId: string, version: number, options?: any) {
-        return DataSetApiFp(this.configuration).promoteVersionUsingPOST(dsId, version, options).then((request) => request(this.axios, this.basePath));
+    public promoteVersionUsingPOST(dsId: string, version: number, xGdcUserid?: string, options?: any) {
+        return DataSetApiFp(this.configuration).promoteVersionUsingPOST(dsId, version, xGdcUserid, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

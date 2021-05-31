@@ -13,15 +13,15 @@ import { NAV } from "consts";
 
 import { useRequest } from "@umijs/hooks";
 import { CheckPermission } from "component/CheckPermission/CheckPermission";
-import { publishEvent } from "function/stats.func";
+import ProjectPageContext from "page/ProjectPage/ProjectPageContext";
 import { ResourcePermissionResourceEnum } from "api-authorization/generated/model";
 import { TooltipWrapper } from "component/wrapper/TooltipWrapper";
 import { message, Button } from "antd";
 import { onResponseError } from "function/auth.func";
+import { extractDataFromStandardObj } from "function/standard.func";
 import InfoProjectForm from "./InfoProjectForm";
 import ProjectActionModal from "./ProjectActionModal";
 import { fetchAdressData } from "./SelectAddress";
-import { extractDataFromStandardObj } from "function/standard.func";
 
 interface ProjectInfoSettingsProps {}
 
@@ -40,6 +40,9 @@ export default function ProjectInfoSettings(props: ProjectInfoSettingsProps) {
     params: { projectId },
   } = useRouteMatch<ProjectParams>();
   useNavMenu(NAV.settingsProjectOverview);
+  const { onRefreshProjectData } = useContext(ProjectPageContext);
+
+  // 可以优化，和recoil一起做
   const loader = () => projectService.loadProjectById(projectId);
   const { loading, data, run } = useRequest<ProjectVO>(loader, {
     manual: true,
@@ -48,7 +51,8 @@ export default function ProjectInfoSettings(props: ProjectInfoSettingsProps) {
   const onEdit = (info: Project) =>
     projectService.modifyProject(info).then(() => {
       message.success("项目信息修改成功");
-      run();
+      run(); // refresh page data
+      onRefreshProjectData(projectId); // refresh recoil
       updateState((draft) => {
         draft.showEdit = false;
       });

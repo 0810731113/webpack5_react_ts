@@ -71,6 +71,7 @@ export default function AllWorkUnitListPage(props: AllWorkUnitListPageProps) {
             title="处于示例项目中无该功能权限"
           >
             <Button
+              type="primary"
               onClick={() => {
                 publishEvent(`createWorkUnit`, ["项目配置", `协同设置`], {
                   eventLevel: "P1",

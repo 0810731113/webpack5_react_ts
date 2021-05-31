@@ -19,17 +19,6 @@
       margin-top: 14px;
     }
   }
-  .detail-header {
-    flex: 0;
-    margin: -20px -20px 20px -20px;
-    line-height: 18px;
-    font-size: 12px;
-    padding: 15px;
-    background: rgba(255, 255, 255, 1);
-    box-shadow: 1px 1px 3px 1px rgba(0, 0, 0, 0.2);
-    position: relative;
-    z-index: 1;
-  }
 
   .header {
     box-shadow: 0 1px 6px 1px rgba(0, 0, 0, 0.1);
@@ -116,11 +105,31 @@
     display: flex;
     flex-direction: column;
     min-height: 400px;
+    background-color: white;
+    box-shadow: 0 1px 6px 1px rgba(0, 0, 0, 0.1);
+
+    .detail-header {
+      flex: 0;
+      // margin: -20px -20px 20px -20px;
+      line-height: 18px;
+      font-size: 12px;
+      padding: 24px 24px 12px;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+      //background: rgba(255, 255, 255, 1);
+      //box-shadow: 1px 1px 3px 1px rgba(0, 0, 0, 0.2);
+      //position: relative;
+      //z-index: 1;
+    }
+
+    .content {
+      flex: auto;
+      padding: 12px 24px;
+    }
   }
   .issue-page {
     display: flex;
     flex: auto;
     overflow: hidden;
-    margin: -20px;
+    // margin: -20px;
   }
 }

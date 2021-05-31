@@ -120,7 +120,7 @@ export default function ReferPage(props: ReferPageProps) {
     versions: allVersions,
     loading: loadingVersions,
     refresh: refreshVersions,
-  } = useVersionListByWorkUnits(allWorkUnits, "committed");
+  } = useVersionListByWorkUnits(allWorkUnits, "committed", "reference|base");
 
   useEffect(() => {
     updateState((draft) => {
@@ -244,9 +244,9 @@ export default function ReferPage(props: ReferPageProps) {
     ) {
       updateState((draft) => {
         const selectWorkUnits = allWorkUnits.filter(
-          (unit) =>
+          (unit: any) =>
             !(
-              unit.name === workUnit?.name && unit.teamId === workUnit?.teamId
+              unit.draftDataSetId === workUnit?.id || unit.id === workUnit?.id
             ) && // Todo 排除自己
             !(
               unit.type === "workunit" ||
@@ -421,7 +421,7 @@ export default function ReferPage(props: ReferPageProps) {
       <div className="title">
         <PanelTabTitle
           title="可选参照"
-          tip="你可以通过链接一个其他人的工作单元，作为自己的设计参照"
+          tip="你可以通过参照一个其他人的工作单元，作为自己的设计参照"
         />
       </div>
       <WorkUnitTree

@@ -31,8 +31,6 @@ import { ElementSelectionSetInformation } from '../model';
 // @ts-ignore
 import { GetElementSelectionSets } from '../model';
 // @ts-ignore
-import { ResponseListElementVersionStandardCodeVO } from '../model';
-// @ts-ignore
 import { Responseint } from '../model';
 // @ts-ignore
 import { UpdateElementSelectionSetActiveStatus } from '../model';
@@ -352,81 +350,6 @@ export const ElementSelectionApiAxiosParamCreator = function (configuration?: Co
         },
         /**
          * 
-         * @summary 根据元素Id和版本号获取表中编码列表
-         * @param {string} [elementId] elementId
-         * @param {number} [versionId] versionId
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        getElementVersionStandardCodeUsingGET: async (elementId?: string, versionId?: number, options: any = {}): Promise<RequestArgs> => {
-            const localVarPath = `/element-version-standard-code/element/version/list`;
-            const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            if (elementId !== undefined) {
-                localVarQueryParameter['elementId'] = elementId;
-            }
-
-            if (versionId !== undefined) {
-                localVarQueryParameter['versionId'] = versionId;
-            }
-
-
-    
-            localVarUrlObj.query = {...localVarUrlObj.query, ...localVarQueryParameter, ...options.query};
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: globalImportUrl.format(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @summary 根据版本号获取编码列表
-         * @param {number} [versionId] versionId
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        getElementVersionStandardCodeUsingGET1: async (versionId?: number, options: any = {}): Promise<RequestArgs> => {
-            const localVarPath = `/element-version-standard-code/version/list`;
-            const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            if (versionId !== undefined) {
-                localVarQueryParameter['versionId'] = versionId;
-            }
-
-
-    
-            localVarUrlObj.query = {...localVarUrlObj.query, ...localVarQueryParameter, ...options.query};
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: globalImportUrl.format(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
          * @summary updateActiveStatus
          * @param {UpdateElementSelectionSetActiveStatus} args args
          * @param {*} [options] Override http request option.
@@ -626,35 +549,6 @@ export const ElementSelectionApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @summary 根据元素Id和版本号获取表中编码列表
-         * @param {string} [elementId] elementId
-         * @param {number} [versionId] versionId
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async getElementVersionStandardCodeUsingGET(elementId?: string, versionId?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ResponseListElementVersionStandardCodeVO>> {
-            const localVarAxiosArgs = await ElementSelectionApiAxiosParamCreator(configuration).getElementVersionStandardCodeUsingGET(elementId, versionId, options);
-            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
-                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
-                return axios.request(axiosRequestArgs);
-            };
-        },
-        /**
-         * 
-         * @summary 根据版本号获取编码列表
-         * @param {number} [versionId] versionId
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async getElementVersionStandardCodeUsingGET1(versionId?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ResponseListElementVersionStandardCodeVO>> {
-            const localVarAxiosArgs = await ElementSelectionApiAxiosParamCreator(configuration).getElementVersionStandardCodeUsingGET1(versionId, options);
-            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
-                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
-                return axios.request(axiosRequestArgs);
-            };
-        },
-        /**
-         * 
          * @summary updateActiveStatus
          * @param {UpdateElementSelectionSetActiveStatus} args args
          * @param {*} [options] Override http request option.
@@ -769,27 +663,6 @@ export const ElementSelectionApiFactory = function (configuration?: Configuratio
          */
         getElementSelectionSetsUsingPOST(args: GetElementSelectionSets, options?: any): AxiosPromise<Array<ElementSelectionSet>> {
             return ElementSelectionApiFp(configuration).getElementSelectionSetsUsingPOST(args, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @summary 根据元素Id和版本号获取表中编码列表
-         * @param {string} [elementId] elementId
-         * @param {number} [versionId] versionId
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        getElementVersionStandardCodeUsingGET(elementId?: string, versionId?: number, options?: any): AxiosPromise<ResponseListElementVersionStandardCodeVO> {
-            return ElementSelectionApiFp(configuration).getElementVersionStandardCodeUsingGET(elementId, versionId, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @summary 根据版本号获取编码列表
-         * @param {number} [versionId] versionId
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        getElementVersionStandardCodeUsingGET1(versionId?: number, options?: any): AxiosPromise<ResponseListElementVersionStandardCodeVO> {
-            return ElementSelectionApiFp(configuration).getElementVersionStandardCodeUsingGET1(versionId, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -915,31 +788,6 @@ export class ElementSelectionApi extends BaseAPI {
      */
     public getElementSelectionSetsUsingPOST(args: GetElementSelectionSets, options?: any) {
         return ElementSelectionApiFp(this.configuration).getElementSelectionSetsUsingPOST(args, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @summary 根据元素Id和版本号获取表中编码列表
-     * @param {string} [elementId] elementId
-     * @param {number} [versionId] versionId
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ElementSelectionApi
-     */
-    public getElementVersionStandardCodeUsingGET(elementId?: string, versionId?: number, options?: any) {
-        return ElementSelectionApiFp(this.configuration).getElementVersionStandardCodeUsingGET(elementId, versionId, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @summary 根据版本号获取编码列表
-     * @param {number} [versionId] versionId
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ElementSelectionApi
-     */
-    public getElementVersionStandardCodeUsingGET1(versionId?: number, options?: any) {
-        return ElementSelectionApiFp(this.configuration).getElementVersionStandardCodeUsingGET1(versionId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

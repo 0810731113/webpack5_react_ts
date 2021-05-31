@@ -70,6 +70,12 @@ export default function ProjectSidebar(props: ProjectSidebarProps) {
           selectedKeys={[selectedMenuKey]}
         >
           <MenuItem
+            key={n.overviewBoard}
+            icon={<Iconfont type="icon-xiangmukanban" />}
+          >
+            <Link to={`${url}/overview`}>项目看板</Link>
+          </MenuItem>
+          <MenuItem
             key={n.personalSection}
             icon={<Iconfont type="icon-daohangtubiao-gerensheji" />}
           >
@@ -117,23 +123,22 @@ export default function ProjectSidebar(props: ProjectSidebarProps) {
               <Link to={`${url}/settings/collaboration`}>协同设置</Link>
             </MenuItem>
 
-            {ENV !== "production" && (
-              <SubMenu title="空间定位">
-                <MenuItem key={n.settingsZhouWang}>
-                  <Link to={`${url}/settings/grid`}>轴网</Link>
-                </MenuItem>
-                <MenuItem key={n.settingsKongJianBiaoGao}>
-                  <Link to={`${url}/settings/space`}>空间和标高</Link>
-                </MenuItem>
-              </SubMenu>
-            )}
+            {/* <SubMenu title="空间定位">
+              <MenuItem key={n.settingsZhouWang}>
+                <Link to={`${url}/settings/grid`}>轴网</Link>
+              </MenuItem>
+              <MenuItem key={n.settingsKongJianBiaoGao}>
+                <Link to={`${url}/settings/space`}>空间和标高</Link>
+              </MenuItem>
+            </SubMenu> */}
+
             <SubMenu title="通用配置">
               <MenuItem key={n.settingsGouJianKu}>
                 <Link to={`${url}/settings/structure`}>项目构件库</Link>
               </MenuItem>
-              {/* <MenuItem key={n.settingsYangShiKu}>
+              <MenuItem key={n.settingsYangShiKu}>
                 <Link to={`${url}/settings/stylelib`}>项目样式库</Link>
-              </MenuItem> */}
+              </MenuItem>
               {/* <MenuItem key={n.settingsGouJianKu}>
                 <Link to={`${url}/settings/structure`}>视图样板</Link>
               </MenuItem> */}

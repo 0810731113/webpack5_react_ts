@@ -97,7 +97,7 @@ export default function CollaborationHeader(props: CollaborationHeaderProps) {
     records: acceptData,
     loading: loadingShareRecords,
   } = useShareRecords({ consumeId: teamId });
-  console.log(acceptData);
+  // console.log(acceptData);
   useEffect(() => {
     if (shareData) {
       updateState((draft) => {

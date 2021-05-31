@@ -81,7 +81,7 @@ const PersonalProjects: FC<PersonalProjectsProps> = ({
                     );
                   }
                 }}
-                to={`/projects/${project.id}/personal`}
+                to={`/projects/${project.id}/overview`}
               >
                 <Card
                   hoverable

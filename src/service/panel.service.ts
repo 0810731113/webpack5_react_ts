@@ -1,3 +1,7 @@
+/* eslint-disable camelcase */
+/* eslint-disable no-return-await */
+/* eslint-disable no-empty-function */
+/* eslint-disable no-useless-constructor */
 import { IssueVO } from "api/generated/model";
 import qwebService from "./qweb.service";
 
@@ -89,6 +93,16 @@ export class PanelService {
       },
     });
   }
+
+  networkState(state: string) {
+    console.log(new Date().toLocaleTimeString(), state);
+    return qwebService.directSend({
+      actionname: "networkstate",
+      arguments: {
+        state,
+      },
+    });
+  }
   // #endregion
 
   // #region 登录/认证
@@ -168,6 +182,18 @@ export class PanelService {
         version,
         linkedtypename,
         datacodes,
+      },
+    });
+  }
+
+  getModelViews(filepath: string) {
+    return qwebService.sendAndGetResult<{
+      datasetid: string;
+      version: number;
+    }>({
+      actionname: "getmodelviews",
+      arguments: {
+        filepath,
       },
     });
   }

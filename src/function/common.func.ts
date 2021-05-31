@@ -4,11 +4,11 @@ export function isNullOrUndefined(obj: any): obj is null | undefined {
 // 将base64转换为file
 export const dataURLtoFile = (dataurl: string) => {
   const arr = dataurl.split(",");
-    const mime = arr[0]?.match(/:(.*?);/);
-    const bstr = atob(arr[1]);
-    let n = bstr.length;
-    const u8arr = new Uint8Array(n);
-    const type = mime ? mime[1] : undefined;
+  const mime = arr[0]?.match(/:(.*?);/);
+  const bstr = atob(arr[1]);
+  let n = bstr.length;
+  const u8arr = new Uint8Array(n);
+  const type = mime ? mime[1] : undefined;
   while (n--) {
     u8arr[n] = bstr.charCodeAt(n);
   }
@@ -36,4 +36,20 @@ export function IsPC() {
     }
   }
   return flag;
+}
+export function panelOnline() {
+  const mask = document.getElementById("offline-mask");
+  if (mask) {
+    mask.classList.remove("show-mask");
+  }
+}
+export function panelOffline() {
+  let mask = document.getElementById("offline-mask");
+  if (!mask) {
+    mask = document.createElement("div");
+    mask.id = "offline-mask";
+    mask.classList.add("offline-mask");
+    document.body.appendChild(mask);
+  }
+  mask.classList.add("show-mask");
 }

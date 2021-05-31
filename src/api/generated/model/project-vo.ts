@@ -22,6 +22,12 @@ import { StandardPropertyDTO } from './standard-property-dto';
 export interface ProjectVO {
     /**
      * 
+     * @type {boolean}
+     * @memberof ProjectVO
+     */
+    accessible?: boolean;
+    /**
+     * 
      * @type {string}
      * @memberof ProjectVO
      */
@@ -56,6 +62,12 @@ export interface ProjectVO {
      * @memberof ProjectVO
      */
     designEnterprise?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ProjectVO
+     */
+    gridType?: string;
     /**
      * 
      * @type {string}

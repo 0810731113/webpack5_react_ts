@@ -29,7 +29,7 @@ const IssuePage = (props: IssuePageProps) => {
     1,
   );
   return (
-    <>
+    <div className="content">
       <BreadcrumbHeader breadCrumbs={breadCrumbs} />
       <div className="issue-page">
         <IssueList
@@ -69,7 +69,7 @@ const IssuePage = (props: IssuePageProps) => {
         />
         <IssueDetail refresh={refreshIssueList} />
       </div>
-    </>
+    </div>
   );
 };
 export default IssuePage;

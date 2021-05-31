@@ -3,7 +3,7 @@ import { Tooltip } from "antd";
 import { InfoCircleOutlined } from "@ant-design/icons";
 
 interface PanelTabTitleProps {
-  title?: string;
+  title?: string | ReactNode;
   tip?: string;
   tipLabel?: string;
   icon?: ReactNode | ReactNode[];

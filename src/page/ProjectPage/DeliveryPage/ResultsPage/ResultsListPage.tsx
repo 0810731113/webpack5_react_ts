@@ -45,7 +45,6 @@ export default function ResultsListPage(props: ResultsListPageProps) {
           >
             <Button
               type="primary"
-              ghost
               onClick={() => {
                 publishEvent(`createResources`, ["项目交付", "资源池"], {
                   eventLevel: "P1",

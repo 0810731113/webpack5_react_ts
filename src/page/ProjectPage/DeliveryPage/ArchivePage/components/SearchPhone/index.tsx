@@ -147,7 +147,7 @@ function DebounceSelect<
                               <span className={'left'}> {item.fullname ? `${item.fullname}(${item.mobile})` : (item.mobile)}</span>
                               {
                                   item.status ?
-                                      <span className={'right'}> {item.status == AssignmentArchiveVOStatusEnum.Disabled ? '交付停用中' : item.status == AssignmentArchiveVOStatusEnum.Enable ?'交付中' : ''}</span>
+                                      <span className={'right'}> {item.status == AssignmentArchiveVOStatusEnum.Disabled ? '交付停用中' : item.status == AssignmentArchiveVOStatusEnum.Enable ?'已交付' : ''}</span>
                                       :
                                       <span className={'right'} style={{opacity:0}}> {'null'}</span>
                               }

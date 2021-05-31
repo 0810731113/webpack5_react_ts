@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import CollaborationHeader from "./CollaborationHeader";
 import "./CollaborationPage.scss";
 import {
   Route,
@@ -9,12 +8,6 @@ import {
   useHistory,
 } from "react-router";
 import { ProjectTeamParams } from "model/route-params.model";
-import PackagesPage from "./Packages/PackagesPage";
-import PackageModal from "./Packages/PackageModal";
-import PackageDetailPage from "./Packages/PackageDetailPage";
-import OverviewPage from "./OverviewPage";
-import WorkUnitPage from "./WorkUnitPage";
-import IssuePage from "./IssuePage";
 import useBreadCrumbs from "hook/use-breadcrumb.hook";
 import {
   useQueryParams,
@@ -22,12 +15,15 @@ import {
   withDefault,
   QueryParamConfig,
 } from "use-query-params";
-import FilesPage from "./FilesPage/FilesPage";
+import { useRecoilState, useRecoilValue } from "recoil";
+import projectPageState, { teamByIdSelector } from "state/project.state";
 import useNavMenu from "hook/use-nav-menu.hook";
 import { NAV } from "consts";
 import NoTeamPage from "./NoTeamPage";
-import { useRecoilState } from "recoil";
-import projectPageState from "state/project.state";
+import PackagesPage from "./Packages/PackagesPage";
+import PackageModal from "./Packages/PackageModal";
+import OverviewPage from "./OverviewPage";
+import IssuePage from "./IssuePage";
 
 interface CollaborationPageProps extends RouteComponentProps {}
 
@@ -70,8 +66,9 @@ export default function CollaborationPage(props: CollaborationPageProps) {
     url,
     params: { teamId },
   } = useRouteMatch<ProjectTeamParams>();
+  const team = useRecoilValue(teamByIdSelector(teamId));
   const { breadCrumbs } = useBreadCrumbs(
-    "团队协同",
+    team?.name ?? "团队协同",
     "collaboration",
     `${url}/overview/workunits`,
     0,

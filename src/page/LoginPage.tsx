@@ -325,7 +325,11 @@ export default function LoginPage(props: LoginPageProps) {
 
               <div className="forget-pwd">
                 <a
-                  href="https://account.glodon.com/forgetInit"
+                  href={
+                    ENV === "production"
+                      ? "https://account.glodon.com/forgetInit"
+                      : "https://account-test.glodon.com/forgetInit"
+                  }
                   target="_blank"
                   rel="noreferrer"
                 >

@@ -2,12 +2,12 @@ import { useRequest } from "@umijs/hooks";
 import { DataSetVO, VersionVO, DataSetMonitorVO } from "api/generated/model";
 import { publishEvent } from "function/stats.func";
 import Loading from "component/Loading";
-import WorkUnitList from "component/WorkUnitList";
+import WorkUnitList, { VersionStatus } from "component/WorkUnitList";
 import { ProjectParams } from "model/route-params.model";
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { workUnitService, authService, xmonitorService } from "service";
 import { useImmer } from "use-immer";
-import { Divider, Modal, Button, Dropdown, Menu, message } from "antd";
+import { Space, Modal, Button, Dropdown, Input, message, Form } from "antd";
 import { Link, useRouteMatch } from "react-router-dom";
 import { TooltipWrapper } from "component/wrapper/TooltipWrapper";
 import { CheckPermission } from "component/CheckPermission/CheckPermission";
@@ -19,6 +19,7 @@ import projectPageState from "state/project.state";
 import EmptyWrapper from "component/EmptyWrapper";
 import { ProjectRole } from "service/role.service";
 import { onResponseError } from "function/auth.func";
+import DraftWorkUnitList from "./DraftWorkUnitList";
 
 export interface DraftWorkUnitListPageProps {}
 
@@ -71,6 +72,14 @@ export default function DraftWorkUnitListPage(
     { manual: true },
   );
 
+  const reloadData = () => {
+    updateState((draft) => {
+      draft.workUnits = null;
+      draft.versions = {};
+    });
+    run();
+  };
+
   useEffect(() => {
     run();
   }, []);
@@ -89,7 +98,7 @@ export default function DraftWorkUnitListPage(
         cancelText: "取消",
         async onOk() {
           await xmonitorService.releaseToken(token);
-          run();
+          reloadData();
         },
       });
     }
@@ -132,77 +141,126 @@ export default function DraftWorkUnitListPage(
       </div>
     );
   }
-
   return (
     <div style={{ position: "relative", height: "100%" }}>
-      <WorkUnitList
+      <DraftWorkUnitList
         workUnits={workUnits ?? []}
         versions={versions}
-        onReload={run}
-        mode="draft"
-        extraActions={(record, version, isMaxVersion) => {
-          if (isMaxVersion) {
-            const xmon = monitorList.find((mon) => mon.dsId === record.id!);
-            if (xmon) {
-              return (
-                <>
-                  <Divider type="vertical" />
-                  <CheckPermission
-                    resouseType={ResourcePermissionResourceEnum.PersonalDataset}
-                  >
-                    <TooltipWrapper
-                      when={(tooltipProps) => tooltipProps.disabled ?? false}
-                      title="处于示例项目中无该功能权限"
-                    >
-                      <a onClick={() => release(xmon?.token)}>解除编辑</a>
-                    </TooltipWrapper>
-                  </CheckPermission>
-                </>
-              );
+        setVersion={(dsId, versionId, desc) => {
+          updateState((draft) => {
+            const vv = draft.versions[dsId].find((v) => v.id === versionId);
+            if (vv) {
+              vv.description = desc;
             }
-            return null;
-          }
+          });
+        }}
+        onReload={reloadData}
+        extraActions={(record, version, isMaxVersion, modifyDescription) => {
+          const xmon = monitorList.find((mon) => mon.dsId === record.id!);
 
           return (
-            <>
-              <Divider type="vertical" />
-              <Dropdown
-                overlay={
-                  <div className="ant-dropdown-menu">
-                    <div style={{ padding: "5px 12px" }}>
-                      {/* eslint-disable-next-line @typescript-eslint/no-use-before-define */}
-                      <RestoreButton
-                        version={version ?? null}
-                        workUnitId={record.id!}
-                        onReload={run}
-                        onComplete={() => {
-                          publishEvent(`restoreVersion`, ["个人设计"], {
-                            eventLevel: "P2",
-                          });
-                        }}
-                      />
-                    </div>
+            <Space size="middle">
+              <VersionStatus
+                version={version ?? null}
+                workUnitType={record.type}
+                project={project}
+                mode="draft"
+              />
 
-                    <div style={{ padding: "5px 12px" }}>
-                      {/* eslint-disable-next-line @typescript-eslint/no-use-before-define */}
-                      <DeleteButton
-                        version={version ?? null}
-                        workUnit={record}
-                        onReload={run}
-                      />
-                    </div>
-                  </div>
-                }
-                trigger={["click"]}
-              >
-                <a
-                  className="ant-dropdown-link"
-                  onClick={(e) => e.preventDefault()}
+              {isMaxVersion && xmon && (
+                <CheckPermission
+                  resouseType={ResourcePermissionResourceEnum.PersonalDataset}
                 >
-                  更多 <CaretDownOutlined />
-                </a>
-              </Dropdown>
-            </>
+                  <TooltipWrapper
+                    when={(tooltipProps) => tooltipProps.disabled ?? false}
+                    title="处于示例项目中无该功能权限"
+                  >
+                    <a
+                      className="color-danger"
+                      onClick={() => release(xmon?.token)}
+                    >
+                      解除编辑
+                    </a>
+                  </TooltipWrapper>
+                </CheckPermission>
+              )}
+
+              {!(version?.version === 0) && (
+                <Dropdown
+                  overlay={
+                    <div className="ant-dropdown-menu">
+                      <div style={{ padding: "5px 12px" }}>
+                        <CheckPermission
+                          resouseType={
+                            ResourcePermissionResourceEnum.PersonalDataset
+                          }
+                        >
+                          <TooltipWrapper
+                            when={(tooltipProps) =>
+                              tooltipProps.disabled ?? false
+                            }
+                            title="处于示例项目中无该功能权限"
+                          >
+                            <a
+                              className="text-normal"
+                              onClick={modifyDescription}
+                            >
+                              编辑注释
+                            </a>
+                          </TooltipWrapper>
+                        </CheckPermission>
+                      </div>
+                      {!isMaxVersion && (
+                        <div style={{ padding: "5px 12px" }}>
+                          {xmon ? (
+                            <TooltipWrapper
+                              disabled
+                              when={() => true}
+                              title="此工作单元正在被编辑，暂不支持版本恢复"
+                            >
+                              <Button type="link" disabled>
+                                恢复
+                              </Button>
+                            </TooltipWrapper>
+                          ) : (
+                            /* eslint-disable-next-line @typescript-eslint/no-use-before-define */
+                            <RestoreButton
+                              version={version ?? null}
+                              workUnitId={record.id!}
+                              onReload={reloadData}
+                              onComplete={() => {
+                                publishEvent(`restoreVersion`, ["个人设计"], {
+                                  eventLevel: "P2",
+                                });
+                              }}
+                            />
+                          )}
+                        </div>
+                      )}
+
+                      {!isMaxVersion && (
+                        <div style={{ padding: "5px 12px" }}>
+                          {/* eslint-disable-next-line @typescript-eslint/no-use-before-define */}
+                          <DeleteButton
+                            version={version ?? null}
+                            workUnit={record}
+                            onReload={reloadData}
+                          />
+                        </div>
+                      )}
+                    </div>
+                  }
+                  trigger={["click"]}
+                >
+                  <a
+                    className="ant-dropdown-link"
+                    onClick={(e) => e.preventDefault()}
+                  >
+                    更多 <CaretDownOutlined />
+                  </a>
+                </Dropdown>
+              )}
+            </Space>
           );
         }}
       />
@@ -236,10 +294,19 @@ export function RestoreButton({
       width: 520,
       onOk() {
         confirmModal.update({ cancelButtonProps: { disabled: true } });
-        return workUnitService.restoreVersion(dsId, thisVersion).then(() => {
-          onReload();
-          onComplete();
-        });
+        return workUnitService
+          .restoreVersion(dsId, thisVersion)
+          .catch((err) => {
+            if (err?.response?.data?.code === 40003) {
+              message.error("此工作单元正在被编辑，暂不支持版本恢复。");
+            } else {
+              onResponseError(err);
+            }
+          })
+          .finally(() => {
+            onReload();
+            onComplete();
+          });
       },
     });
   }
@@ -253,6 +320,7 @@ export function RestoreButton({
       >
         <Button
           type="link"
+          className="text-normal"
           onClick={(e) => {
             if (workUnitId && version?.version) {
               restore(workUnitId, version.version);
@@ -309,11 +377,7 @@ function DeleteButton({
 
   if (version?.status === "Published") {
     return (
-      <TooltipWrapper
-        disabled
-        when={() => true}
-        title={`"提交"产生的版本不支持删除`}
-      >
+      <TooltipWrapper disabled when={() => true} title="暂不支持删除提交版本">
         <Button type="link" disabled onClick={deleteVersion}>
           删除
         </Button>

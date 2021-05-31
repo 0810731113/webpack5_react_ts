@@ -117,21 +117,20 @@ const IssueList: React.FC<IssueListProps> = (props) => {
     if (view3d && view3d.current) {
       if (issue) {
         let bfId = issue.elementId;
-        elementTreeData &&
-          elementTreeData.some(
-            (el) =>
-              el.items &&
-              el.items.some(
-                (unit) =>
-                  unit.items &&
-                  unit.items.some((child) => {
-                    if (child.id == issue.elementId) {
-                      bfId = child.bfId;
-                    }
-                    return child.id == issue.elementId;
-                  }),
-              ),
-          );
+        elementTreeData?.some(
+          (el) =>
+            el.items &&
+            el.items.some(
+              (unit) =>
+                unit.items &&
+                unit.items.some((child) => {
+                  if (child.id === issue.elementId) {
+                    bfId = child.bfId;
+                  }
+                  return child.id === issue.elementId;
+                }),
+            ),
+        );
 
         view3d.current.setSelectedComponentsById([bfId]);
       } else {
@@ -164,15 +163,14 @@ const IssueList: React.FC<IssueListProps> = (props) => {
     }
   }, [view3d?.current]);
   useEffect(() => {
-    setSolvingCount &&
-      setSolvingCount(
-        (issues &&
-          issues.reduce(
-            (count, issue) => count + (issue.status === statusList[0] ? 1 : 0),
-            0,
-          )) ||
+    setSolvingCount?.(
+      (issues &&
+        issues.reduce(
+          (count, issue) => count + (issue.status === statusList[0] ? 1 : 0),
           0,
-      );
+        )) ||
+        0,
+    );
     update((draft) => {
       draft.showIssues = filterStatus
         ? issues.filter((issue) => issue.status === filterStatus)
@@ -181,7 +179,7 @@ const IssueList: React.FC<IssueListProps> = (props) => {
     if (
       !issues ||
       issues.length === 0 ||
-      issues.some((issue) => issue.id == activeIssueId)
+      issues.some((issue) => issue.id === activeIssueId)
     )
       return;
     setQuery({ activeIssueId: undefined });
@@ -227,12 +225,19 @@ const IssueList: React.FC<IssueListProps> = (props) => {
           : showIssues.slice((current - 1) * pageSize, current * pageSize)
         ).forEach((issue) => setMark(issue));
         if (activeIssueId) {
-          const issue = showIssues.find((issue) => issue.id === activeIssueId);
+          const issue = showIssues.find(
+            (_issue) => _issue.id === activeIssueId,
+          );
           setSelectedElement(issue);
         } else {
           setSelectedElement();
         }
       }
+    }
+
+    // GDC-2034 默认选中第一个
+    if (!activeIssueId && showIssues?.length > 0 && teamId) {
+      setQuery({ activeIssueId: showIssues[0].id });
     }
   }, [cunstomItemContainer, showIssues, isShowMark, current, activeIssueId]);
   if (loading) {

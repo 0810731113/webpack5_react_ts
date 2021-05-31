@@ -1,7 +1,7 @@
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+//const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
+// const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const WebpackBar = require('webpackbar');
 // const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
@@ -22,20 +22,11 @@ const Dotenv = require('dotenv-webpack');
 
 const getCssLoaders = (importLoaders) => [
   isDevelopment ? 'style-loader' : MiniCssExtractPlugin.loader,
-  // isDevelopment ? 'style-loader'
-  //   :
-  // {
-  //   loader: MiniCssExtractPlugin.extract([]),
-  //   options: {
-  //     publicPath: '/web/',
-  //     // hmr: process.env.NODE_ENV === 'development',
-  //   },
-  // },
   {
     loader: 'css-loader',
     options: {
       modules: false,
-      // sourceMap: isDevelopment,
+      sourceMap: isDevelopment,
       importLoaders,
     },
   },
@@ -64,6 +55,10 @@ const getCssLoaders = (importLoaders) => [
 module.exports = {
   entry: {
     app: paths.appIndex,
+  },
+  output: {
+    // publicPath: '/',
+    // libraryTarget: 'umd',
   },
   cache: {
     type: 'filesystem',
@@ -106,18 +101,24 @@ module.exports = {
       },
       {
         test: /\.scss$/,
-        use: ['style-loader', 'css-loader', 'sass-loader'],
+        use: ['style-loader','css-loader' ,'sass-loader'],
       },
       {
         test: /\.less$/,
-        use: ['style-loader', 'css-loader', {
-          loader: 'less-loader',
-          options: {
-            lessOptions: {
-              javascriptEnabled: true,
+        use: [
+          'style-loader','css-loader',
+          {
+            loader: 'less-loader',
+            options: {
+              lessOptions: {
+                javascriptEnabled: true,
+                modifyVars: {
+                  "@primary-color": "#13C2C2", // for example, you use Ant Design to change theme color.
+                },
+              },
             },
           },
-        }],
+        ],
       },
       // {
       //   test: /\.scss$/,
@@ -197,12 +198,6 @@ module.exports = {
       // PUBLIC_URL: '1111333666',
       ...projectEnv,
     }),
-    new HtmlWebpackPlugin({
-      template: path.resolve('./template/dev.html'),
-      // favoicon: 'src/assets/image/direct.ico',
-      filename: 'dev.html'
-    }),
-    new MiniCssExtractPlugin(),
     new Dotenv({
       path: `.env.${process.env.NODE_ENV}`,
     }),
@@ -236,11 +231,12 @@ module.exports = {
     //     },
     //   ],
     // }),
-    new CopyPlugin({
-      patterns:[
-        { from: path.join(process.cwd(), './public'), to: path.join(process.cwd(), './build/web') }
-      ]
-    }),
+    // new CopyPlugin({
+    //   patterns:[
+    //     { from: path.join(process.cwd(), './public'), to: path.join(process.cwd(), './build/web') },
+    //     { from: path.join(process.cwd(), './template/favicon.ico'), to: path.join(process.cwd(), './build/favicon.ico') },
+    //   ]
+    // }),
     new WebpackBar({
       name: isDevelopment ? 'RUNNING' : 'BUNDLING',
       color: isDevelopment ? '#52c41a' : '#722ed1',

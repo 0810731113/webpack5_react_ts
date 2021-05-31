@@ -3,6 +3,7 @@ import { AxiosError } from "axios";
 
 export interface ProjectPageContext {
   setSelectedMenuKey: (key: string) => void;
+  onRefreshProjectData: (id: string) => void;
   onUserNotFound: (id: string) => void;
   onTeamNotFound: (id: string) => void;
 

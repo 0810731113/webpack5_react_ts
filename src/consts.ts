@@ -16,6 +16,7 @@ export interface Consts {
   API_BASE_BIMFACE_URL: string;
   API_BASE_BIMCODE_URL: string;
   API_BASE_SYSTEM_URL: string;
+  API_BASE_STAT_URL: string;
   API_BASE_AUTHORIZATION_URL: string;
   GJW_URL: string;
   GJW_STATIC_URL: string;
@@ -67,6 +68,7 @@ export const defaultDrawerSettings = {
 } as any;
 
 export const NAV = {
+  overviewBoard: "overviewBoard",
   personalSection: "personalSection",
   collaborationSection: "collaboration",
   collaborationWorkspace: "collaborationWorkspace",
@@ -151,6 +153,7 @@ const CONSTS: Consts = {
   API_BASE_BIMFACE_URL: `${apiHost}/bfproxy`,
   API_BASE_BIMCODE_URL: `${apiHost}/bimcode`,
   API_BASE_SYSTEM_URL: `${apiNoGate}/system`,
+  API_BASE_STAT_URL: `${apiHost}/stat`,
   API_BASE_AUTHORIZATION_URL: `${apiHost}/authorization`,
   AUTH_BASE_URL: `${apiNoGate}/auth`,
   MESSAGE_BASE_URL: "wss://gdc-de.glodon.com/messaging/connect",
@@ -161,9 +164,14 @@ const CONSTS: Consts = {
   GJW_STATIC_URL: "https://static-test.goujianwu.com",
   GJW_URL: "https://iframe-dev.goujianwu.com",
 
-  EXTENTION_SS_URL: process.env.REACT_APP_EXTENTION_SS_URL??"https://cloud.shapespark.com.cn/gdcp/open",
-  EXTENSION_CLEARHEIGHT_URL: process.env.REACT_APP_EXTENTION_SS_URL??"/clearheighthost",
-  EXTENSION_MODELCHECK_URL: process.env.REACT_APP_EXTENTION_SS_URL??"http://gdc-qa.yunzu360.com/#/authorize",
+  EXTENTION_SS_URL:
+    process.env.REACT_APP_EXTENTION_SS_URL ??
+    "https://cloud.shapespark.com.cn/gdcp/open",
+  EXTENSION_CLEARHEIGHT_URL:
+    process.env.REACT_APP_EXTENTION_SS_URL ?? "/clearheighthost",
+  EXTENSION_MODELCHECK_URL:
+    process.env.REACT_APP_EXTENTION_SS_URL ??
+    "http://gdc-qa.yunzu360.com/#/authorize",
 
   LOGOUT_URL: "http://localhost:7000/logout",
   LOGIN_RETURN_URL: "http://localhost:7000/web/workspace",

@@ -49,7 +49,8 @@ export enum UserRoleCreationRoleTypeEnum {
     BopsMarket = 'BopsMarket',
     BopsProduct = 'BopsProduct',
     BopsUser = 'BopsUser',
-    BopsDeveloper = 'BopsDeveloper'
+    BopsDeveloper = 'BopsDeveloper',
+    BimmakeArchvie = 'BimmakeArchvie'
 }
 
 

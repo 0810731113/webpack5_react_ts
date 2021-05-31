@@ -21,6 +21,12 @@
 export interface UserInfo {
     /**
      * 
+     * @type {string}
+     * @memberof UserInfo
+     */
+    accountName?: string;
+    /**
+     * 
      * @type {Array<string>}
      * @memberof UserInfo
      */

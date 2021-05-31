@@ -10,6 +10,7 @@ import panelService from "service/panel.service";
 import { loginService } from "service";
 import { popupError } from "./apiCommonError";
 import { getPanelUrl } from "./auth.func";
+import { panelOffline } from "./common.func";
 
 const handleVersionDeleted = (apiCategory?: string) => {
   if (!popupError.deleted) {
@@ -151,8 +152,20 @@ export function AddInterceptors(ax: AxiosInstance, apiCategory?: string) {
 
   ax.interceptors.response.use(handleWrappedResponse, (error) => {
     if (error.config["axios-retry"].retryCount === 3 && !error.response) {
-      AntdMsg.error("网络故障, 请重新登录");
-      window.location.href = `${consts.PUBLIC_URL}/logout`;
+      if (!isPanel) {
+        AntdMsg.error("网络故障, 请重新登录");
+        window.location.href = `${consts.PUBLIC_URL}/logout`;
+      }
+      return;
+    }
+    if (error.config["axios-retry"].retryCount === 1 && !error.response) {
+      if (isPanel) {
+        const isOffline = sessionStorage.getItem("isOffline");
+        if (!isOffline) {
+          panelService.networkState("offline");
+          sessionStorage.setItem("isOffline", "1");
+        }
+      }
       return;
     }
     try {

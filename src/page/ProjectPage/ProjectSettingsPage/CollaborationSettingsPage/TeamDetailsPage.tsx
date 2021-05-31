@@ -5,7 +5,7 @@ import { Button, Descriptions, DescriptionsItem } from "component/Antd";
 import Loading from "component/Loading";
 import useTeamUsers from "hook/use-team-users.hook";
 import useTeamWorkUnits from "hook/use-team-workunits.hook";
-import React, { useEffect } from "react";
+import React, { useEffect, useContext } from "react";
 import { useRouteMatch } from "react-router";
 import { teamService, userService } from "service";
 import { ProjectTeamParams } from "three-engine/model/route-params.model";
@@ -14,6 +14,7 @@ import { CheckPermission } from "component/CheckPermission/CheckPermission";
 import { publishEvent } from "function/stats.func";
 import { ResourcePermissionResourceEnum } from "api-authorization/generated/model";
 import { TooltipWrapper } from "component/wrapper/TooltipWrapper";
+import ProjectPageContext from "page/ProjectPage/ProjectPageContext";
 import AddWorkUnitDrawer from "./components/AddWorkUnitDrawer";
 import UserDetailsDrawer from "./components/UserDetailsDrawer";
 import UserList from "./components/UserList";
@@ -54,6 +55,7 @@ function TeamMemberList({
   onViewUser(userId: string): void;
 }) {
   // const { users, run } = useTeamUsers(teamId);
+  const { onTeamNotFound, onResponseError } = useContext(ProjectPageContext);
 
   const { loading, data: users, run } = useRequest(
     () =>
@@ -85,6 +87,7 @@ function TeamMemberList({
         onComplete={() => {
           onClose();
           run();
+          onTeamNotFound("");
         }}
       />
     </>

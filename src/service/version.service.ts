@@ -1,5 +1,5 @@
-import { AddInterceptors } from 'function/interceptors';
-import { bfproxyService } from "service";
+import { AddInterceptors } from "function/interceptors";
+import { bfproxyService, authService } from "service";
 import { VersionApi, DataSetApi } from "api";
 import {} from "api/generated/model";
 import Axios, { AxiosInstance } from "axios";
@@ -25,12 +25,31 @@ export class VersionService {
     AddInterceptors(axios, "version");
   }
 
-  async deleteVersion(datasetId: string, versionId: number) {
-    const response = await this.versionApi.operateVersionStateUsingPOST({
+  async modifyDescription(
+    datasetId: string,
+    versionId: number,
+    description: string,
+  ) {
+    const response = await this.versionApi.updateVersionInfoUsingPUT(
       datasetId,
       versionId,
-      type: 1,
-    });
+      authService.getUserId(),
+      {
+        description: description ?? "",
+      },
+    );
+    return response.data.data;
+  }
+
+  async deleteVersion(datasetId: string, versionId: number) {
+    const response = await this.versionApi.operateVersionStateUsingPOST(
+      authService.getUserId(),
+      {
+        datasetId,
+        versionId,
+        type: 1,
+      },
+    );
     return response.data;
   }
 

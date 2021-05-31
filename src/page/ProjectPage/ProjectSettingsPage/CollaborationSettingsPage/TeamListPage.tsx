@@ -118,6 +118,7 @@ export default function TeamListPage(props: TeamListPageProps) {
             title="处于示例项目中无该功能权限"
           >
             <Button
+              type="primary"
               onClick={() =>
                 updateState((draft) => {
                   draft.selectedTeamId = null;

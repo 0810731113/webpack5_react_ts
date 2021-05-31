@@ -42,6 +42,18 @@ export interface VersionVO {
      * @type {string}
      * @memberof VersionVO
      */
+    dataUploadStatus?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof VersionVO
+     */
+    description?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof VersionVO
+     */
     displayVersion?: string;
     /**
      * 

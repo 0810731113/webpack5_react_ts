@@ -1,33 +1,24 @@
-import React, { Component, Suspense, lazy,useEffect,useCallback, useState } from 'react';
-import {Spin} from 'antd';
 import Loading from "component/Loading";
 import { onResponseError } from "function/auth.func";
 import useLoading from "hook/use-loading.hook";
 import produce from "immer";
 import { ProjectParams } from "model/route-params.model";
 import { User } from "api/generated/model";
+import React, { useCallback, useState } from "react";
 import { Route, Switch, useRouteMatch } from "react-router";
 import { useRecoilState } from "recoil";
 import { projectService, teamService, userService } from "service";
 import projectPageState from "state/project.state";
-import PLoading from 'component/LazyLoading';
-// import AppsPage from "./AppsPage/AppsPage";
-// import CollaborationPage from "./CollaborationPage/CollaborationPage";
-// import PersonalPage from "./PersonalPage/PersonalPage";
+import AppsPage from "./AppsPage/AppsPage";
+import CollaborationPage from "./CollaborationPage/CollaborationPage";
+import PersonalPage from "./PersonalPage/PersonalPage";
 import "./ProjectPage.scss";
-// import ProjectHeader from "./ProjectPageComponents/ProjectHeader";
-// import ProjectSidebar from "./ProjectPageComponents/ProjectSidebar";
+import ProjectHeader from "./ProjectPageComponents/ProjectHeader";
+import ProjectSidebar from "./ProjectPageComponents/ProjectSidebar";
 import ProjectPageContext from "./ProjectPageContext";
-// import ProjectSettingsPage from "./ProjectSettingsPage/ProjectSettingsPage";
-// import DeliveryPage from "./DeliveryPage/DeliveryPage";
-
-const CollaborationPage = lazy(() => import('./CollaborationPage/CollaborationPage'));
-const PersonalPage = lazy(() => import('./PersonalPage/PersonalPage'));
-const ProjectHeader = lazy(() => import('./ProjectPageComponents/ProjectHeader'));
-const ProjectSidebar = lazy(() => import('./ProjectPageComponents/ProjectSidebar'));
-const ProjectSettingsPage = lazy(() => import('./ProjectSettingsPage/ProjectSettingsPage'));
-const DeliveryPage = lazy(() => import('./DeliveryPage/DeliveryPage'));
-const AppsPage = lazy(() => import('./AppsPage/AppsPage'));
+import ProjectSettingsPage from "./ProjectSettingsPage/ProjectSettingsPage";
+import DeliveryPage from "./DeliveryPage/DeliveryPage";
+import OverviewPage from "./OverviewPage/ProjectOverviewPage";
 
 interface ProjectPageProps {}
 
@@ -55,7 +46,7 @@ export default function ProjectPage(props: ProjectPageProps) {
       const [projectData, teams, users, specialties, roles, resources] = data;
       setState((pre) =>
         produce(pre, (draft) => {
-          draft.project = projectData;
+          draft.project = projectData ?? null;
           draft.teams = teams ?? [];
           draft.users = users ?? [];
           draft.specialties = specialties ?? [];
@@ -78,6 +69,15 @@ export default function ProjectPage(props: ProjectPageProps) {
       ...state,
       myTeams,
     }));
+  }
+
+  async function refreshProjectData(thisProjectId: string) {
+    const projectData = await projectService.loadProjectById(thisProjectId);
+    setState((pre) =>
+      produce(pre, (draft) => {
+        draft.project = projectData ?? null;
+      }),
+    );
   }
 
   async function cacheUsers(thisProjectId: string, userId: string) {
@@ -123,6 +123,9 @@ export default function ProjectPage(props: ProjectPageProps) {
         setSelectedMenuKey(key) {
           setSelectedMenuKey(key);
         },
+        onRefreshProjectData(id) {
+          refreshProjectData(id);
+        },
         onUserNotFound(id) {
           cacheUsers(projectId, id);
         },
@@ -142,22 +145,20 @@ export default function ProjectPage(props: ProjectPageProps) {
             selectedMenuKey={selectedMenuKey ?? ""}
           />
           <main>
-            <Suspense fallback={<PLoading />}>
-              <Switch>
+            <Switch>
+              <Route path={`${path}/overview`} component={OverviewPage} />
               <Route path={`${path}/personal`} component={PersonalPage} />
-              {/* <Route path={`${path}/work-units`} component={WorkUnitsPage} />   // archive */}
               <Route
-                  path={`${path}/collaboration/teams/:teamId`}
-                  component={CollaborationPage}
+                path={`${path}/collaboration/teams/:teamId`}
+                component={CollaborationPage}
               />
               <Route path={`${path}/apps`} component={AppsPage} />
               <Route path={`${path}/delivery`} component={DeliveryPage} />
               <Route
-                  path={`${path}/settings`}
-                  component={ProjectSettingsPage}
+                path={`${path}/settings`}
+                component={ProjectSettingsPage}
               />
-              </Switch>
-            </Suspense>
+            </Switch>
           </main>
         </div>
       </div>

@@ -59,10 +59,11 @@ export class ProjectService {
     return resp.data;
   }
 
-  async loadProject(projectId: string) {
-    const resp = await this.projectApi.getProjectUsingGET(projectId);
-    return resp.data;
-  }
+  // 废弃
+  // async loadProject(projectId: string) {
+  //   const resp = await this.projectApi.getProjectUsingGET(projectId);
+  //   return resp.data;
+  // }
 
   async getProjectInfoV2(projectId: string) {
     const resp = await this.projectApi.getProjectV2UsingGET(projectId);
@@ -91,7 +92,7 @@ export class ProjectService {
   }
 
   async loadRequiredData(projectId: string) {
-    const projectDataLoder = this.loadProject(projectId);
+    const projectDataLoder = this.loadProjectById(projectId);
     const teamsDataLoader = teamService.listTeams(projectId);
     const usersDataLoader = userService.listUsers(projectId);
     const specialtyDataLoader = specialtyService.querySepcialty(projectId);

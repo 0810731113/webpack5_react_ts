@@ -254,6 +254,7 @@ export default function ArchiveList(props: ArchiveListProps) {
         pagination={{ pageSize: 200, hideOnSinglePage: true }}
         columns={columns}
         dataSource={archives}
+        // rowKey={'id'}
       />
       {selectedArchiveId && (
         <DeliverArchiveDrawer

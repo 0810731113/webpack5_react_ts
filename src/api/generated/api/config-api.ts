@@ -20,6 +20,14 @@ import { Configuration } from '../configuration';
 import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } from '../base';
 // @ts-ignore
 import { BimConfig } from '../model';
+// @ts-ignore
+import { DesignCfgBindDto } from '../model';
+// @ts-ignore
+import { ResponseDesignAndCfgDataBindingVO } from '../model';
+// @ts-ignore
+import { ResponseListDesignAndCfgDataBindingVO } from '../model';
+// @ts-ignore
+import { Responseboolean } from '../model';
 /**
  * ConfigApi - axios parameter creator
  * @export
@@ -28,15 +36,129 @@ export const ConfigApiAxiosParamCreator = function (configuration?: Configuratio
     return {
         /**
          * 
+         * @summary 检查某类型的配置是否被绑定
+         * @param {string} cfgId cfgId
+         * @param {string} projectId projectId
+         * @param {'SpaceConfig' | 'GridConfig' | 'SubItem' | 'Coordinate'} type type
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        checkCfgBindDataUsingGET: async (cfgId: string, projectId: string, type: 'SpaceConfig' | 'GridConfig' | 'SubItem' | 'Coordinate', options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'cfgId' is not null or undefined
+            if (cfgId === null || cfgId === undefined) {
+                throw new RequiredError('cfgId','Required parameter cfgId was null or undefined when calling checkCfgBindDataUsingGET.');
+            }
+            // verify required parameter 'projectId' is not null or undefined
+            if (projectId === null || projectId === undefined) {
+                throw new RequiredError('projectId','Required parameter projectId was null or undefined when calling checkCfgBindDataUsingGET.');
+            }
+            // verify required parameter 'type' is not null or undefined
+            if (type === null || type === undefined) {
+                throw new RequiredError('type','Required parameter type was null or undefined when calling checkCfgBindDataUsingGET.');
+            }
+            const localVarPath = `/design/config/data/bind/data/check`;
+            const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (cfgId !== undefined) {
+                localVarQueryParameter['cfgId'] = cfgId;
+            }
+
+            if (projectId !== undefined) {
+                localVarQueryParameter['projectId'] = projectId;
+            }
+
+            if (type !== undefined) {
+                localVarQueryParameter['type'] = type;
+            }
+
+
+    
+            localVarUrlObj.query = {...localVarUrlObj.query, ...localVarQueryParameter, ...options.query};
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: globalImportUrl.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary 检查设计数据是否绑定到某类型的配置
+         * @param {string} cfgId cfgId
+         * @param {string} projectId projectId
+         * @param {'SpaceConfig' | 'GridConfig' | 'SubItem' | 'Coordinate'} type type
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        checkDesignBindCfgUsingGET: async (cfgId: string, projectId: string, type: 'SpaceConfig' | 'GridConfig' | 'SubItem' | 'Coordinate', options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'cfgId' is not null or undefined
+            if (cfgId === null || cfgId === undefined) {
+                throw new RequiredError('cfgId','Required parameter cfgId was null or undefined when calling checkDesignBindCfgUsingGET.');
+            }
+            // verify required parameter 'projectId' is not null or undefined
+            if (projectId === null || projectId === undefined) {
+                throw new RequiredError('projectId','Required parameter projectId was null or undefined when calling checkDesignBindCfgUsingGET.');
+            }
+            // verify required parameter 'type' is not null or undefined
+            if (type === null || type === undefined) {
+                throw new RequiredError('type','Required parameter type was null or undefined when calling checkDesignBindCfgUsingGET.');
+            }
+            const localVarPath = `/design/config/data/bind/cfg/check`;
+            const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (cfgId !== undefined) {
+                localVarQueryParameter['cfgId'] = cfgId;
+            }
+
+            if (projectId !== undefined) {
+                localVarQueryParameter['projectId'] = projectId;
+            }
+
+            if (type !== undefined) {
+                localVarQueryParameter['type'] = type;
+            }
+
+
+    
+            localVarUrlObj.query = {...localVarUrlObj.query, ...localVarQueryParameter, ...options.query};
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: globalImportUrl.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
          * @summary 创建一版本配置
-         * @param {'SpaceConfig' | 'GridConfig'} configType configType
-         * @param {'Project'} scope scope
+         * @param {'SpaceConfig' | 'GridConfig' | 'SubItem' | 'Coordinate'} configType configType
+         * @param {'Project' | 'Building'} scope scope
          * @param {string} scopeEntityId scopeEntityId
          * @param {string} config config
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createConfigUsingPOST: async (configType: 'SpaceConfig' | 'GridConfig', scope: 'Project', scopeEntityId: string, config: string, options: any = {}): Promise<RequestArgs> => {
+        createConfigUsingPOST: async (configType: 'SpaceConfig' | 'GridConfig' | 'SubItem' | 'Coordinate', scope: 'Project' | 'Building', scopeEntityId: string, config: string, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'configType' is not null or undefined
             if (configType === null || configType === undefined) {
                 throw new RequiredError('configType','Required parameter configType was null or undefined when calling createConfigUsingPOST.');
@@ -85,15 +207,54 @@ export const ConfigApiAxiosParamCreator = function (configuration?: Configuratio
         },
         /**
          * 
+         * @summary 设计数据绑定配置
+         * @param {DesignCfgBindDto} dto dto
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        createDesignAndConfigBindUsingPOST: async (dto: DesignCfgBindDto, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'dto' is not null or undefined
+            if (dto === null || dto === undefined) {
+                throw new RequiredError('dto','Required parameter dto was null or undefined when calling createDesignAndConfigBindUsingPOST.');
+            }
+            const localVarPath = `/design/config/data/bind`;
+            const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            localVarUrlObj.query = {...localVarUrlObj.query, ...localVarQueryParameter, ...options.query};
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            const needsSerialization = (typeof dto !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(dto !== undefined ? dto : {}) : (dto || "");
+
+            return {
+                url: globalImportUrl.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
          * @summary 获得配置
-         * @param {'SpaceConfig' | 'GridConfig'} configType configType
-         * @param {'Project'} scope scope
+         * @param {'SpaceConfig' | 'GridConfig' | 'SubItem' | 'Coordinate'} configType configType
+         * @param {'Project' | 'Building'} scope scope
          * @param {string} scopeEntityId scopeEntityId
          * @param {number} [version] 版本号(-1或者不填为最新版)
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getConfigByVersionUsingGET: async (configType: 'SpaceConfig' | 'GridConfig', scope: 'Project', scopeEntityId: string, version?: number, options: any = {}): Promise<RequestArgs> => {
+        getConfigByVersionUsingGET: async (configType: 'SpaceConfig' | 'GridConfig' | 'SubItem' | 'Coordinate', scope: 'Project' | 'Building', scopeEntityId: string, version?: number, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'configType' is not null or undefined
             if (configType === null || configType === undefined) {
                 throw new RequiredError('configType','Required parameter configType was null or undefined when calling getConfigByVersionUsingGET.');
@@ -139,13 +300,13 @@ export const ConfigApiAxiosParamCreator = function (configuration?: Configuratio
         /**
          * 
          * @summary 获得配置所有版本信息
-         * @param {'SpaceConfig' | 'GridConfig'} configType configType
-         * @param {'Project'} scope scope
+         * @param {'SpaceConfig' | 'GridConfig' | 'SubItem' | 'Coordinate'} configType configType
+         * @param {'Project' | 'Building'} scope scope
          * @param {string} scopeEntityId scopeEntityId
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getConfigVersionsUsingGET: async (configType: 'SpaceConfig' | 'GridConfig', scope: 'Project', scopeEntityId: string, options: any = {}): Promise<RequestArgs> => {
+        getConfigVersionsUsingGET: async (configType: 'SpaceConfig' | 'GridConfig' | 'SubItem' | 'Coordinate', scope: 'Project' | 'Building', scopeEntityId: string, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'configType' is not null or undefined
             if (configType === null || configType === undefined) {
                 throw new RequiredError('configType','Required parameter configType was null or undefined when calling getConfigVersionsUsingGET.');
@@ -184,6 +345,120 @@ export const ConfigApiAxiosParamCreator = function (configuration?: Configuratio
                 options: localVarRequestOptions,
             };
         },
+        /**
+         * 
+         * @summary 获取配置绑定的设计数据列表
+         * @param {number} cfgId cfgId
+         * @param {string} projectId projectId
+         * @param {'SpaceConfig' | 'GridConfig' | 'SubItem' | 'Coordinate'} type type
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getDesignAndCfgBindListByCfgUsingGET: async (cfgId: number, projectId: string, type: 'SpaceConfig' | 'GridConfig' | 'SubItem' | 'Coordinate', options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'cfgId' is not null or undefined
+            if (cfgId === null || cfgId === undefined) {
+                throw new RequiredError('cfgId','Required parameter cfgId was null or undefined when calling getDesignAndCfgBindListByCfgUsingGET.');
+            }
+            // verify required parameter 'projectId' is not null or undefined
+            if (projectId === null || projectId === undefined) {
+                throw new RequiredError('projectId','Required parameter projectId was null or undefined when calling getDesignAndCfgBindListByCfgUsingGET.');
+            }
+            // verify required parameter 'type' is not null or undefined
+            if (type === null || type === undefined) {
+                throw new RequiredError('type','Required parameter type was null or undefined when calling getDesignAndCfgBindListByCfgUsingGET.');
+            }
+            const localVarPath = `/design/config/data/by/cfg`;
+            const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (cfgId !== undefined) {
+                localVarQueryParameter['cfgId'] = cfgId;
+            }
+
+            if (projectId !== undefined) {
+                localVarQueryParameter['projectId'] = projectId;
+            }
+
+            if (type !== undefined) {
+                localVarQueryParameter['type'] = type;
+            }
+
+
+    
+            localVarUrlObj.query = {...localVarUrlObj.query, ...localVarQueryParameter, ...options.query};
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: globalImportUrl.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary 获取设计数据绑定配置列表
+         * @param {string} dataId dataId
+         * @param {string} projectId projectId
+         * @param {'SpaceConfig' | 'GridConfig' | 'SubItem' | 'Coordinate'} type type
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getDesignAndCfgBindListByDesignUsingGET: async (dataId: string, projectId: string, type: 'SpaceConfig' | 'GridConfig' | 'SubItem' | 'Coordinate', options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'dataId' is not null or undefined
+            if (dataId === null || dataId === undefined) {
+                throw new RequiredError('dataId','Required parameter dataId was null or undefined when calling getDesignAndCfgBindListByDesignUsingGET.');
+            }
+            // verify required parameter 'projectId' is not null or undefined
+            if (projectId === null || projectId === undefined) {
+                throw new RequiredError('projectId','Required parameter projectId was null or undefined when calling getDesignAndCfgBindListByDesignUsingGET.');
+            }
+            // verify required parameter 'type' is not null or undefined
+            if (type === null || type === undefined) {
+                throw new RequiredError('type','Required parameter type was null or undefined when calling getDesignAndCfgBindListByDesignUsingGET.');
+            }
+            const localVarPath = `/design/config/data/by/design`;
+            const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (dataId !== undefined) {
+                localVarQueryParameter['dataId'] = dataId;
+            }
+
+            if (projectId !== undefined) {
+                localVarQueryParameter['projectId'] = projectId;
+            }
+
+            if (type !== undefined) {
+                localVarQueryParameter['type'] = type;
+            }
+
+
+    
+            localVarUrlObj.query = {...localVarUrlObj.query, ...localVarQueryParameter, ...options.query};
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: globalImportUrl.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
     }
 };
 
@@ -195,15 +470,47 @@ export const ConfigApiFp = function(configuration?: Configuration) {
     return {
         /**
          * 
+         * @summary 检查某类型的配置是否被绑定
+         * @param {string} cfgId cfgId
+         * @param {string} projectId projectId
+         * @param {'SpaceConfig' | 'GridConfig' | 'SubItem' | 'Coordinate'} type type
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async checkCfgBindDataUsingGET(cfgId: string, projectId: string, type: 'SpaceConfig' | 'GridConfig' | 'SubItem' | 'Coordinate', options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Responseboolean>> {
+            const localVarAxiosArgs = await ConfigApiAxiosParamCreator(configuration).checkCfgBindDataUsingGET(cfgId, projectId, type, options);
+            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
+                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
+                return axios.request(axiosRequestArgs);
+            };
+        },
+        /**
+         * 
+         * @summary 检查设计数据是否绑定到某类型的配置
+         * @param {string} cfgId cfgId
+         * @param {string} projectId projectId
+         * @param {'SpaceConfig' | 'GridConfig' | 'SubItem' | 'Coordinate'} type type
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async checkDesignBindCfgUsingGET(cfgId: string, projectId: string, type: 'SpaceConfig' | 'GridConfig' | 'SubItem' | 'Coordinate', options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Responseboolean>> {
+            const localVarAxiosArgs = await ConfigApiAxiosParamCreator(configuration).checkDesignBindCfgUsingGET(cfgId, projectId, type, options);
+            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
+                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
+                return axios.request(axiosRequestArgs);
+            };
+        },
+        /**
+         * 
          * @summary 创建一版本配置
-         * @param {'SpaceConfig' | 'GridConfig'} configType configType
-         * @param {'Project'} scope scope
+         * @param {'SpaceConfig' | 'GridConfig' | 'SubItem' | 'Coordinate'} configType configType
+         * @param {'Project' | 'Building'} scope scope
          * @param {string} scopeEntityId scopeEntityId
          * @param {string} config config
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async createConfigUsingPOST(configType: 'SpaceConfig' | 'GridConfig', scope: 'Project', scopeEntityId: string, config: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<BimConfig>> {
+        async createConfigUsingPOST(configType: 'SpaceConfig' | 'GridConfig' | 'SubItem' | 'Coordinate', scope: 'Project' | 'Building', scopeEntityId: string, config: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<BimConfig>> {
             const localVarAxiosArgs = await ConfigApiAxiosParamCreator(configuration).createConfigUsingPOST(configType, scope, scopeEntityId, config, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -212,15 +519,29 @@ export const ConfigApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @summary 设计数据绑定配置
+         * @param {DesignCfgBindDto} dto dto
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async createDesignAndConfigBindUsingPOST(dto: DesignCfgBindDto, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ResponseDesignAndCfgDataBindingVO>> {
+            const localVarAxiosArgs = await ConfigApiAxiosParamCreator(configuration).createDesignAndConfigBindUsingPOST(dto, options);
+            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
+                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
+                return axios.request(axiosRequestArgs);
+            };
+        },
+        /**
+         * 
          * @summary 获得配置
-         * @param {'SpaceConfig' | 'GridConfig'} configType configType
-         * @param {'Project'} scope scope
+         * @param {'SpaceConfig' | 'GridConfig' | 'SubItem' | 'Coordinate'} configType configType
+         * @param {'Project' | 'Building'} scope scope
          * @param {string} scopeEntityId scopeEntityId
          * @param {number} [version] 版本号(-1或者不填为最新版)
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getConfigByVersionUsingGET(configType: 'SpaceConfig' | 'GridConfig', scope: 'Project', scopeEntityId: string, version?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<BimConfig>> {
+        async getConfigByVersionUsingGET(configType: 'SpaceConfig' | 'GridConfig' | 'SubItem' | 'Coordinate', scope: 'Project' | 'Building', scopeEntityId: string, version?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<BimConfig>> {
             const localVarAxiosArgs = await ConfigApiAxiosParamCreator(configuration).getConfigByVersionUsingGET(configType, scope, scopeEntityId, version, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -230,14 +551,46 @@ export const ConfigApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @summary 获得配置所有版本信息
-         * @param {'SpaceConfig' | 'GridConfig'} configType configType
-         * @param {'Project'} scope scope
+         * @param {'SpaceConfig' | 'GridConfig' | 'SubItem' | 'Coordinate'} configType configType
+         * @param {'Project' | 'Building'} scope scope
          * @param {string} scopeEntityId scopeEntityId
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getConfigVersionsUsingGET(configType: 'SpaceConfig' | 'GridConfig', scope: 'Project', scopeEntityId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<number>>> {
+        async getConfigVersionsUsingGET(configType: 'SpaceConfig' | 'GridConfig' | 'SubItem' | 'Coordinate', scope: 'Project' | 'Building', scopeEntityId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<number>>> {
             const localVarAxiosArgs = await ConfigApiAxiosParamCreator(configuration).getConfigVersionsUsingGET(configType, scope, scopeEntityId, options);
+            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
+                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
+                return axios.request(axiosRequestArgs);
+            };
+        },
+        /**
+         * 
+         * @summary 获取配置绑定的设计数据列表
+         * @param {number} cfgId cfgId
+         * @param {string} projectId projectId
+         * @param {'SpaceConfig' | 'GridConfig' | 'SubItem' | 'Coordinate'} type type
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getDesignAndCfgBindListByCfgUsingGET(cfgId: number, projectId: string, type: 'SpaceConfig' | 'GridConfig' | 'SubItem' | 'Coordinate', options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ResponseListDesignAndCfgDataBindingVO>> {
+            const localVarAxiosArgs = await ConfigApiAxiosParamCreator(configuration).getDesignAndCfgBindListByCfgUsingGET(cfgId, projectId, type, options);
+            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
+                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
+                return axios.request(axiosRequestArgs);
+            };
+        },
+        /**
+         * 
+         * @summary 获取设计数据绑定配置列表
+         * @param {string} dataId dataId
+         * @param {string} projectId projectId
+         * @param {'SpaceConfig' | 'GridConfig' | 'SubItem' | 'Coordinate'} type type
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getDesignAndCfgBindListByDesignUsingGET(dataId: string, projectId: string, type: 'SpaceConfig' | 'GridConfig' | 'SubItem' | 'Coordinate', options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ResponseListDesignAndCfgDataBindingVO>> {
+            const localVarAxiosArgs = await ConfigApiAxiosParamCreator(configuration).getDesignAndCfgBindListByDesignUsingGET(dataId, projectId, type, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -254,41 +607,99 @@ export const ConfigApiFactory = function (configuration?: Configuration, basePat
     return {
         /**
          * 
+         * @summary 检查某类型的配置是否被绑定
+         * @param {string} cfgId cfgId
+         * @param {string} projectId projectId
+         * @param {'SpaceConfig' | 'GridConfig' | 'SubItem' | 'Coordinate'} type type
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        checkCfgBindDataUsingGET(cfgId: string, projectId: string, type: 'SpaceConfig' | 'GridConfig' | 'SubItem' | 'Coordinate', options?: any): AxiosPromise<Responseboolean> {
+            return ConfigApiFp(configuration).checkCfgBindDataUsingGET(cfgId, projectId, type, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary 检查设计数据是否绑定到某类型的配置
+         * @param {string} cfgId cfgId
+         * @param {string} projectId projectId
+         * @param {'SpaceConfig' | 'GridConfig' | 'SubItem' | 'Coordinate'} type type
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        checkDesignBindCfgUsingGET(cfgId: string, projectId: string, type: 'SpaceConfig' | 'GridConfig' | 'SubItem' | 'Coordinate', options?: any): AxiosPromise<Responseboolean> {
+            return ConfigApiFp(configuration).checkDesignBindCfgUsingGET(cfgId, projectId, type, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
          * @summary 创建一版本配置
-         * @param {'SpaceConfig' | 'GridConfig'} configType configType
-         * @param {'Project'} scope scope
+         * @param {'SpaceConfig' | 'GridConfig' | 'SubItem' | 'Coordinate'} configType configType
+         * @param {'Project' | 'Building'} scope scope
          * @param {string} scopeEntityId scopeEntityId
          * @param {string} config config
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createConfigUsingPOST(configType: 'SpaceConfig' | 'GridConfig', scope: 'Project', scopeEntityId: string, config: string, options?: any): AxiosPromise<BimConfig> {
+        createConfigUsingPOST(configType: 'SpaceConfig' | 'GridConfig' | 'SubItem' | 'Coordinate', scope: 'Project' | 'Building', scopeEntityId: string, config: string, options?: any): AxiosPromise<BimConfig> {
             return ConfigApiFp(configuration).createConfigUsingPOST(configType, scope, scopeEntityId, config, options).then((request) => request(axios, basePath));
         },
         /**
          * 
+         * @summary 设计数据绑定配置
+         * @param {DesignCfgBindDto} dto dto
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        createDesignAndConfigBindUsingPOST(dto: DesignCfgBindDto, options?: any): AxiosPromise<ResponseDesignAndCfgDataBindingVO> {
+            return ConfigApiFp(configuration).createDesignAndConfigBindUsingPOST(dto, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
          * @summary 获得配置
-         * @param {'SpaceConfig' | 'GridConfig'} configType configType
-         * @param {'Project'} scope scope
+         * @param {'SpaceConfig' | 'GridConfig' | 'SubItem' | 'Coordinate'} configType configType
+         * @param {'Project' | 'Building'} scope scope
          * @param {string} scopeEntityId scopeEntityId
          * @param {number} [version] 版本号(-1或者不填为最新版)
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getConfigByVersionUsingGET(configType: 'SpaceConfig' | 'GridConfig', scope: 'Project', scopeEntityId: string, version?: number, options?: any): AxiosPromise<BimConfig> {
+        getConfigByVersionUsingGET(configType: 'SpaceConfig' | 'GridConfig' | 'SubItem' | 'Coordinate', scope: 'Project' | 'Building', scopeEntityId: string, version?: number, options?: any): AxiosPromise<BimConfig> {
             return ConfigApiFp(configuration).getConfigByVersionUsingGET(configType, scope, scopeEntityId, version, options).then((request) => request(axios, basePath));
         },
         /**
          * 
          * @summary 获得配置所有版本信息
-         * @param {'SpaceConfig' | 'GridConfig'} configType configType
-         * @param {'Project'} scope scope
+         * @param {'SpaceConfig' | 'GridConfig' | 'SubItem' | 'Coordinate'} configType configType
+         * @param {'Project' | 'Building'} scope scope
          * @param {string} scopeEntityId scopeEntityId
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getConfigVersionsUsingGET(configType: 'SpaceConfig' | 'GridConfig', scope: 'Project', scopeEntityId: string, options?: any): AxiosPromise<Array<number>> {
+        getConfigVersionsUsingGET(configType: 'SpaceConfig' | 'GridConfig' | 'SubItem' | 'Coordinate', scope: 'Project' | 'Building', scopeEntityId: string, options?: any): AxiosPromise<Array<number>> {
             return ConfigApiFp(configuration).getConfigVersionsUsingGET(configType, scope, scopeEntityId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary 获取配置绑定的设计数据列表
+         * @param {number} cfgId cfgId
+         * @param {string} projectId projectId
+         * @param {'SpaceConfig' | 'GridConfig' | 'SubItem' | 'Coordinate'} type type
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getDesignAndCfgBindListByCfgUsingGET(cfgId: number, projectId: string, type: 'SpaceConfig' | 'GridConfig' | 'SubItem' | 'Coordinate', options?: any): AxiosPromise<ResponseListDesignAndCfgDataBindingVO> {
+            return ConfigApiFp(configuration).getDesignAndCfgBindListByCfgUsingGET(cfgId, projectId, type, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary 获取设计数据绑定配置列表
+         * @param {string} dataId dataId
+         * @param {string} projectId projectId
+         * @param {'SpaceConfig' | 'GridConfig' | 'SubItem' | 'Coordinate'} type type
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getDesignAndCfgBindListByDesignUsingGET(dataId: string, projectId: string, type: 'SpaceConfig' | 'GridConfig' | 'SubItem' | 'Coordinate', options?: any): AxiosPromise<ResponseListDesignAndCfgDataBindingVO> {
+            return ConfigApiFp(configuration).getDesignAndCfgBindListByDesignUsingGET(dataId, projectId, type, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -302,46 +713,114 @@ export const ConfigApiFactory = function (configuration?: Configuration, basePat
 export class ConfigApi extends BaseAPI {
     /**
      * 
+     * @summary 检查某类型的配置是否被绑定
+     * @param {string} cfgId cfgId
+     * @param {string} projectId projectId
+     * @param {'SpaceConfig' | 'GridConfig' | 'SubItem' | 'Coordinate'} type type
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConfigApi
+     */
+    public checkCfgBindDataUsingGET(cfgId: string, projectId: string, type: 'SpaceConfig' | 'GridConfig' | 'SubItem' | 'Coordinate', options?: any) {
+        return ConfigApiFp(this.configuration).checkCfgBindDataUsingGET(cfgId, projectId, type, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary 检查设计数据是否绑定到某类型的配置
+     * @param {string} cfgId cfgId
+     * @param {string} projectId projectId
+     * @param {'SpaceConfig' | 'GridConfig' | 'SubItem' | 'Coordinate'} type type
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConfigApi
+     */
+    public checkDesignBindCfgUsingGET(cfgId: string, projectId: string, type: 'SpaceConfig' | 'GridConfig' | 'SubItem' | 'Coordinate', options?: any) {
+        return ConfigApiFp(this.configuration).checkDesignBindCfgUsingGET(cfgId, projectId, type, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
      * @summary 创建一版本配置
-     * @param {'SpaceConfig' | 'GridConfig'} configType configType
-     * @param {'Project'} scope scope
+     * @param {'SpaceConfig' | 'GridConfig' | 'SubItem' | 'Coordinate'} configType configType
+     * @param {'Project' | 'Building'} scope scope
      * @param {string} scopeEntityId scopeEntityId
      * @param {string} config config
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ConfigApi
      */
-    public createConfigUsingPOST(configType: 'SpaceConfig' | 'GridConfig', scope: 'Project', scopeEntityId: string, config: string, options?: any) {
+    public createConfigUsingPOST(configType: 'SpaceConfig' | 'GridConfig' | 'SubItem' | 'Coordinate', scope: 'Project' | 'Building', scopeEntityId: string, config: string, options?: any) {
         return ConfigApiFp(this.configuration).createConfigUsingPOST(configType, scope, scopeEntityId, config, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
+     * @summary 设计数据绑定配置
+     * @param {DesignCfgBindDto} dto dto
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConfigApi
+     */
+    public createDesignAndConfigBindUsingPOST(dto: DesignCfgBindDto, options?: any) {
+        return ConfigApiFp(this.configuration).createDesignAndConfigBindUsingPOST(dto, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
      * @summary 获得配置
-     * @param {'SpaceConfig' | 'GridConfig'} configType configType
-     * @param {'Project'} scope scope
+     * @param {'SpaceConfig' | 'GridConfig' | 'SubItem' | 'Coordinate'} configType configType
+     * @param {'Project' | 'Building'} scope scope
      * @param {string} scopeEntityId scopeEntityId
      * @param {number} [version] 版本号(-1或者不填为最新版)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ConfigApi
      */
-    public getConfigByVersionUsingGET(configType: 'SpaceConfig' | 'GridConfig', scope: 'Project', scopeEntityId: string, version?: number, options?: any) {
+    public getConfigByVersionUsingGET(configType: 'SpaceConfig' | 'GridConfig' | 'SubItem' | 'Coordinate', scope: 'Project' | 'Building', scopeEntityId: string, version?: number, options?: any) {
         return ConfigApiFp(this.configuration).getConfigByVersionUsingGET(configType, scope, scopeEntityId, version, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
      * @summary 获得配置所有版本信息
-     * @param {'SpaceConfig' | 'GridConfig'} configType configType
-     * @param {'Project'} scope scope
+     * @param {'SpaceConfig' | 'GridConfig' | 'SubItem' | 'Coordinate'} configType configType
+     * @param {'Project' | 'Building'} scope scope
      * @param {string} scopeEntityId scopeEntityId
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ConfigApi
      */
-    public getConfigVersionsUsingGET(configType: 'SpaceConfig' | 'GridConfig', scope: 'Project', scopeEntityId: string, options?: any) {
+    public getConfigVersionsUsingGET(configType: 'SpaceConfig' | 'GridConfig' | 'SubItem' | 'Coordinate', scope: 'Project' | 'Building', scopeEntityId: string, options?: any) {
         return ConfigApiFp(this.configuration).getConfigVersionsUsingGET(configType, scope, scopeEntityId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary 获取配置绑定的设计数据列表
+     * @param {number} cfgId cfgId
+     * @param {string} projectId projectId
+     * @param {'SpaceConfig' | 'GridConfig' | 'SubItem' | 'Coordinate'} type type
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConfigApi
+     */
+    public getDesignAndCfgBindListByCfgUsingGET(cfgId: number, projectId: string, type: 'SpaceConfig' | 'GridConfig' | 'SubItem' | 'Coordinate', options?: any) {
+        return ConfigApiFp(this.configuration).getDesignAndCfgBindListByCfgUsingGET(cfgId, projectId, type, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary 获取设计数据绑定配置列表
+     * @param {string} dataId dataId
+     * @param {string} projectId projectId
+     * @param {'SpaceConfig' | 'GridConfig' | 'SubItem' | 'Coordinate'} type type
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConfigApi
+     */
+    public getDesignAndCfgBindListByDesignUsingGET(dataId: string, projectId: string, type: 'SpaceConfig' | 'GridConfig' | 'SubItem' | 'Coordinate', options?: any) {
+        return ConfigApiFp(this.configuration).getDesignAndCfgBindListByDesignUsingGET(dataId, projectId, type, options).then((request) => request(this.axios, this.basePath));
     }
 
 }

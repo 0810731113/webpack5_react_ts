@@ -61,17 +61,21 @@ export async function publishEvent(
         ? "https://api.goujianwu.com/general/tracks"
         : ENV === "qa"
         ? "https://api-test.goujianwu.com/general/tracks"
-        : "https://api-dev.goujianwu.com/general/tracks";
-    const res = await fetch(url, {
-      method: "POST",
-      body: JSON.stringify({ event: eventName, params: options }),
-      headers: {
-        "Local-pid": "GTeam",
-        "Local-uid": options.userId?.toString() || userId || uuid,
-        "Content-Type": "application/json",
-      },
-    });
-    console.log(res);
+        : ENV === "development"
+        ? "https://api-dev.goujianwu.com/general/tracks"
+        : "";
+    if (url) {
+      const res = await fetch(url, {
+        method: "POST",
+        body: JSON.stringify({ event: eventName, params: options }),
+        headers: {
+          "Local-pid": "GTeam",
+          "Local-uid": options.userId?.toString() || userId || uuid,
+          "Content-Type": "application/json",
+        },
+      });
+      console.log(res);
+    }
   } catch (e) {
     console.log(e);
   }

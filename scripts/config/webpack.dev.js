@@ -1,10 +1,11 @@
 const Webpack = require('webpack');
-// const ErrorOverlayPlugin = require('error-overlay-webpack-plugin');
+const ErrorOverlayPlugin = require('error-overlay-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { merge } = require('webpack-merge');
 const path = require('path');
 const common = require('./webpack.common.js');
 const paths = require('../paths');
-
+const CopyPlugin = require('copy-webpack-plugin');
 const filename = 'asset/js/[name].[chunkhash:7].js';
 const distPath = path.resolve('build');
 
@@ -30,7 +31,6 @@ module.exports = merge(common, {
     chunkFilename: filename,
     path: distPath,
     publicPath: '/',
-    libraryTarget: 'umd',
   },
   devServer: {
     headers: { 'Access-Control-Allow-Origin': '*' },
@@ -55,14 +55,18 @@ module.exports = merge(common, {
   },
   plugins: [
     new Webpack.HotModuleReplacementPlugin(),
-    // new ErrorOverlayPlugin()
+    new ErrorOverlayPlugin(),
+    new HtmlWebpackPlugin({
+      template: path.resolve(process.cwd(), './template/dev.html'),
+      // favoicon: path.resolve(process.cwd(), './template/favicon.ico'),
+      favoicon: 'favicon.ico',
+      filename: 'dev.html',
+    }),
+    new CopyPlugin({
+      patterns:[
+        { from: path.join(process.cwd(), './public'), to: path.join(process.cwd(), './build/web') },
+        { from: path.join(process.cwd(), './template/favicon.ico'), to: path.join(process.cwd(), './build/favicon.ico') },
+      ]
+    }),
   ],
-  optimization: {
-    minimize: false,
-    minimizer: [],
-    splitChunks: {
-      chunks: 'all',
-      minSize: 0,
-    },
-  },
 });
